@@ -1,4 +1,4 @@
-import { PARSERS, youtubeId, scoreWritten } from "./parse-widgets.js";
+import { PARSERS, youtubeId, scoreWritten, parseClinic } from "./parse-widgets.js";
 
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -365,7 +365,7 @@ const WIDGETS = {
 
 // ---------- progress, badges, toasts ----------
 const STORE_KEY = "pe-hub-progress-v1";
-const blank = () => ({ widgets: {}, lessons: {}, written: {}, stats: { done: 0, flawless: 0, recovered: 0, written: 0, selfSaved: 0 }, badges: {}, streak: { count: 0, last: "" }, last: "" });
+const blank = () => ({ widgets: {}, lessons: {}, written: {}, clock: { best: {}, plays: 0, top: 0 }, clinic: {}, stats: { done: 0, flawless: 0, recovered: 0, written: 0, selfSaved: 0 }, badges: {}, streak: { count: 0, last: "" }, last: "" });
 let state = blank();
 try { const raw = localStorage.getItem(STORE_KEY); if (raw) { const o = JSON.parse(raw); state = { ...blank(), ...o, stats: { ...blank().stats, ...(o.stats || {}) } }; } } catch {}
 const saveState = () => { try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch {} };
@@ -396,6 +396,10 @@ const badgeDefs = () => [
   ...manifest.units.map((u, i) => ({ id: `unit-${i + 1}`, icon: u.icon || "🏅", name: `${u.title} Champion`, desc: `Complete every lesson in Unit ${i + 1}`, test: () => unitDone(i) })),
   { id: "critical-thinker", icon: "🧩", name: "Critical Thinker", desc: "Complete 3 Think deeper or Challenge Bank questions", test: () => state.stats.written >= 3 },
   { id: "honest-marker", icon: "📝", name: "Honest Marker", desc: "Save 3 self-assessments using the mark scheme", test: () => state.stats.selfSaved >= 3 },
+  { id: "on-the-clock", icon: "⏱️", name: "On the Clock", desc: "Finish a round of Beat the Clock", test: () => state.clock.plays >= 1 },
+  { id: "quick-thinker", icon: "⚡", name: "Quick Thinker", desc: "Score 150 or more in Beat the Clock", test: () => state.clock.top >= 150 },
+  { id: "clinic-rookie", icon: "🩺", name: "Clinic Rookie", desc: "Complete a Coach's Clinic case", test: () => Object.keys(state.clinic).length >= 1 },
+  { id: "head-coach", icon: "🧑‍🏫", name: "Head Coach", desc: "Earn 3 stars on 3 Coach's Clinic cases", test: () => Object.values(state.clinic).filter((c) => c.stars >= 3).length >= 3 },
   { id: "challenge-champion", icon: "🥇", name: "Challenge Champion", desc: "Complete 10 Think deeper or Challenge Bank questions", test: () => state.stats.written >= 10 },
   { id: "halfway", icon: "🏁", name: "Halfway There", desc: "Complete half of all the lessons", test: () => lessonCount() > 0 && doneCount() >= Math.ceil(lessonCount() / 2) },
   { id: "course-champion", icon: "🏆", name: "Course Champion", desc: "Complete every lesson", test: () => lessonCount() > 0 && doneCount() >= lessonCount() },
@@ -514,6 +518,7 @@ function renderHome() {
   const left = bankItems.filter((q) => !state.written[q.id]?.submitted);
   const pick = (left.length ? left : bankItems)[Math.floor(Math.random() * (left.length || bankItems.length))];
   $("bank-progress").textContent = bankItems.length ? `${doneQ} of ${bankItems.length} challenges done` : "";
+  updateGameNotes();
   $("bank-random").href = pick ? `#bank/${pick.id}` : "#bank";
   // continue button
   const m = (state.last || "").match(/^#unit\/(\d+)\/(\d+)$/);
@@ -536,12 +541,15 @@ function buildNav() {
 }
 
 function route() {
+  stopClock();
   const [tab = "home", a, b] = location.hash.slice(1).split("/");
-  let active = "home";
+  let active = "home", panel = "";
   if (tab === "unit" && manifest.units[Number(a) - 1]) active = `unit-${Number(a)}`;
   else if (tab === "tasks") active = "tasks";
   else if (tab === "bank") active = "bank";
-  for (const id of ["home", "unit", "tasks", "bank"]) $(id).hidden = id !== (active.startsWith("unit") ? "unit" : active);
+  else if (tab === "clock" || tab === "clinic") { active = "bank"; panel = tab; }
+  const show = panel || (active.startsWith("unit") ? "unit" : active);
+  for (const id of ["home", "unit", "tasks", "bank", "clock", "clinic"]) $(id).hidden = id !== show;
   document.querySelectorAll("#tabs a").forEach((l) => {
     if (l.dataset.tab === active) l.setAttribute("aria-current", "page");
     else l.removeAttribute("aria-current");
@@ -551,8 +559,10 @@ function route() {
     if (Number(b) > 0) { state.last = `#unit/${Number(a)}/${Number(b)}`; saveState(); }
     showUnit(Number(a), Number(b) || 0);
   } else if (active === "tasks") showTasks(Number(a) || 0);
+  else if (panel === "clock") showClock();
+  else if (panel === "clinic") showClinic(a || "");
   else if (active === "bank") showBank(a || "");
-  if (active !== "bank" || !a) window.scrollTo(0, 0);
+  if (active !== "bank" || panel || !a) window.scrollTo(0, 0);
   document.title = "PHE ePortfolio Hub";
 }
 
@@ -651,6 +661,7 @@ function bankControls() {
 }
 
 function showBank(openId) {
+  updateGameNotes();
   bankControls();
   renderBankList();
   if (!openId) return;
@@ -658,6 +669,310 @@ function showBank(openId) {
   let d = find();
   if (!d) { bankFilter.unit = bankFilter.level = bankFilter.status = "all"; bankControls(); renderBankList(); d = find(); }
   if (d) { d.open = true; d.scrollIntoView({ block: "center" }); }
+}
+
+// ---------- game notes on the cards ----------
+function updateGameNotes() {
+  const best = Math.max(0, ...Object.values(state.clock.best));
+  const clockNote = best ? `Your best: ${best} points` : "60 seconds. How many can you get?";
+  const cases = manifest.clinic || [];
+  const doneCases = cases.filter((c) => state.clinic[c.id]).length;
+  const clinicNote = cases.length ? `${doneCases} of ${cases.length} cases completed` : "";
+  for (const id of ["home-clock-note", "hub-clock-note"]) if ($(id)) $(id).textContent = clockNote;
+  for (const id of ["home-clinic-note", "hub-clinic-note"]) if ($(id)) $(id).textContent = clinicNote;
+}
+
+// ---------- Beat the Clock ----------
+const CLOCK_SECONDS = 60, CLOCK_PENALTY = 3;
+const CLOCK_RANKS = [["Legend", 240], ["Captain", 160], ["Starter", 80], ["Rookie", 0]];
+const clockRank = (n) => CLOCK_RANKS.find(([, min]) => n >= min)[0];
+let clockPool = null, clockTimer = 0, clockKeys = null;
+let clockUnit = "all";
+
+function stopClock() {
+  clearInterval(clockTimer);
+  clockTimer = 0;
+  if (clockKeys) { document.removeEventListener("keydown", clockKeys); clockKeys = null; }
+}
+
+async function loadClock() {
+  if (clockPool) return clockPool;
+  const out = [];
+  await Promise.all((manifest.clock || []).map(async (f, fi) => {
+    try {
+      const raw = await (await fetch(f.path)).text();
+      for (const m of raw.matchAll(/^```quiz[ \t]*\n([\s\S]*?)^```/gm)) out.push({ fi, qs: PARSERS.quiz(m[1]).map((q) => ({ ...q, unit: Number(f.unit) || fi + 1 })) });
+    } catch (e) { console.error("clock file failed", f.path, e); }
+  }));
+  clockPool = out.sort((a, b) => a.fi - b.fi).flatMap((o) => o.qs);
+  return clockPool;
+}
+
+async function showClock() {
+  stopClock();
+  const stage = $("clock-stage");
+  stage.replaceChildren(h("p", { class: "lead" }, "Loading questions…"));
+  const pool = await loadClock();
+  if (!pool.length) { stage.replaceChildren(h("p", { class: "notice" }, "No Beat the Clock questions found. Run npm run build.")); return; }
+  clockMenu(stage);
+}
+
+function clockMenu(stage) {
+  stopClock();
+  const units = [["all", "All units", pool_count("all")], ...manifest.units.map((u, i) => [String(i + 1), `${u.icon || ""} ${u.short || u.title}`.trim(), pool_count(String(i + 1))])];
+  function pool_count(k) { return clockPool.filter((q) => k === "all" || String(q.unit) === k).length; }
+  const best = (k) => state.clock.best[k] || 0;
+  const group = h("div", { class: "ck-units", role: "group", "aria-label": "Choose what to be tested on" });
+  const startNote = h("p", { class: "ck-best" });
+  const refresh = () => {
+    for (const b of group.children) b.setAttribute("aria-pressed", String(b.dataset.k === clockUnit));
+    startNote.textContent = best(clockUnit) ? `Your best here: ${best(clockUnit)} points (${clockRank(best(clockUnit))})` : "No score yet. Set your first one!";
+  };
+  for (const [k, label, n] of units) {
+    if (!n) continue;
+    const b = h("button", { type: "button", class: "ck-unit", "data-k": k }, h("span", {}, label), h("small", {}, `${n} questions`));
+    b.onclick = () => { clockUnit = k; refresh(); };
+    group.append(b);
+  }
+  if (![...group.children].some((b) => b.dataset.k === clockUnit)) clockUnit = "all";
+  const go = h("button", { type: "button", class: "btn lime ck-go" }, "Start the clock ⏱️");
+  go.onclick = () => startClock(stage);
+  stage.replaceChildren(
+    h("div", { class: "ck-rules" },
+      h("h2", {}, "How it works"),
+      h("ul", {},
+        h("li", {}, h("strong", {}, `${CLOCK_SECONDS} seconds`), " on the clock. Answer as many questions as you can."),
+        h("li", {}, h("strong", {}, "Right: "), "+10 points, plus bonus points for a streak of correct answers."),
+        h("li", {}, h("strong", {}, "Wrong: "), `you lose ${CLOCK_PENALTY} seconds and get a hint. Use it to try the same question again.`),
+        h("li", {}, "Keyboard: press 1, 2, 3 or 4 to choose an answer."))),
+    h("h2", { class: "ck-sub" }, "Choose your topic"), group, startNote, h("p", {}, go));
+  refresh();
+}
+
+function startClock(stage) {
+  stopClock();
+  const pool = shuffle(clockPool.filter((q) => clockUnit === "all" || String(q.unit) === clockUnit));
+  if (!pool.length) return;
+  let i = -1, score = 0, combo = 0, bestCombo = 0, right = 0, wrong = 0, over = false, locked = false;
+  const missed = [];
+  let endAt = Date.now() + CLOCK_SECONDS * 1000;
+  const time = h("strong", { class: "ck-time" }, String(CLOCK_SECONDS));
+  const bar = h("div", { class: "ck-bar" }, h("i"));
+  const scoreEl = h("strong", {}, "0");
+  const comboEl = h("strong", {}, "0");
+  const qEl = h("p", { class: "ck-q" });
+  const optsEl = h("div", { class: "ck-opts" });
+  const hintEl = h("p", { class: "ck-hint", role: "status" });
+  stage.replaceChildren(
+    h("div", { class: "ck-hud" },
+      h("div", { class: "ck-stat" }, h("small", {}, "Time"), time),
+      h("div", { class: "ck-stat" }, h("small", {}, "Score"), scoreEl),
+      h("div", { class: "ck-stat" }, h("small", {}, "Streak"), comboEl)),
+    bar, qEl, optsEl, hintEl);
+  const tick = () => {
+    const left = Math.max(0, endAt - Date.now());
+    time.textContent = String(Math.ceil(left / 1000));
+    bar.firstChild.style.width = `${(left / (CLOCK_SECONDS * 1000)) * 100}%`;
+    bar.classList.toggle("low", left < 10000);
+    if (left <= 0) finish();
+  };
+  function next() {
+    i++;
+    const q = pool[i % pool.length];
+    locked = false;
+    hintEl.textContent = "";
+    hintEl.className = "ck-hint";
+    qEl.textContent = q.question;
+    optsEl.replaceChildren(...shuffle(q.options).map((o, n) => {
+      const b = h("button", { type: "button", class: "ck-opt" }, h("kbd", {}, String(n + 1)), h("span", {}, o.text));
+      b.onclick = () => pick(q, o, b);
+      return b;
+    }));
+  }
+  function pick(q, o, b) {
+    if (over || locked || b.disabled) return;
+    if (o.correct) {
+      locked = true;
+      right++; combo++; bestCombo = Math.max(bestCombo, combo);
+      score += 10 + Math.min(combo - 1, 5) * 2;
+      scoreEl.textContent = String(score); comboEl.textContent = String(combo);
+      b.classList.add("right");
+      setTimeout(() => { if (!over) next(); }, 260);
+    } else {
+      wrong++; combo = 0; comboEl.textContent = "0";
+      endAt -= CLOCK_PENALTY * 1000;
+      if (!missed.includes(q.question)) missed.push(q.question);
+      b.disabled = true; b.classList.add("wrong");
+      hintEl.className = "ck-hint show";
+      hintEl.textContent = `−${CLOCK_PENALTY} s. Hint: ${o.hint}`;
+      tick();
+    }
+  }
+  function finish() {
+    if (over) return;
+    over = true;
+    stopClock();
+    const k = clockUnit;
+    const prev = state.clock.best[k] || 0;
+    const pb = score > prev && score > 0;
+    if (pb) state.clock.best[k] = score;
+    state.clock.plays++;
+    state.clock.top = Math.max(state.clock.top, score);
+    bumpStreak();
+    awardBadges();
+    saveState();
+    if (pb || score >= 160) confetti(true);
+    const acc = right + wrong ? Math.round((right / (right + wrong)) * 100) : 0;
+    const again = h("button", { type: "button", class: "btn lime" }, "Play again");
+    again.onclick = () => startClock(stage);
+    const menu = h("button", { type: "button", class: "btn ghost" }, "Change topic");
+    menu.onclick = () => clockMenu(stage);
+    stage.replaceChildren(
+      h("div", { class: "ck-result", role: "status" },
+        h("p", { class: "eyebrow" }, "Time's up!"),
+        h("h2", {}, `${score} points`),
+        h("p", { class: "ck-rank" }, `Rank: ${clockRank(score)}`),
+        pb ? h("p", { class: "ck-pb" }, "🎉 New personal best!") : "",
+        h("ul", { class: "ck-facts" },
+          h("li", {}, `${right} correct`),
+          h("li", {}, `${acc}% accuracy`),
+          h("li", {}, `Best streak: ${bestCombo}`))),
+      missed.length ? h("div", { class: "ck-missed" }, h("h3", {}, "Questions to revisit"), h("p", {}, "These tripped you up. Look them up in the lessons, then come back and beat your score."), h("ul", {}, missed.slice(0, 10).map((m) => h("li", {}, m)))) : h("p", { class: "ck-pb" }, "No mistakes at all. Impressive!"),
+      h("div", { class: "w-row" }, again, menu, h("a", { class: "btn ghost", href: "#bank" }, "Back to Challenges")));
+  }
+  clockKeys = (e) => {
+    if (over || e.ctrlKey || e.metaKey || e.altKey) return;
+    const n = Number(e.key);
+    if (n >= 1 && n <= optsEl.children.length) optsEl.children[n - 1].click();
+  };
+  document.addEventListener("keydown", clockKeys);
+  next();
+  tick();
+  clockTimer = setInterval(tick, 100);
+}
+
+// ---------- Coach's Clinic ----------
+const clinicCache = {};
+async function loadCase(c) {
+  if (!clinicCache[c.id]) {
+    const raw = (await (await fetch(c.path)).text()).replace(/^---\n[\s\S]*?\n---\n?/, "");
+    clinicCache[c.id] = { ...c, ...parseClinic(raw) };
+  }
+  return clinicCache[c.id];
+}
+const starText = (n) => "★".repeat(n) + "☆".repeat(3 - n);
+
+async function showClinic(id) {
+  const stage = $("clinic-stage");
+  const cases = manifest.clinic || [];
+  const meta = cases.find((c) => c.id === id);
+  if (!meta) { clinicList(stage, cases); return; }
+  stage.replaceChildren(h("p", { class: "lead" }, "Loading case…"));
+  try { playCase(stage, await loadCase(meta)); }
+  catch (e) { console.error(e); stage.replaceChildren(h("p", { class: "notice" }, "Could not load this case.")); }
+}
+
+function clinicList(stage, cases) {
+  if (!cases.length) { stage.replaceChildren(h("p", { class: "notice" }, "No cases found. Run npm run build.")); return; }
+  const unitName = (n) => (manifest.units[n - 1] ? manifest.units[n - 1].short || manifest.units[n - 1].title : "");
+  stage.replaceChildren(h("div", { class: "cards" }, cases.map((c) => {
+    const st = state.clinic[c.id];
+    return h("a", { class: "card clinic-card", href: `#clinic/${c.id}` },
+      h("span", { class: "u-icon", "aria-hidden": "true" }, c.icon),
+      h("span", { class: "num" }, unitName(c.unit)),
+      h("h3", {}, c.title),
+      h("p", {}, c.summary),
+      h("small", {}, st ? `${starText(st.stars)} · best ${st.best} of ${st.max}` : `${c.scenes} scenes · not started`));
+  })));
+}
+
+function playCase(stage, c) {
+  let si = 0, points = 0;
+  const max = c.scenes.length * 2;
+  const unitName = manifest.units[c.unit - 1] ? manifest.units[c.unit - 1].short || manifest.units[c.unit - 1].title : "";
+  const head = h("div", { class: "cl-patient" },
+    h("span", { class: "cl-avatar", "aria-hidden": "true" }, c.icon),
+    h("div", {}, h("p", { class: "eyebrow" }, `Case file · ${unitName}`), h("h2", {}, c.title), h("p", { class: "cl-who" }, c.patient), h("p", {}, c.intro)));
+  const body = h("div", { class: "cl-body" });
+  stage.replaceChildren(h("a", { class: "back", href: "#clinic" }, "← All cases"), head, body);
+
+  function scene() {
+    const sc = c.scenes[si];
+    let hadWrong = false, usedPartial = false, done = false;
+    const fb = h("div", { class: "cl-fb", role: "status" });
+    const opts = h("div", { class: "cl-opts" });
+    const nextRow = h("div", { class: "w-row" });
+    const pips = h("div", { class: "cl-pips", "aria-hidden": "true" }, c.scenes.map((_, n) => h("i", { class: n < si ? "done" : n === si ? "now" : "" })));
+    body.replaceChildren(h("section", { class: "cl-scene" },
+      h("p", { class: "cl-step" }, `Scene ${si + 1} of ${c.scenes.length}`), pips,
+      h("p", { class: "cl-text" }, sc.text),
+      sc.data.length ? h("ul", { class: "cl-data", "aria-label": "Case data" }, sc.data.map((d) => h("li", {}, d))) : "",
+      h("p", { class: "cl-ask" }, "What do you do?"), opts, fb, nextRow));
+    const goNext = (label) => {
+      const b = h("button", { type: "button", class: "btn lime" }, label);
+      b.onclick = () => { si++; si < c.scenes.length ? scene() : finish(); body.scrollIntoView({ block: "start" }); };
+      return b;
+    };
+    shuffle(sc.options).forEach((o) => {
+      const b = h("button", { type: "button", class: "cl-opt" }, o.text);
+      b.onclick = () => {
+        if (done || b.disabled) return;
+        b.disabled = true;
+        nextRow.replaceChildren();
+        if (o.kind === "wrong") {
+          hadWrong = true;
+          b.classList.add("wrong");
+          fb.className = "cl-fb bad";
+          fb.textContent = `Not quite. ${o.feedback}`;
+          return;
+        }
+        if (o.kind === "partial") {
+          usedPartial = true;
+          b.classList.add("partial");
+          fb.className = "cl-fb ok";
+          fb.textContent = `Almost. ${o.feedback}`;
+          const retry = h("button", { type: "button", class: "btn ghost" }, "Rethink this choice");
+          retry.onclick = () => { fb.textContent = ""; fb.className = "cl-fb"; nextRow.replaceChildren(); };
+          const move = goNext(si + 1 < c.scenes.length ? "Accept and continue" : "Finish the case");
+          move.addEventListener("click", () => { points += 1; }, { capture: true });
+          nextRow.append(move, retry);
+          return;
+        }
+        done = true;
+        points += hadWrong || usedPartial ? 1 : 2;
+        for (const x of opts.children) x.disabled = true;
+        b.classList.add("right");
+        fb.className = "cl-fb good";
+        fb.textContent = `Good call. ${o.feedback}`;
+        nextRow.append(goNext(si + 1 < c.scenes.length ? "Next scene →" : "Finish the case"));
+        nextRow.firstChild.focus();
+      };
+      opts.append(b);
+    });
+  }
+
+  function finish() {
+    const pct = points / max;
+    const stars = pct >= 0.9 ? 3 : pct >= 0.6 ? 2 : 1;
+    const prev = state.clinic[c.id];
+    state.clinic[c.id] = { stars: Math.max(stars, prev ? prev.stars : 0), best: Math.max(points, prev ? prev.best : 0), max };
+    if (!prev) bumpStreak();
+    awardBadges();
+    saveState();
+    if (stars === 3) confetti(true); else confetti(false);
+    const idx = manifest.clinic.findIndex((x) => x.id === c.id);
+    const nextMeta = manifest.clinic[idx + 1];
+    const again = h("button", { type: "button", class: "btn ghost" }, "Replay this case");
+    again.onclick = () => { si = 0; points = 0; scene(); window.scrollTo(0, 0); };
+    body.replaceChildren(h("section", { class: "cl-scene cl-final", role: "status" },
+      h("p", { class: "eyebrow" }, "Case closed"),
+      h("p", { class: "cl-stars", "aria-label": `${stars} out of 3 stars` }, starText(stars)),
+      h("h3", {}, `${points} of ${max} points`),
+      stars < 3 ? h("p", { class: "cl-hint" }, "Replay to improve your stars. First-time best choices earn the most points.") : "",
+      h("div", { class: "cl-debrief" }, h("h4", {}, "Coach's debrief"), h("p", {}, c.debrief)),
+      h("div", { class: "w-row" }, nextMeta ? h("a", { class: "btn lime", href: `#clinic/${nextMeta.id}` }, "Next case →") : "", again, h("a", { class: "btn ghost", href: "#clinic" }, "All cases"))));
+  }
+  scene();
 }
 
 function renderChatCard() {

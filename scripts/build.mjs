@@ -3,7 +3,7 @@
 // Run with: npm run build
 import { readdirSync, readFileSync, writeFileSync, existsSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
-import { checkWidgets } from "../site/parse-widgets.js";
+import { checkWidgets, parseClinic, checkClock } from "../site/parse-widgets.js";
 
 const root = new URL("..", import.meta.url).pathname;
 const siteDir = join(root, "site");
@@ -40,11 +40,31 @@ function readPage(file) {
 const mdIn = (dir) =>
   existsSync(dir) ? readdirSync(dir).filter((f) => f.endsWith(".md")).sort().map((f) => join(dir, f)) : [];
 
-const manifest = { units: [], tasks: mdIn(join(contentDir, "tasks")).map(readPage), bank: [] };
+const manifest = { units: [], tasks: mdIn(join(contentDir, "tasks")).map(readPage), bank: [], clock: [], clinic: [] };
 
 for (const f of mdIn(join(contentDir, "bank"))) {
   const { meta } = parse(readFileSync(f, "utf8"));
   manifest.bank.push({ ...readPage(f), unit: Number(meta.unit) || 0 });
+}
+
+let clockQs = 0;
+for (const f of mdIn(join(contentDir, "clock"))) {
+  const { meta, body } = parse(readFileSync(f, "utf8"));
+  const path = relative(siteDir, f);
+  try {
+    const n = checkClock(body);
+    clockQs += n;
+    manifest.clock.push({ title: meta.title || path, unit: Number(meta.unit) || 0, path, questions: n });
+  } catch (e) { errors.push(`${path}: ${e.message}`); }
+}
+
+for (const f of mdIn(join(contentDir, "clinic"))) {
+  const { meta, body } = parse(readFileSync(f, "utf8"));
+  const path = relative(siteDir, f);
+  try {
+    const c = parseClinic(body);
+    manifest.clinic.push({ id: path.split("/").pop().replace(/\.md$/, ""), title: meta.title || path, unit: Number(meta.unit) || 0, icon: meta.icon || "🩺", summary: meta.summary || "", path, scenes: c.scenes.length });
+  } catch (e) { errors.push(`${path}: ${e.message}`); }
 }
 
 const topicsDir = join(contentDir, "topics");
@@ -69,4 +89,4 @@ if (errors.length) {
 }
 writeFileSync(join(contentDir, "manifest.json"), JSON.stringify(manifest, null, 2));
 const pages = manifest.units.reduce((n, u) => n + u.pages.length, 0);
-console.log(`Built: ${manifest.units.length} units, ${pages} lessons, ${manifest.tasks.length} task pages, ${manifest.bank.length} challenge-bank files, ${widgetCount} interactive tasks.`);
+console.log(`Built: ${manifest.units.length} units, ${pages} lessons, ${manifest.tasks.length} task pages, ${manifest.bank.length} challenge-bank files, ${clockQs} Beat the Clock questions, ${manifest.clinic.length} Coach's Clinic cases, ${widgetCount} interactive tasks.`);

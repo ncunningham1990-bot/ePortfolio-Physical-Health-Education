@@ -59,6 +59,8 @@
     <div class="cards" id="unit-cards"></div>
     <h2 class="section-label">Challenge yourself</h2>
     <div class="cards">
+      <a class="card" href="#clock"><span class="u-icon" aria-hidden="true">⏱️</span><h3>Beat the Clock</h3><p>60 seconds of rapid-fire questions. Build a streak, beat your best score and climb the ranks.</p><small id="home-clock-note"></small></a>
+      <a class="card" href="#clinic"><span class="u-icon" aria-hidden="true">🩺</span><h3>Coach's Clinic</h3><p>Step into the coach's shoes. Solve real-life cases and earn up to 3 stars for good decisions.</p><small id="home-clinic-note"></small></a>
       <a class="card" href="#bank"><span class="u-icon" aria-hidden="true">🧩</span><h3>Challenge Bank</h3><p>Apply, analyse and evaluate. Type your answer, get instant feedback, then mark yourself with the mark scheme.</p><small id="bank-progress"></small></a>
       <a class="card" id="bank-random" href="#bank"><span class="u-icon" aria-hidden="true">🎲</span><h3>Random challenge</h3><p>Not sure where to start? Get a question you haven't tried yet.</p></a>
     </div>
@@ -81,7 +83,15 @@
 
   <section id="bank" class="panel" hidden>
     <div class="bank-head">
-      <h1>Challenge Bank</h1>
+      <h1>Challenges</h1>
+      <p class="lead">Games and thinking tasks that help you revise. Pick one and see how far you can get.</p>
+    </div>
+    <div class="cards hub-games">
+      <a class="card" href="#clock"><span class="u-icon" aria-hidden="true">⏱️</span><h3>Beat the Clock</h3><p>60 seconds, as many questions as you can. A wrong answer costs time but gives a hint.</p><small id="hub-clock-note"></small></a>
+      <a class="card" href="#clinic"><span class="u-icon" aria-hidden="true">🩺</span><h3>Coach's Clinic</h3><p>Real-life cases where you are the coach. Make the right calls and earn stars.</p><small id="hub-clinic-note"></small></a>
+    </div>
+    <div class="bank-head">
+      <h2>Challenge Bank</h2>
       <p class="lead">Questions that make you apply, analyse and evaluate what you have learned. Type your answer, get instant feedback, then use the mark scheme to assess yourself honestly.</p>
     </div>
     <div class="bank-controls">
@@ -91,6 +101,21 @@
     </div>
     <p id="bank-summary" class="bank-summary" aria-live="polite"></p>
     <div id="bank-list" class="bank-list"></div>
+  </section>
+
+  <section id="clock" class="panel" hidden>
+    <a class="back" href="#bank">← Challenges</a>
+    <div class="bank-head"><h1>⏱️ Beat the Clock</h1></div>
+    <div id="clock-stage" class="game-stage"></div>
+  </section>
+
+  <section id="clinic" class="panel" hidden>
+    <div class="bank-head">
+      <a class="back" href="#bank">← Challenges</a>
+      <h1>🩺 Coach's Clinic</h1>
+      <p class="lead">Each case is a real-life situation. Read the scene, choose what you would do, and learn from the consequences. Wrong choices give you a hint so you can try again.</p>
+    </div>
+    <div id="clinic-stage" class="game-stage"></div>
   </section>
 
   <section id="tasks" class="panel" hidden>
