@@ -13,6 +13,8 @@ Your ePortfolio is assessed on four MYP criteria, one for each task. Each task p
 | [Task 3: Applying and Performing](#tasks/3) | C: Applying and Performing | 17th February | 2nd March |
 | [Task 4: Reflecting and Improving Performance](#tasks/4) | D: Reflecting and Improving | 27th February | 10th March |
 
+Exemplars from a previous student are on the pages for Tasks 1, 2 and 4.
+
 **Unit title:** To be or not to be...online · **Global context:** Identities and Relationships · **Key concept:** Communication · **Related concepts:** Environment; Interaction
 
 **Statement of inquiry:** Communication within a digital environment can influence how identity and relationships are formed.
