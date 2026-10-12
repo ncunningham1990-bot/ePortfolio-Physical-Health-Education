@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PE ePortfolio Hub</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap bar">
+    <a class="brand" href="#home">PE ePortfolio Hub</a>
+    <nav aria-label="Main" id="tabs">
+      <a href="#home" data-tab="home">Home</a>
+      <a href="#topics" data-tab="topics">Topics</a>
+      <a href="#tasks" data-tab="tasks">Key Tasks</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap" id="main" tabindex="-1">
+  <section id="home" class="panel">
+    <h1>Physical &amp; Health Education ePortfolio</h1>
+    <p class="lead">Everything you need for the course in one place.</p>
+    <div class="cards">
+      <a class="card" href="#topics"><h2>Topics</h2><p>Learn the course content, try activities and check your understanding.</p></a>
+      <a class="card" href="#tasks"><h2>Key Tasks</h2><p>Instructions, examples, scaffolds and the marking rubric for the 4 assessed tasks.</p></a>
+    </div>
+  </section>
+
+  <section id="topics" class="panel" hidden>
+    <div class="split">
+      <nav class="side" aria-label="Topics"><ul id="topics-list"></ul></nav>
+      <article class="doc" id="topics-doc" aria-live="polite"></article>
+    </div>
+  </section>
+
+  <section id="tasks" class="panel" hidden>
+    <div class="split">
+      <nav class="side" aria-label="Key tasks"><ul id="tasks-list"></ul></nav>
+      <article class="doc" id="tasks-doc" aria-live="polite"></article>
+    </div>
+  </section>
+
+</main>
+
+<script src="vendor/marked.min.js"></script>
+<script src="vendor/purify.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
