@@ -25,7 +25,7 @@ marked.use({
 });
 const md = (text) => DOMPurify.sanitize(marked.parse(text));
 
-const TITLES = { quiz: "Quiz", flashcards: "Flashcards: click a card to flip it", match: "Matching task", fill: "Fill in the blanks", order: "Put it in order", label: "Label the diagram", video: "Video" };
+const TITLES = { quiz: "Quiz", flashcards: "Flashcards: click a card to flip it", match: "Matching task", fill: "Fill in the blanks", order: "Put it in order", label: "Label the diagram", video: "Video", audio: "Podcast" };
 let uid = 0;
 const TRACKED = new Set(["quiz", "match", "fill", "order", "label"]);
 function hydrate(root, ctx = null) {
@@ -35,7 +35,7 @@ function hydrate(root, ctx = null) {
     try {
       const data = PARSERS[type](decodeURIComponent(el.dataset.src));
       el.classList.add(`widget-${type}`);
-      if (type !== "video") el.append(h("h3", { class: "w-title" }, TITLES[type]));
+      if (type !== "video" && type !== "audio") el.append(h("h3", { class: "w-title" }, TITLES[type]));
       const mine = TRACKED.has(type) ? idx++ : -1;
       const report = (r) => { if (ctx && mine >= 0) progress.widgetDone(ctx, mine, r); };
       el.append(WIDGETS[type](data, `w${++uid}`, report));
@@ -243,6 +243,22 @@ const WIDGETS = {
       h("img", { src: image, alt: alt || "Diagram with numbered parts to label" }),
       h("div", {}, h("table", { class: "w-match" }, h("tbody", {}, rows.map((r) => r.tr))), score,
         h("div", { class: "w-row" }, btn("Check labels", "", check), btn("Start again", "ghost", reset))));
+  },
+
+  audio({ title, url, note }) {
+    const player = h("audio", { controls: true, preload: "metadata", src: url });
+    const speeds = [0.75, 1, 1.25, 1.5].map((r) => {
+      const b = h("button", { type: "button", class: "speed", "aria-pressed": String(r === 1) }, `${r}×`);
+      b.addEventListener("click", () => {
+        player.playbackRate = r;
+        b.parentElement.querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+      });
+      return b;
+    });
+    return h("div", { class: "w-video w-audio" }, h("h3", { class: "w-title" }, "🎧 Podcast: " + title),
+      h("div", { class: "audio-body" }, player,
+        h("div", { class: "speed-row" }, h("span", {}, "Speed:"), speeds, h("a", { href: url, download: "" }, "Download")),
+        note ? h("p", { class: "lead" }, note) : ""));
   },
 
   video({ title, url, note }) {

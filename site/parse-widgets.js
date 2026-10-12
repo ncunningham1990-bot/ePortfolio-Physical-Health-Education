@@ -2,7 +2,7 @@
 // Used by the website (to render them) and by scripts/build.mjs (to catch typing mistakes).
 //
 // Wrong answers never reveal the correct answer: students get a hint and try again.
-export const WIDGET_TYPES = ["quiz", "flashcards", "match", "fill", "order", "label", "video"];
+export const WIDGET_TYPES = ["quiz", "flashcards", "match", "fill", "order", "label", "video", "audio"];
 
 const lines = (s) => s.split("\n").map((l) => l.trim()).filter(Boolean);
 const splitHint = (text) => {
@@ -125,12 +125,27 @@ export function parseVideo(src) {
   return out;
 }
 
+// title: ...   url: audio/file.mp3   note: optional text under the player
+export function parseAudio(src) {
+  const out = { title: "Podcast", url: "", note: "" };
+  for (const l of lines(src)) {
+    const i = l.indexOf(":");
+    if (i < 1) throw new Error(`audio: unrecognised line "${l}"`);
+    const key = l.slice(0, i).trim();
+    if (!["title", "url", "note"].includes(key)) throw new Error(`audio: unknown key "${key}"`);
+    out[key] = l.slice(i + 1).trim();
+  }
+  if (!out.url) throw new Error('audio: needs a "url:" line, for example url: audio/my-podcast.mp3');
+  if (!/^(https?:\/\/|audio\/)[^\s]+\.(mp3|m4a|ogg|wav)(\?.*)?$/i.test(out.url)) throw new Error(`audio: "${out.url}" must be a file in the audio folder (audio/name.mp3) or a web link ending in .mp3, .m4a, .ogg or .wav`);
+  return out;
+}
+
 export function youtubeId(url) {
   const m = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/)|youtube-nocookie\.com\/embed\/)([A-Za-z0-9_-]{11})/);
   return m ? m[1] : "";
 }
 
-export const PARSERS = { quiz: parseQuiz, flashcards: parseFlashcards, match: parseMatch, fill: parseFill, order: parseOrder, label: parseLabel, video: parseVideo };
+export const PARSERS = { quiz: parseQuiz, flashcards: parseFlashcards, match: parseMatch, fill: parseFill, order: parseOrder, label: parseLabel, video: parseVideo, audio: parseAudio };
 
 // Finds every widget block in a markdown string and parses it (throws on a mistake).
 export function checkWidgets(markdown) {

@@ -223,3 +223,13 @@ table.w-match{width:100%;display:table;border-collapse:collapse;border:0;margin:
 .chat-logo{width:112px;height:112px;flex:none;border-radius:22px;background:#fff;padding:4px;object-fit:contain;box-shadow:0 6px 18px rgba(0,0,0,.35)}
 @media(max-width:560px){.chat-logo{width:88px;height:88px}}
 .join-note{margin:0 0 8px!important;font-weight:700;color:#fff!important}
+
+/* podcast player */
+.widget-audio{border:0;padding:0;background:none;box-shadow:none}
+.w-audio .audio-body{padding:14px 16px 16px}
+.w-audio audio{width:100%;display:block}
+.speed-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:10px;font-size:.9rem;color:var(--muted)}
+.speed-row a{margin-left:auto;font-weight:600}
+.speed{font:700 .85rem var(--head);padding:5px 12px;border-radius:999px;border:1px solid var(--border);background:var(--surface);color:var(--ink);cursor:pointer}
+.speed[aria-pressed=true]{background:var(--charcoal);color:#fff;border-color:var(--charcoal)}
+.w-audio .lead{margin:10px 0 0}
