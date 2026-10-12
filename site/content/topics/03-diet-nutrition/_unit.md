@@ -1,17 +1,16 @@
 ---
 title: Diet & Nutrition
-summary: Nutrients, hydration, balanced eating, fuelling for sport, energy balance and food labels.
+summary: Food groups, a healthy balanced diet, and energy requirements and expenditure (Healthy Lifestyles).
 ---
 ## About this unit
-Food is the fuel for everything you do. In this unit you will learn what the body needs from food, how to eat in a balanced way, how athletes fuel their performance, and how to read the information on food packaging.
+This unit covers **Topic 4: Healthy Lifestyles** from the course handbook. You will learn what each food group does, how to build a healthy balanced diet, and how energy intake and energy expenditure fit together.
 
 ## Lessons
-1. **Macronutrients.** Carbohydrates, proteins and fats.
-2. **Micronutrients and water.** Vitamins, minerals, fibre and hydration.
-3. **A balanced diet.** Variety, proportion and what influences our food choices.
-4. **Nutrition for sport.** Eating and drinking before, during and after activity.
-5. **Energy balance and food labels.** Energy in versus out, and reading packaging.
-6. **Unit review.** A mixed revision quiz.
+1. **Food groups: carbohydrates, proteins and fats**
+2. **Food groups: vitamins and minerals, fibre and water**
+3. **Examples of food groups and a healthy balanced diet**
+4. **Energy requirements and expenditure**
+5. **Unit review**
 
-## How to use each lesson
-Read the lesson, then complete the interactive tasks. You can retry them as many times as you like.
+## How each lesson works
+Read the lesson, watch the video (when your teacher has added it), then complete the interactive tasks. If an answer is wrong you will get a **hint** about why. Use it and try again.

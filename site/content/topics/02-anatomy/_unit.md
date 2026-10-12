@@ -1,17 +1,22 @@
 ---
 title: Anatomy
-summary: The skeletal, muscular, cardiovascular and respiratory systems and how they work together in movement.
+summary: The skeleton, bone and joint types, synovial joints, joint movements, muscle types, fibre types, origin and insertion, antagonistic pairs and contraction types.
 ---
 ## About this unit
-Anatomy is the study of the body's structure. In this unit you will learn how bones, joints, muscles, the heart and the lungs work together to let you move and keep exercising.
+This unit covers **Unit 2: Anatomy** from the course handbook. You will learn how bones, joints and muscles are built and how they work together to produce movement.
 
 ## Lessons
-1. **The skeletal system.** Bones, their functions, and connective tissue.
-2. **Joints and movement.** Joint types and the movements they allow.
-3. **The major muscles.** 11 muscles, their jobs and an interactive activity.
-4. **The cardiovascular system.** The heart, blood vessels and the effects of exercise.
-5. **The respiratory system.** Breathing, gas exchange and exercise.
-6. **Unit review.** A mixed revision quiz.
+1. **Functions of the skeleton and examples of bones** (axial and appendicular)
+2. **Different types of bone**
+3. **Joints and types of joint**
+4. **Features of a synovial joint**
+5. **Range of movement at joints**
+6. **Types of muscle and major muscles** (with an interactive activity)
+7. **Origin and insertion of muscles**
+8. **Muscle fibre types**
+9. **Muscle movement: antagonistic pairs**
+10. **Muscle contraction types**
+11. **Unit review**
 
-## How to use each lesson
-Read the lesson, then complete the interactive tasks. You can retry them as many times as you like.
+## How each lesson works
+Read the lesson, watch the video (when your teacher has added it), then complete the interactive tasks. If an answer is wrong you will get a **hint** about why. Use it and try again.

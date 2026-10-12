@@ -2,173 +2,263 @@
   "units": [
     {
       "title": "Health & Fitness",
-      "summary": "What health means, the components of fitness, training principles and how to test and improve fitness.",
+      "summary": "Fitness components, testing, VO₂ max, training principles and methods, monitoring intensity and avoiding over-training.",
       "overview": "content/topics/01-health-fitness/_unit.md",
       "pages": [
         {
-          "title": "What is health?",
-          "summary": "Physical, mental and social wellbeing, and what affects them.",
+          "title": "Definition of fitness and components of fitness",
+          "summary": "What fitness means and the 11 components, each with a definition.",
           "activity": "",
-          "path": "content/topics/01-health-fitness/01-what-is-health.md"
-        },
-        {
-          "title": "Components of fitness",
-          "summary": "The 5 health-related and 6 skill-related components of fitness.",
-          "activity": "",
-          "path": "content/topics/01-health-fitness/02-components-of-fitness.md"
-        },
-        {
-          "title": "Principles of training",
-          "summary": "FITT, progressive overload, specificity, reversibility and variety.",
-          "activity": "",
-          "path": "content/topics/01-health-fitness/03-principles-of-training.md"
+          "path": "content/topics/01-health-fitness/01-definition-and-components-of-fitness.md"
         },
         {
           "title": "Fitness testing",
-          "summary": "Which test measures which component, and how to use your results.",
+          "summary": "One standardised test for each component, plus validity, reliability and limitations.",
           "activity": "",
-          "path": "content/topics/01-health-fitness/04-fitness-testing.md"
+          "path": "content/topics/01-health-fitness/02-fitness-testing.md"
         },
         {
-          "title": "Warm-up and cool-down",
-          "summary": "Why and how to prepare for exercise and recover afterwards.",
+          "title": "Use of fitness testing data",
+          "summary": "Comparing scores with normative data, and using graphs and tables to analyse fitness and performance.",
           "activity": "",
-          "path": "content/topics/01-health-fitness/05-warm-up-cool-down.md"
+          "path": "content/topics/01-health-fitness/03-use-of-fitness-testing-data.md"
+        },
+        {
+          "title": "Innovative tools for performance",
+          "summary": "How AI tools and wearable devices can track and monitor performance, and what their limits are.",
+          "activity": "",
+          "path": "content/topics/01-health-fitness/04-innovative-tools-for-performance.md"
+        },
+        {
+          "title": "Maximum oxygen uptake (VO₂ max)",
+          "summary": "VO₂ max as a measurement of cardiovascular endurance, how it is measured and what affects it.",
+          "activity": "",
+          "path": "content/topics/01-health-fitness/05-maximum-oxygen-uptake-vo2-max.md"
+        },
+        {
+          "title": "Factors affecting fitness",
+          "summary": "Physical, psychological and social factors that affect fitness levels and performance.",
+          "activity": "",
+          "path": "content/topics/01-health-fitness/06-factors-affecting-fitness.md"
+        },
+        {
+          "title": "Principles of training: SPORT and FITT",
+          "summary": "Specificity, Progression, Overload, Reversibility, Tedium, and how to apply FITT.",
+          "activity": "",
+          "path": "content/topics/01-health-fitness/07-principles-of-training.md"
+        },
+        {
+          "title": "Essential elements of a general training programme",
+          "summary": "Warm-up and stretching, endurance training, resistance training and cool-down.",
+          "activity": "",
+          "path": "content/topics/01-health-fitness/08-essential-elements-of-a-training-programme.md"
+        },
+        {
+          "title": "Methods of training",
+          "summary": "Circuit, weight, continuous, fartlek, interval and plyometric training.",
+          "activity": "",
+          "path": "content/topics/01-health-fitness/09-methods-of-training.md"
+        },
+        {
+          "title": "Monitoring of exercise intensity",
+          "summary": "Heart rate training zones and the Karvonen method.",
+          "activity": "",
+          "path": "content/topics/01-health-fitness/10-monitoring-of-exercise-intensity.md"
+        },
+        {
+          "title": "Indicators of over-training",
+          "summary": "Physiological and psychological signs that training load is too high.",
+          "activity": "",
+          "path": "content/topics/01-health-fitness/11-indicators-of-over-training.md"
         },
         {
           "title": "Unit review",
-          "summary": "A mixed revision quiz covering the whole unit.",
+          "summary": "A mixed revision quiz covering the whole fitness unit.",
           "activity": "",
-          "path": "content/topics/01-health-fitness/06-unit-review.md"
+          "path": "content/topics/01-health-fitness/12-unit-review.md"
         }
       ]
     },
     {
       "title": "Anatomy",
-      "summary": "The skeletal, muscular, cardiovascular and respiratory systems and how they work together in movement.",
+      "summary": "The skeleton, bone and joint types, synovial joints, joint movements, muscle types, fibre types, origin and insertion, antagonistic pairs and contraction types.",
       "overview": "content/topics/02-anatomy/_unit.md",
       "pages": [
         {
-          "title": "The skeletal system",
-          "summary": "Functions of the skeleton, key bones and connective tissue.",
+          "title": "Functions of the skeleton and examples of bones",
+          "summary": "Four functions of the skeleton, the main bones, and the axial and appendicular skeleton.",
           "activity": "",
-          "path": "content/topics/02-anatomy/01-skeletal-system.md"
+          "path": "content/topics/02-anatomy/01-functions-of-the-skeleton-and-examples-of-bones.md"
         },
         {
-          "title": "Joints and movement",
-          "summary": "Types of joint and the movements each allows.",
+          "title": "Different types of bone",
+          "summary": "Long, short, flat and irregular bones, with examples and functions.",
           "activity": "",
-          "path": "content/topics/02-anatomy/02-joints-and-movement.md"
+          "path": "content/topics/02-anatomy/02-different-types-of-bone.md"
         },
         {
-          "title": "The major muscles",
-          "summary": "Names, jobs and sporting examples for 11 major muscles.",
+          "title": "Joints and types of joint",
+          "summary": "Definition of a joint and the three types: fixed, slightly moveable and freely moveable (synovial).",
+          "activity": "",
+          "path": "content/topics/02-anatomy/03-joints-and-types-of-joint.md"
+        },
+        {
+          "title": "Features of a synovial joint",
+          "summary": "Cartilage, synovial membrane, synovial fluid and ligaments (plus the capsule and bone ends).",
+          "activity": "",
+          "path": "content/topics/02-anatomy/04-features-of-a-synovial-joint.md"
+        },
+        {
+          "title": "Range of movement at joints",
+          "summary": "Flexion, extension, abduction, adduction, rotation, circumduction, dorsiflexion, plantar flexion, pronation and supination.",
+          "activity": "",
+          "path": "content/topics/02-anatomy/05-range-of-movement-at-joints.md"
+        },
+        {
+          "title": "Types of muscle and major muscles",
+          "summary": "Smooth, cardiac and skeletal muscle, plus the 11 major muscles with an interactive activity.",
           "activity": "activities/major-muscles.html",
-          "path": "content/topics/02-anatomy/03-major-muscles.md"
+          "path": "content/topics/02-anatomy/06-types-of-muscle-and-major-muscles.md"
         },
         {
-          "title": "The cardiovascular system",
-          "summary": "The heart, blood vessels, blood and how exercise changes them.",
+          "title": "Origin and insertion of muscles",
+          "summary": "The location and definition of origin and insertion tendons, using the biceps as an example.",
           "activity": "",
-          "path": "content/topics/02-anatomy/04-cardiovascular-system.md"
+          "path": "content/topics/02-anatomy/07-origin-and-insertion-of-muscles.md"
         },
         {
-          "title": "The respiratory system",
-          "summary": "Breathing, gas exchange and how exercise affects breathing.",
+          "title": "Muscle fibre types",
+          "summary": "Slow twitch and fast twitch muscle fibres, how they differ and which activities they suit.",
           "activity": "",
-          "path": "content/topics/02-anatomy/05-respiratory-system.md"
+          "path": "content/topics/02-anatomy/08-muscle-fibre-types.md"
+        },
+        {
+          "title": "Muscle movement: antagonistic pairs",
+          "summary": "How muscles work in pairs: agonist (prime mover) and antagonist.",
+          "activity": "",
+          "path": "content/topics/02-anatomy/09-muscle-movement-antagonistic-pairs.md"
+        },
+        {
+          "title": "Muscle contraction types",
+          "summary": "Isometric and isotonic (concentric and eccentric) contractions.",
+          "activity": "",
+          "path": "content/topics/02-anatomy/10-muscle-contraction-types.md"
         },
         {
           "title": "Unit review",
-          "summary": "A mixed revision quiz covering the whole unit.",
+          "summary": "A mixed revision quiz covering the whole anatomy unit.",
           "activity": "",
-          "path": "content/topics/02-anatomy/06-unit-review.md"
+          "path": "content/topics/02-anatomy/11-unit-review.md"
         }
       ]
     },
     {
       "title": "Diet & Nutrition",
-      "summary": "Nutrients, hydration, balanced eating, fuelling for sport, energy balance and food labels.",
+      "summary": "Food groups, a healthy balanced diet, and energy requirements and expenditure (Healthy Lifestyles).",
       "overview": "content/topics/03-diet-nutrition/_unit.md",
       "pages": [
         {
-          "title": "Macronutrients",
-          "summary": "Carbohydrates, proteins and fats: functions and food sources.",
+          "title": "Food groups: carbohydrates, proteins and fats",
+          "summary": "The three macronutrients: functions, food sources and energy content.",
           "activity": "",
-          "path": "content/topics/03-diet-nutrition/01-macronutrients.md"
+          "path": "content/topics/03-diet-nutrition/01-food-groups-carbohydrates-proteins-and-fats.md"
         },
         {
-          "title": "Micronutrients and water",
-          "summary": "Vitamins, minerals, fibre and the importance of hydration.",
+          "title": "Food groups: vitamins and minerals, fibre and water",
+          "summary": "Micronutrients, fibre and water: their roles, sources and the effects of dehydration.",
           "activity": "",
-          "path": "content/topics/03-diet-nutrition/02-micronutrients-and-water.md"
+          "path": "content/topics/03-diet-nutrition/02-food-groups-vitamins-minerals-fibre-and-water.md"
         },
         {
-          "title": "A balanced diet",
-          "summary": "Eating a variety of foods in the right proportions, and what influences choices.",
+          "title": "Examples of food groups and a healthy balanced diet",
+          "summary": "Building balanced meals with variety and the right proportions, and what influences food choices.",
           "activity": "",
-          "path": "content/topics/03-diet-nutrition/03-balanced-diet.md"
+          "path": "content/topics/03-diet-nutrition/03-examples-of-food-groups-and-a-healthy-balanced-diet.md"
         },
         {
-          "title": "Nutrition for sport",
-          "summary": "Eating and drinking before, during and after exercise.",
+          "title": "Energy requirements and expenditure",
+          "summary": "Energy in versus energy out, BMR, physical activity level, and reading food labels.",
           "activity": "",
-          "path": "content/topics/03-diet-nutrition/04-nutrition-for-sport.md"
-        },
-        {
-          "title": "Energy balance and food labels",
-          "summary": "Energy in versus energy out, and how to read food packaging.",
-          "activity": "",
-          "path": "content/topics/03-diet-nutrition/05-energy-balance-and-labels.md"
+          "path": "content/topics/03-diet-nutrition/04-energy-requirements-and-expenditure.md"
         },
         {
           "title": "Unit review",
-          "summary": "A mixed revision quiz covering the whole unit.",
+          "summary": "A mixed revision quiz covering the whole diet and nutrition unit.",
           "activity": "",
-          "path": "content/topics/03-diet-nutrition/06-unit-review.md"
+          "path": "content/topics/03-diet-nutrition/05-unit-review.md"
         }
       ]
     },
     {
-      "title": "Sports Psychology",
-      "summary": "Motivation, goal setting, stress and arousal, mental skills, confidence and teamwork.",
+      "title": "Sports Psychology & Well-being",
+      "summary": "Health and well-being, safe practice, injuries, body types, motivation, arousal and anxiety, psychological skills and goal setting.",
       "overview": "content/topics/04-sports-psychology/_unit.md",
       "pages": [
         {
-          "title": "Motivation",
-          "summary": "Intrinsic and extrinsic motivation and how to build it.",
+          "title": "Definition of health and well-being",
+          "summary": "What health and well-being mean, and the physical, mental and social aspects of well-being.",
           "activity": "",
-          "path": "content/topics/04-sports-psychology/01-motivation.md"
+          "path": "content/topics/04-sports-psychology/01-definition-of-health-and-well-being.md"
         },
         {
-          "title": "Goal setting",
-          "summary": "SMART goals and the three types of goals.",
+          "title": "Safe practice: the PAR-Q",
+          "summary": "The Physical Activity Readiness Questionnaire and other safe-practice steps.",
           "activity": "",
-          "path": "content/topics/04-sports-psychology/02-goal-setting.md"
+          "path": "content/topics/04-sports-psychology/02-safe-practice-par-q.md"
         },
         {
-          "title": "Arousal, stress and anxiety",
-          "summary": "The inverted-U idea and ways to manage pressure.",
+          "title": "Treatment of injuries",
+          "summary": "Soft-tissue injuries and first-aid treatment using RICE (and newer approaches), plus when to get help.",
           "activity": "",
-          "path": "content/topics/04-sports-psychology/03-arousal-stress-anxiety.md"
+          "path": "content/topics/04-sports-psychology/03-treatment-of-injuries.md"
         },
         {
-          "title": "Mental rehearsal and self-talk",
-          "summary": "Imagery, self-talk and focusing strategies.",
+          "title": "Physique: body types",
+          "summary": "Ectomorph, mesomorph and endomorph body types and the sports they may suit.",
           "activity": "",
-          "path": "content/topics/04-sports-psychology/04-mental-rehearsal-and-self-talk.md"
+          "path": "content/topics/04-sports-psychology/04-physique-body-types.md"
         },
         {
-          "title": "Confidence and teamwork",
-          "summary": "Self-confidence, self-efficacy and team cohesion.",
+          "title": "Motivation: definition and types",
+          "summary": "What motivation is, and the difference between intrinsic and extrinsic motivation.",
           "activity": "",
-          "path": "content/topics/04-sports-psychology/05-confidence-and-teamwork.md"
+          "path": "content/topics/04-sports-psychology/05-motivation-definition-and-types.md"
+        },
+        {
+          "title": "Anxiety, arousal and performance",
+          "summary": "Defining arousal and anxiety, and comparing drive theory with the inverted-U theory.",
+          "activity": "",
+          "path": "content/topics/04-sports-psychology/06-anxiety-arousal-and-performance.md"
+        },
+        {
+          "title": "Measurement of anxiety and well-being",
+          "summary": "Questionnaires used to assess and baseline anxiety, arousal and confidence.",
+          "activity": "",
+          "path": "content/topics/04-sports-psychology/07-measurement-of-anxiety-and-well-being.md"
+        },
+        {
+          "title": "Responses to arousal",
+          "summary": "Physiological and psychological responses to arousal.",
+          "activity": "",
+          "path": "content/topics/04-sports-psychology/08-responses-to-arousal.md"
+        },
+        {
+          "title": "Psychological skills training (PST)",
+          "summary": "Mental imagery, breathing techniques, muscle relaxation and self-talk.",
+          "activity": "",
+          "path": "content/topics/04-sports-psychology/09-psychological-skills-training.md"
+        },
+        {
+          "title": "Goal setting: SMART format",
+          "summary": "Writing SMART goals and using short- and long-term goals.",
+          "activity": "",
+          "path": "content/topics/04-sports-psychology/10-goal-setting-smart-format.md"
         },
         {
           "title": "Unit review",
-          "summary": "A mixed revision quiz covering the whole unit.",
+          "summary": "A mixed revision quiz covering the whole sports psychology and well-being unit.",
           "activity": "",
-          "path": "content/topics/04-sports-psychology/06-unit-review.md"
+          "path": "content/topics/04-sports-psychology/11-unit-review.md"
         }
       ]
     }

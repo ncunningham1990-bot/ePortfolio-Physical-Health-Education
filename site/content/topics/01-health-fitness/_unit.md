@@ -1,17 +1,23 @@
 ---
 title: Health & Fitness
-summary: What health means, the components of fitness, training principles and how to test and improve fitness.
+summary: Fitness components, testing, VO₂ max, training principles and methods, monitoring intensity and avoiding over-training.
 ---
 ## About this unit
-This unit looks at what it means to be healthy and fit, how fitness is measured, and how you can plan safe, effective training.
+This unit covers **Unit 1: Fitness** from the course handbook. You will learn what fitness is, how it is measured, what affects it, and how to plan, monitor and adjust training safely.
 
 ## Lessons
-1. **What is health?** Physical, mental and social wellbeing.
-2. **Components of fitness.** The 5 health-related and 6 skill-related components.
-3. **Principles of training.** FITT, overload, specificity, reversibility and variety.
-4. **Fitness testing.** Which test measures which component, and how to use results.
-5. **Warm-up and cool-down.** Why and how to prepare for and recover from exercise.
-6. **Unit review.** A mixed revision quiz.
+1. **Definition of fitness and components of fitness**
+2. **Fitness testing:** protocols, validity, reliability and limitations
+3. **Use of fitness testing data:** normative data, graphs and tables
+4. **Innovative tools for performance:** AI and wearable tracking
+5. **Maximum oxygen uptake (VO₂ max)**
+6. **Factors affecting fitness:** physical, psychological and social
+7. **Principles of training:** SPORT and FITT
+8. **Essential elements of a general training programme**
+9. **Methods of training**
+10. **Monitoring of exercise intensity:** heart rate zones and the Karvonen method
+11. **Indicators of over-training**
+12. **Unit review**
 
-## How to use each lesson
-Read the lesson, then complete the interactive tasks at the bottom. You can retry them as many times as you like. Use **Show answers** if you get stuck, then try again from scratch.
+## How each lesson works
+Read the lesson, watch the video (when your teacher has added it), then complete the interactive tasks. If an answer is wrong you will get a **hint** that helps you think about why. Use it, change your answer, and try again. The answers are never given away, because working them out is how you learn.
