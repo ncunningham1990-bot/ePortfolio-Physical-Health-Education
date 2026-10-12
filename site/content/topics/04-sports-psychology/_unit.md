@@ -1,17 +1,22 @@
 ---
-title: Sports Psychology
-summary: Motivation, goal setting, stress and arousal, mental skills, confidence and teamwork.
+title: Sports Psychology & Well-being
+summary: Health and well-being, safe practice, injuries, body types, motivation, arousal and anxiety, psychological skills and goal setting.
 ---
 ## About this unit
-Performance depends on your mind as well as your body. In this unit you will learn how athletes stay motivated, set goals, manage pressure, and use mental skills to perform at their best.
+This unit covers **Topic 3: Sports Psychology and well-being** from the course handbook. You will learn what health and well-being mean, how to practise safely, how the mind affects performance, and how to use mental skills and goals to improve.
 
 ## Lessons
-1. **Motivation.** Why we start and keep going.
-2. **Goal setting.** SMART goals and types of goals.
-3. **Arousal, stress and anxiety.** Finding the right level of readiness.
-4. **Mental rehearsal and self-talk.** Imagery, self-talk and focus.
-5. **Confidence and teamwork.** Building self-belief and team cohesion.
-6. **Unit review.** A mixed revision quiz.
+1. **Definition of health and well-being**
+2. **Safe practice: the PAR-Q**
+3. **Treatment of injuries**
+4. **Physique: body types**
+5. **Motivation: definition and types**
+6. **Anxiety, arousal and performance:** drive theory and the inverted-U theory
+7. **Measurement of anxiety and well-being**
+8. **Responses to arousal**
+9. **Psychological skills training (PST)**
+10. **Goal setting: SMART format**
+11. **Unit review**
 
-## How to use each lesson
-Read the lesson, then complete the interactive tasks. You can retry them as many times as you like.
+## How each lesson works
+Read the lesson, watch the video (when your teacher has added it), then complete the interactive tasks. If an answer is wrong you will get a **hint** about why. Use it and try again.

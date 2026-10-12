@@ -84,3 +84,35 @@ table.w-match{width:100%;display:table;border-collapse:collapse}
   .side li{flex:0 0 auto}
   .side small{display:none}
 }
+/* guided-feedback additions */
+.hint{margin:4px 0 0;padding:6px 10px;border-left:4px solid var(--red);background:rgba(220,38,38,.08);border-radius:0 6px 6px 0;font-size:.95rem}
+.fb p{margin:2px 0}
+.w-q{font-weight:700}
+.w-order{list-style:decimal;padding-left:28px;margin:8px 0}
+.w-order li{margin:6px 0;padding:6px 8px;background:var(--card);border:1px solid var(--border);border-radius:8px}
+.w-order li.right{border-color:var(--accent);box-shadow:inset 5px 0 0 var(--accent)}
+.w-order li.wrong{border-color:var(--red);box-shadow:inset 5px 0 0 var(--red)}
+.w-order .step{display:inline-block;max-width:calc(100% - 90px);vertical-align:middle}
+.w-order .mvs{float:right;display:inline-flex;gap:4px}
+.w-order .mv{font:inherit;width:34px;height:34px;border-radius:6px;border:1px solid var(--black);background:var(--card);color:var(--ink);cursor:pointer}
+.w-order .mv:disabled{opacity:.3;cursor:default}
+.w-label{display:grid;gap:14px;grid-template-columns:1fr}
+.w-label img{width:100%;height:auto;background:#fff;border:1px solid var(--border);border-radius:8px}
+.w-label th{width:3.2em;white-space:nowrap;text-align:center;background:var(--black);color:#fff}
+.w-video .frame{position:relative;aspect-ratio:16/9;background:#000;overflow:hidden}
+.w-video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.w-video.placeholder{border:2px dashed var(--muted)}
+.w-video.placeholder .ph{font-size:1.2rem;font-weight:700;margin:6px 0}
+.widget-video{border:0;padding:0;background:none}
+.w-video{border:2px solid var(--black);border-radius:10px;overflow:hidden;background:var(--bg)}
+.w-video .w-title{margin:0;border-radius:0}
+.w-video .frame{border-radius:0}
+.w-video>p{margin:10px 14px}
+.doc figure{margin:16px 0}.doc figure img{display:block;margin:0 auto;background:#fff;border:1px solid var(--border);border-radius:8px}
+.doc figcaption{font-size:.9rem;color:var(--muted);text-align:center;margin-top:4px}
+.doc img{background:#fff}
+.more{font-size:.92rem;color:var(--muted)}
+
+.split>*{min-width:0}
+.doc table{max-width:100%}
+.doc img{max-width:100%;height:auto}
