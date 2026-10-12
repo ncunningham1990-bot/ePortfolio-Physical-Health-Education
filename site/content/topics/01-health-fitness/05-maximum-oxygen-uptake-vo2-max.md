@@ -22,9 +22,8 @@ A higher VO₂ max means your heart, lungs and blood can deliver oxygen more eff
 Genetics, age, sex, training (it can improve with regular aerobic training), body composition, altitude and health.
 
 ```video
-title: What is VO2 max?
-url:
-note: Your teacher can add a YouTube video here.
+title: VO₂ max testing
+url: https://www.youtube.com/watch?v=Ad_sN6Vjt4E
 ```
 
 ## Try it
