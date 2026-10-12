@@ -1,5 +1,6 @@
 ---
 title: Health & Fitness
+icon: 🏃
 summary: Fitness components, testing, VO₂ max, training principles and methods, monitoring intensity and avoiding over-training.
 ---
 ## About this unit

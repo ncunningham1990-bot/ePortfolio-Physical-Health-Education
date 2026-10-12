@@ -34,7 +34,7 @@ function readPage(file) {
   } catch (e) {
     errors.push(`${path}: ${e.message}`);
   }
-  return { title: meta.title || path, summary: meta.summary || "", activity: meta.activity || "", path };
+  return { title: meta.title || path, summary: meta.summary || "", activity: meta.activity || "", icon: meta.icon || "", short: meta.short || "", path };
 }
 
 const mdIn = (dir) =>
@@ -51,6 +51,8 @@ for (const d of unitDirs) {
   manifest.units.push({
     title: overview.title,
     summary: overview.summary,
+    icon: overview.icon,
+    short: overview.short,
     overview: overview.path,
     pages: mdIn(dir).filter((f) => !f.endsWith("_unit.md")).map(readPage),
   });

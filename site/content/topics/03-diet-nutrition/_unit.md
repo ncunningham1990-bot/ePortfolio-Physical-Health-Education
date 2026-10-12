@@ -1,5 +1,6 @@
 ---
 title: Diet & Nutrition
+icon: 🥗
 summary: Food groups, a healthy balanced diet, and energy requirements and expenditure (Healthy Lifestyles).
 ---
 ## About this unit
