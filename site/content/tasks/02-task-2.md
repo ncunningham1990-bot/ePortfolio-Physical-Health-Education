@@ -2,7 +2,7 @@
 title: Task 2: Performance Development Plan
 summary: Criterion B, Planning for Performance. Plan and run an 8-session training programme. Draft due Tuesday 3rd February, final 22nd February.
 ---
-**Dubai International Academy, Al Barsha** · Grade 10 MYP PHE · *Criterion B: Planning for Performance*
+Grade 10 MYP PHE · *Criterion B: Planning for Performance*
 
 | | |
 |---|---|
@@ -29,6 +29,25 @@ title: Breaking Down Your PHE ePortfolio: A Step-by-Step Guide
 url: audio/task-2-breaking-down-your-phe-eportfolio.mp3
 note: About 7 minutes. Use the speed buttons to slow it down or speed it up, and pause to take notes.
 ```
+
+## Exemplar: see high-quality work
+
+Look at this example from a previous student to see the standard to aim for: how the work is organised, how evidence is presented and how ideas are explained. It is there to **learn from, not to copy**. Your client, data, photos and words must be your own.
+
+[Download the Task 2 exemplar (PDF, 4 pages)](exemplars/task-2-exemplar.pdf)
+
+<details>
+<summary>View the exemplar here (4 pages)</summary>
+
+![Task 2 exemplar, page 1 of 4](exemplars/task-2-exemplar-p1.webp)
+
+![Task 2 exemplar, page 2 of 4](exemplars/task-2-exemplar-p2.webp)
+
+![Task 2 exemplar, page 3 of 4](exemplars/task-2-exemplar-p3.webp)
+
+![Task 2 exemplar, page 4 of 4](exemplars/task-2-exemplar-p4.webp)
+
+</details>
 
 ## Checklist: what to include
 

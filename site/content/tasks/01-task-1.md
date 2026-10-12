@@ -2,7 +2,7 @@
 title: Task 1: Initial Observation and Analysis
 summary: Criterion A, Knowing and Understanding. Analyse your client's health and physical performance. Draft 1 due Friday 5th December.
 ---
-**Dubai International Academy, Al Barsha** · Grade 10 MYP PHE · *Criterion A: Knowing and Understanding*
+Grade 10 MYP PHE · *Criterion A: Knowing and Understanding*
 
 | | |
 |---|---|
@@ -18,6 +18,29 @@ summary: Criterion A, Knowing and Understanding. Analyse your client's health an
 ## What you need to do
 
 Observe and analyse your client's **health** and **physical performance** in your chosen Athletics event, then explain what they need to work on. The checklist below shows exactly what to include.
+
+## Exemplar: see high-quality work
+
+Look at this example from a previous student to see the standard to aim for: how the work is organised, how evidence is presented and how ideas are explained. It is there to **learn from, not to copy**. Your client, data, photos and words must be your own.
+
+[Download the Task 1 exemplar (PDF, 6 pages)](exemplars/task-1-exemplar.pdf)
+
+<details>
+<summary>View the exemplar here (6 pages)</summary>
+
+![Task 1 exemplar, page 1 of 6](exemplars/task-1-exemplar-p1.webp)
+
+![Task 1 exemplar, page 2 of 6](exemplars/task-1-exemplar-p2.webp)
+
+![Task 1 exemplar, page 3 of 6](exemplars/task-1-exemplar-p3.webp)
+
+![Task 1 exemplar, page 4 of 6](exemplars/task-1-exemplar-p4.webp)
+
+![Task 1 exemplar, page 5 of 6](exemplars/task-1-exemplar-p5.webp)
+
+![Task 1 exemplar, page 6 of 6](exemplars/task-1-exemplar-p6.webp)
+
+</details>
 
 ## Checklist: what to include
 

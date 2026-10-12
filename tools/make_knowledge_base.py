@@ -45,6 +45,7 @@ def tasks_doc():
     for p in sorted(glob.glob(os.path.join(TASKS, "*.md"))):
         m, b = parse(p)
         b = re.sub(r"^```audio[ \t]*\n.*?^```[ \t]*\n?", "", b, flags=re.M | re.S)
+        b = re.sub(r"<details>.*?</details>\s*", "", b, flags=re.S)
         b = re.sub(r"^!\[([^\]]*)\]\([^)]*\)\s*$", lambda x: f"[Image: {x.group(1)}]", b, flags=re.M)
         b = b.replace("<br><br>", " / ").replace("<br>", " ")
         b = re.sub(r"\n{3,}", "\n\n", b).strip()

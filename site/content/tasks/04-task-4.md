@@ -2,7 +2,7 @@
 title: Task 4: Reflecting and Improving Performance
 summary: Criterion D. Reflect as a coach and as a client, and evaluate the plan and your final performance. First draft 27th February, final 10th March.
 ---
-**Dubai International Academy, Al Barsha** · Grade 10 MYP PHE · *Criterion D: Reflecting and Improving*
+Grade 10 MYP PHE · *Criterion D: Reflecting and Improving*
 
 | | |
 |---|---|
@@ -23,6 +23,27 @@ Reflect on your ePortfolio. **Analyse and evaluate:**
 - your interpersonal skills, **as coach and as client**
 - the physical and health training plans, **as a coach**
 - your **final performance** in relation to the performance development plan and the physical and health goals set in Task 2, **as a client**.
+
+## Exemplar: see high-quality work
+
+Look at this example from a previous student to see the standard to aim for: how the work is organised, how evidence is presented and how ideas are explained. It is there to **learn from, not to copy**. Your client, data, photos and words must be your own.
+
+[Download the Task 4 exemplar (PDF, 5 pages)](exemplars/task-4-exemplar.pdf)
+
+<details>
+<summary>View the exemplar here (5 pages)</summary>
+
+![Task 4 exemplar, page 1 of 5](exemplars/task-4-exemplar-p1.webp)
+
+![Task 4 exemplar, page 2 of 5](exemplars/task-4-exemplar-p2.webp)
+
+![Task 4 exemplar, page 3 of 5](exemplars/task-4-exemplar-p3.webp)
+
+![Task 4 exemplar, page 4 of 5](exemplars/task-4-exemplar-p4.webp)
+
+![Task 4 exemplar, page 5 of 5](exemplars/task-4-exemplar-p5.webp)
+
+</details>
 
 ## Checklist: what to include
 

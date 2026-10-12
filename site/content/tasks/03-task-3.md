@@ -2,7 +2,7 @@
 title: Task 3: Applying and Performing
 summary: Criterion C. Produce a 3-minute annotated video of your final performance. Draft 1 due 17th February, final 2nd March.
 ---
-**Dubai International Academy, Al Barsha** · Grade 10 MYP PHE · *Criterion C: Applying and Performing*
+Grade 10 MYP PHE · *Criterion C: Applying and Performing*
 
 | | |
 |---|---|

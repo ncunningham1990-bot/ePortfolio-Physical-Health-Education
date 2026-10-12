@@ -19,6 +19,8 @@ Your ePortfolio is assessed on four MYP criteria, one for each task. Each task p
 | [Task 3: Applying and Performing](#tasks/3) | C: Applying and Performing | 17th February | 2nd March |
 | [Task 4: Reflecting and Improving Performance](#tasks/4) | D: Reflecting and Improving | 27th February | 10th March |
 
+Exemplars from a previous student are on the pages for Tasks 1, 2 and 4.
+
 **Unit title:** To be or not to be...online · **Global context:** Identities and Relationships · **Key concept:** Communication · **Related concepts:** Environment; Interaction
 
 **Statement of inquiry:** Communication within a digital environment can influence how identity and relationships are formed.
@@ -61,7 +63,7 @@ These words appear in the tasks and rubrics. Make sure you do what each one asks
 
 # Task 1: Initial Observation and Analysis
 
-**Dubai International Academy, Al Barsha** · Grade 10 MYP PHE · *Criterion A: Knowing and Understanding*
+Grade 10 MYP PHE · *Criterion A: Knowing and Understanding*
 
 | | |
 |---|---|
@@ -77,6 +79,12 @@ These words appear in the tasks and rubrics. Make sure you do what each one asks
 ## What you need to do
 
 Observe and analyse your client's **health** and **physical performance** in your chosen Athletics event, then explain what they need to work on. The checklist below shows exactly what to include.
+
+## Exemplar: see high-quality work
+
+Look at this example from a previous student to see the standard to aim for: how the work is organised, how evidence is presented and how ideas are explained. It is there to **learn from, not to copy**. Your client, data, photos and words must be your own.
+
+[Download the Task 1 exemplar (PDF, 6 pages)](exemplars/task-1-exemplar.pdf)
 
 ## Checklist: what to include
 
@@ -170,7 +178,7 @@ Not sure what command words like *justify* or *analyse* mean? See the [command t
 
 # Task 2: Performance Development Plan
 
-**Dubai International Academy, Al Barsha** · Grade 10 MYP PHE · *Criterion B: Planning for Performance*
+Grade 10 MYP PHE · *Criterion B: Planning for Performance*
 
 | | |
 |---|---|
@@ -191,6 +199,12 @@ Build a performance development plan for your client, run it over 8 sessions, ch
 ## Podcast: a step-by-step guide
 
 Listen to this podcast for a step-by-step breakdown of your PHE ePortfolio.
+
+## Exemplar: see high-quality work
+
+Look at this example from a previous student to see the standard to aim for: how the work is organised, how evidence is presented and how ideas are explained. It is there to **learn from, not to copy**. Your client, data, photos and words must be your own.
+
+[Download the Task 2 exemplar (PDF, 4 pages)](exemplars/task-2-exemplar.pdf)
 
 ## Checklist: what to include
 
@@ -292,7 +306,7 @@ Not sure what command words like *justify* or *outline* mean? See the [command t
 
 # Task 3: Applying and Performing
 
-**Dubai International Academy, Al Barsha** · Grade 10 MYP PHE · *Criterion C: Applying and Performing*
+Grade 10 MYP PHE · *Criterion C: Applying and Performing*
 
 | | |
 |---|---|
@@ -356,7 +370,7 @@ Not sure what command words like *demonstrate* or *analyse* mean? See the [comma
 
 # Task 4: Reflecting and Improving Performance
 
-**Dubai International Academy, Al Barsha** · Grade 10 MYP PHE · *Criterion D: Reflecting and Improving*
+Grade 10 MYP PHE · *Criterion D: Reflecting and Improving*
 
 | | |
 |---|---|
@@ -377,6 +391,12 @@ Reflect on your ePortfolio. **Analyse and evaluate:**
 - your interpersonal skills, **as coach and as client**
 - the physical and health training plans, **as a coach**
 - your **final performance** in relation to the performance development plan and the physical and health goals set in Task 2, **as a client**.
+
+## Exemplar: see high-quality work
+
+Look at this example from a previous student to see the standard to aim for: how the work is organised, how evidence is presented and how ideas are explained. It is there to **learn from, not to copy**. Your client, data, photos and words must be your own.
+
+[Download the Task 4 exemplar (PDF, 5 pages)](exemplars/task-4-exemplar.pdf)
 
 ## Checklist: what to include
 
