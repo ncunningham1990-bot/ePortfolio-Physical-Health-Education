@@ -222,3 +222,4 @@ table.w-match{width:100%;display:table;border-collapse:collapse;border:0;margin:
 .chip.soon{background:rgba(255,255,255,.14);color:#fff;font-size:.8rem;padding:8px 16px}
 .chat-logo{width:112px;height:112px;flex:none;border-radius:22px;background:#fff;padding:4px;object-fit:contain;box-shadow:0 6px 18px rgba(0,0,0,.35)}
 @media(max-width:560px){.chat-logo{width:88px;height:88px}}
+.join-note{margin:0 0 8px!important;font-weight:700;color:#fff!important}

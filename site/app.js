@@ -454,6 +454,7 @@ function renderChatCard() {
     h("div", { class: "chat-text" },
       h("h2", { id: "chat-title" }, title),
       h("p", {}, chatbot.description || "Ask questions and get guidance on your ePortfolio."),
+      chatbot.joinNote ? h("p", { class: "join-note" }, "🔑 " + chatbot.joinNote) : "",
       chatbot.privacy ? h("small", {}, chatbot.privacy) : ""),
     url
       ? h("a", { class: "btn lime", href: url, target: "_blank", rel: "noopener noreferrer" }, `Open ${title} ↗`)
