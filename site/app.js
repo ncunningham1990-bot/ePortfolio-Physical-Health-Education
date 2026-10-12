@@ -1,4 +1,5 @@
 import { PARSERS, youtubeId, scoreWritten, parseClinic } from "./parse-widgets.js";
+import { renderSmart, renderPlanner, renderSelfCheck } from "./tools.js";
 
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -365,7 +366,7 @@ const WIDGETS = {
 
 // ---------- progress, badges, toasts ----------
 const STORE_KEY = "pe-hub-progress-v1";
-const blank = () => ({ widgets: {}, lessons: {}, written: {}, clock: { best: {}, plays: 0, top: 0 }, clinic: {}, stats: { done: 0, flawless: 0, recovered: 0, written: 0, selfSaved: 0 }, badges: {}, streak: { count: 0, last: "" }, last: "" });
+const blank = () => ({ widgets: {}, lessons: {}, written: {}, clock: { best: {}, plays: 0, top: 0 }, clinic: {}, tracker: {}, tools: { smart: {}, planner: {} }, stats: { done: 0, flawless: 0, recovered: 0, written: 0, selfSaved: 0, selfChecks: 0 }, badges: {}, streak: { count: 0, last: "" }, last: "" });
 let state = blank();
 try { const raw = localStorage.getItem(STORE_KEY); if (raw) { const o = JSON.parse(raw); state = { ...blank(), ...o, stats: { ...blank().stats, ...(o.stats || {}) } }; } } catch {}
 const saveState = () => { try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch {} };
@@ -400,6 +401,10 @@ const badgeDefs = () => [
   { id: "quick-thinker", icon: "⚡", name: "Quick Thinker", desc: "Score 150 or more in Beat the Clock", test: () => state.clock.top >= 150 },
   { id: "clinic-rookie", icon: "🩺", name: "Clinic Rookie", desc: "Complete a Coach's Clinic case", test: () => Object.keys(state.clinic).length >= 1 },
   { id: "head-coach", icon: "🧑‍🏫", name: "Head Coach", desc: "Earn 3 stars on 3 Coach's Clinic cases", test: () => Object.values(state.clinic).filter((c) => c.stars >= 3).length >= 3 },
+  { id: "checklist-champ", icon: "☑️", name: "Checklist Champ", desc: "Tick every item on a task checklist", test: () => (manifest.tasks || []).some((t) => t.checklist && trackerCount(t) >= t.checklist) },
+  { id: "goal-setter", icon: "🎯", name: "Goal Setter", desc: "Complete every part of the SMART goal builder", test: () => !!(state.tools.smart && state.tools.smart.done) },
+  { id: "programme-builder", icon: "🗓️", name: "Programme Builder", desc: "Plan all 8 sessions and the interim analysis", test: () => !!(state.tools.planner && state.tools.planner.done) },
+  { id: "self-checker", icon: "🔎", name: "Self-Checker", desc: "Run a self-check against a rubric", test: () => state.stats.selfChecks >= 1 },
   { id: "challenge-champion", icon: "🥇", name: "Challenge Champion", desc: "Complete 10 Think deeper or Challenge Bank questions", test: () => state.stats.written >= 10 },
   { id: "halfway", icon: "🏁", name: "Halfway There", desc: "Complete half of all the lessons", test: () => lessonCount() > 0 && doneCount() >= Math.ceil(lessonCount() / 2) },
   { id: "course-champion", icon: "🏆", name: "Course Champion", desc: "Complete every lesson", test: () => lessonCount() > 0 && doneCount() >= lessonCount() },
@@ -519,6 +524,7 @@ function renderHome() {
   const pick = (left.length ? left : bankItems)[Math.floor(Math.random() * (left.length || bankItems.length))];
   $("bank-progress").textContent = bankItems.length ? `${doneQ} of ${bankItems.length} challenges done` : "";
   updateGameNotes();
+  updateTaskNote();
   $("bank-random").href = pick ? `#bank/${pick.id}` : "#bank";
   // continue button
   const m = (state.last || "").match(/^#unit\/(\d+)\/(\d+)$/);
@@ -542,6 +548,7 @@ function buildNav() {
 
 function route() {
   stopClock();
+  clearInterval(dlTimer);
   const [tab = "home", a, b] = location.hash.slice(1).split("/");
   let active = "home", panel = "";
   if (tab === "unit" && manifest.units[Number(a) - 1]) active = `unit-${Number(a)}`;
@@ -558,7 +565,7 @@ function route() {
   else if (active.startsWith("unit")) {
     if (Number(b) > 0) { state.last = `#unit/${Number(a)}/${Number(b)}`; saveState(); }
     showUnit(Number(a), Number(b) || 0);
-  } else if (active === "tasks") showTasks(Number(a) || 0);
+  } else if (active === "tasks") showTasks(Number(a) || 0, b || "");
   else if (panel === "clock") showClock();
   else if (panel === "clinic") showClinic(a || "");
   else if (active === "bank") showBank(a || "");
@@ -995,12 +1002,167 @@ function renderChatCard() {
       : h("span", { class: "chip soon" }, "Coming soon"));
 }
 
-function showTasks(i) {
+// ---------- ePortfolio tasks: tracker, deadlines and sub-tabs ----------
+let deadlines = {};
+let dlTimer = 0;
+let tasksToken = 0;
+const taskKey = (item) => item.path.split("/").pop();
+const taskNumber = (item) => Number((item.path.match(/\/0?(\d)-task-/) || [])[1]) || 0;
+const hash36 = (str) => { let x = 5381; for (let i = 0; i < str.length; i++) x = ((x * 33) ^ str.charCodeAt(i)) >>> 0; return x.toString(36); };
+const trackerSet = (item) => state.tracker[taskKey(item)] || (state.tracker[taskKey(item)] = {});
+const trackerCount = (item) => Math.min(Object.keys(state.tracker[taskKey(item)] || {}).length, item.checklist || 0);
+
+const parseDay = (str) => { const [y, m, d] = str.split("-").map(Number); return new Date(y, m - 1, d, 23, 59, 59); };
+const fmtDay = (d) => d.toLocaleDateString(undefined, { weekday: "short", day: "numeric", month: "short", year: "numeric" });
+function countdownText(ms) {
+  const d = Math.floor(ms / 864e5), hr = Math.floor((ms % 864e5) / 36e5), mn = Math.floor((ms % 36e5) / 6e4);
+  if (d >= 2) return `${d} days ${hr} h`;
+  if (d === 1) return `1 day ${hr} h`;
+  if (hr >= 1) return `${hr} h ${mn} min`;
+  return `${Math.max(mn, 1)} min`;
+}
+function nextDeadline() {
+  const now = Date.now();
+  const all = [];
+  for (const t of manifest.tasks || []) for (const d of deadlines[taskKey(t)] || []) all.push({ task: t, label: d.label, date: parseDay(d.date) });
+  return all.filter((x) => x.date.getTime() > now).sort((a, b) => a.date - b.date)[0] || null;
+}
+function updateTaskNote() {
+  const el = $("home-tasks-note");
+  if (!el) return;
+  const n = nextDeadline();
+  el.textContent = n ? `Next: ${n.task.title.split(":")[0]} ${n.label.toLowerCase()} in ${countdownText(n.date - Date.now())}` : "";
+}
+
+function deadlineStrip(item) {
+  const list = deadlines[taskKey(item)];
+  if (!list || !list.length) return null;
+  const cards = list.map((d) => {
+    const date = parseDay(d.date);
+    const card = h("div", { class: "dl-card" }, h("small", {}, d.label), h("strong", {}, fmtDay(date)), h("span", { class: "dl-count" }));
+    card.date = date;
+    return card;
+  });
+  const strip = h("div", { class: "dl-strip", role: "group", "aria-label": "Submission deadlines" }, ...cards);
+  const tick = () => {
+    const now = Date.now();
+    const next = cards.find((c) => c.date.getTime() > now);
+    for (const c of cards) {
+      const ms = c.date.getTime() - now;
+      const out = c.querySelector(".dl-count");
+      if (ms <= 0) { c.className = "dl-card passed"; out.textContent = "Deadline passed"; }
+      else { c.className = `dl-card${c === next ? " next" : ""}${ms < 3 * 864e5 ? " soon" : ""}`; out.textContent = `${countdownText(ms)} left`; }
+    }
+  };
+  tick();
+  clearInterval(dlTimer);
+  dlTimer = setInterval(() => { if (!strip.isConnected) { clearInterval(dlTimer); return; } tick(); }, 30000);
+  return h("div", {}, strip, h("p", { class: "dl-note" }, "Deadlines are the end of the day shown, on your device's clock."));
+}
+
+function enhanceTask(doc, item) {
+  const dl = deadlineStrip(item);
+  const h1 = doc.querySelector("h1");
+  if (dl && h1) h1.after(dl);
+  const head = [...doc.querySelectorAll("h2")].find((e) => /^checklist/i.test(e.textContent));
+  if (!head) return;
+  const lis = [];
+  const groups = [];
+  let cur = null;
+  for (let el = head.nextElementSibling; el && el.tagName !== "H2"; el = el.nextElementSibling) {
+    if (el.tagName === "H3") { cur = { el, items: [] }; groups.push(cur); }
+    else if (el.tagName === "UL" || el.tagName === "OL") {
+      el.classList.add("trk-list");
+      for (const li of el.children) if (li.tagName === "LI") { lis.push(li); if (cur) cur.items.push(li); }
+    }
+  }
+  if (!lis.length) return;
+  const set = trackerSet(item);
+  const keys = new Set();
+  const entries = lis.map((li) => {
+    const c = li.cloneNode(true);
+    c.querySelectorAll("ul,ol").forEach((n) => n.remove());
+    const text = c.textContent.replace(/\s+/g, " ").trim();
+    const key = hash36(text.toLowerCase().slice(0, 120));
+    keys.add(key);
+    const cb = h("input", { type: "checkbox", class: "trk-box", "aria-label": `Included in my work: ${text.slice(0, 90)}` });
+    cb.checked = !!set[key];
+    li.classList.add("trk");
+    li.prepend(cb);
+    li.classList.toggle("done", cb.checked);
+    cb.onchange = () => {
+      if (cb.checked) set[key] = 1; else delete set[key];
+      li.classList.toggle("done", cb.checked);
+      update(true);
+    };
+    return { li, cb, key };
+  });
+  for (const k of Object.keys(set)) if (!keys.has(k)) delete set[k];
+  const bar = h("div", { class: "trk-bar" }, h("i"));
+  const count = h("strong", { class: "trk-num", "aria-live": "polite" });
+  const reset = h("button", { type: "button", class: "link-btn" }, "Clear all ticks");
+  head.after(h("div", { class: "trk-head" },
+    h("p", { class: "trk-title" }, "✅ Your checklist tracker"),
+    h("p", {}, "Tick the box beside each item when you have included it in your work. Your ticks are saved on this device only."),
+    bar, h("p", { class: "trk-line" }, count, " ", reset)));
+  const counts = groups.map((g) => { const sp = h("span", { class: "trk-count" }); g.el.append(sp); return sp; });
+  let wasComplete = lis.length > 0 && entries.every((e) => e.cb.checked);
+  function update(user) {
+    const done = entries.filter((e) => e.cb.checked).length;
+    bar.firstChild.style.width = `${(done / entries.length) * 100}%`;
+    count.textContent = `${done} of ${entries.length} included`;
+    groups.forEach((g, n) => { const d = g.items.filter((li) => li.querySelector(".trk-box").checked).length; counts[n].textContent = `${d}/${g.items.length}`; counts[n].classList.toggle("full", d === g.items.length); });
+    const complete = done === entries.length;
+    if (user && complete && !wasComplete) { toast("🏁", "Checklist complete!", "Every item is included. Now use the self-check to polish your work."); confetti(true); }
+    wasComplete = complete;
+    if (user) { awardBadges(); renderTasksSide(); }
+    saveState();
+  }
+  reset.onclick = () => { if (confirm("Clear all ticks for this task?")) { for (const e of entries) { e.cb.checked = false; e.li.classList.remove("done"); delete set[e.key]; } update(true); } };
+  update(false);
+}
+
+function renderTasksSide(i = Number((location.hash.slice(1).split("/")[1])) || 0) {
+  $("tasks-list").innerHTML = manifest.tasks.map((it, n) => {
+    const mini = it.checklist ? `<small class="trk-mini">${trackerCount(it)} of ${it.checklist} checklist items ticked</small>` : "";
+    return `<li><a href="#tasks/${n}" ${n === i ? 'aria-current="true"' : ""}><span>${esc(it.title)}</span><small>${esc(it.summary)}</small>${mini}</a></li>`;
+  }).join("");
+}
+
+const toolCtx = {
+  get state() { return state; },
+  save: () => saveState(),
+  onGoalsDone: () => { toast("🎯", "SMART goals complete!", "Every part is filled in. Copy them into your Task 2 document."); confetti(true); awardBadges(); saveState(); },
+  onPlannerDone: () => { toast("🗓️", "Programme planned!", "Sessions, interim analysis and adaptations are all in place."); confetti(true); awardBadges(); saveState(); },
+  onSelfCheck: () => { state.stats.selfChecks++; bumpStreak(); awardBadges(); saveState(); toast("🔎", "Self-check done", "Use the steps to improve your draft, then check again."); },
+};
+
+async function showTasks(i, sub = "") {
   renderChatCard();
   const items = manifest.tasks;
-  $("tasks-list").innerHTML = items.map((it, n) =>
-    `<li><a href="#tasks/${n}" ${n === i ? 'aria-current="true"' : ""}><span>${esc(it.title)}</span><small>${esc(it.summary)}</small></a></li>`).join("");
-  loadDoc(items[i] || items[0], $("tasks-doc"), (n) => `#tasks/${n}`, items, items[i] ? i : 0, null);
+  renderTasksSide(items[i] ? i : 0);
+  const idx = items[i] ? i : 0;
+  const item = items[idx];
+  const num = item ? taskNumber(item) : 0;
+  const tabs = !num ? [] : num === 2
+    ? [["", "Instructions & tracker"], ["smart", "SMART goal builder"], ["planner", "Session planner"], ["check", "Self-check"]]
+    : [["", "Instructions & tracker"], ["check", "Self-check"]];
+  const key = tabs.some(([k]) => k === sub) ? sub : "";
+  const nav = tabs.length ? h("nav", { class: "subtabs", "aria-label": "Task sections" }, tabs.map(([k, label]) => h("a", { href: `#tasks/${idx}${k ? "/" + k : ""}`, "aria-current": k === key ? "page" : false }, label))) : null;
+  const doc = $("tasks-doc");
+  const token = ++tasksToken;
+  if (!key) {
+    await loadDoc(item, doc, (n) => `#tasks/${n}`, items, idx, null);
+    if (token !== tasksToken) return;
+    if (num) enhanceTask(doc, item);
+    if (nav) doc.prepend(nav);
+    return;
+  }
+  const host = h("div", { class: "tl-host" });
+  doc.replaceChildren(h("h1", {}, item.title), nav, host);
+  if (key === "smart") renderSmart(host, toolCtx);
+  else if (key === "planner") renderPlanner(host, toolCtx);
+  else renderSelfCheck(host, num, toolCtx);
 }
 
 async function loadDoc(item, doc, hrefFor, items, index, track) {
@@ -1058,10 +1220,11 @@ async function init() {
     $("main").insertAdjacentHTML("afterbegin", '<p class="notice">Could not load course content. Run <code>npm run build</code>.</p>');
   }
   try { chatbot = await (await fetch("content/chatbot.json")).json(); } catch {}
+  try { deadlines = await (await fetch("content/deadlines.json")).json(); } catch {}
   await loadBank();
   buildNav();
   $("reset-progress").addEventListener("click", () => {
-    if (confirm("Reset all your progress, streak and badges on this device? This cannot be undone.")) { state = blank(); saveState(); renderHome(); }
+    if (confirm("Reset all your progress, streak, badges, checklist ticks and saved goals and planner on this device? This cannot be undone.")) { state = blank(); saveState(); renderHome(); }
   });
   window.addEventListener("hashchange", route);
   route();
