@@ -553,7 +553,7 @@ function route() {
   } else if (active === "tasks") showTasks(Number(a) || 0);
   else if (active === "bank") showBank(a || "");
   if (active !== "bank" || !a) window.scrollTo(0, 0);
-  document.title = "PE ePortfolio Hub";
+  document.title = "PHE ePortfolio Hub";
 }
 
 let shownUnit = { n: 0, p: 0 };

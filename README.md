@@ -1,4 +1,4 @@
-# PE ePortfolio Hub
+# PHE ePortfolio Hub
 
 A website for Grade 9/10 Physical & Health Education students: topic pages, the 4 key ePortfolio tasks with a rubric, and interactive activities.
 
