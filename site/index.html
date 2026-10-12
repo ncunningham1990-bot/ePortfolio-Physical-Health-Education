@@ -54,6 +54,11 @@
 
     <h2 class="section-label">Course units</h2>
     <div class="cards" id="unit-cards"></div>
+    <h2 class="section-label">Challenge yourself</h2>
+    <div class="cards">
+      <a class="card" href="#bank"><span class="u-icon" aria-hidden="true">🧩</span><h3>Challenge Bank</h3><p>Apply, analyse and evaluate. Type your answer, get instant feedback, then mark yourself with the mark scheme.</p><small id="bank-progress"></small></a>
+      <a class="card" id="bank-random" href="#bank"><span class="u-icon" aria-hidden="true">🎲</span><h3>Random challenge</h3><p>Not sure where to start? Get a question you haven't tried yet.</p></a>
+    </div>
     <h2 class="section-label">ePortfolio</h2>
     <div class="cards">
       <a class="card" href="#tasks"><span class="u-icon">📁</span><h3>ePortfolio tasks</h3><p>Instructions, examples, scaffolds and the marking rubric for the 4 assessed tasks.</p></a>
@@ -69,6 +74,20 @@
       </nav>
       <article class="doc" id="unit-doc" aria-live="polite"></article>
     </div>
+  </section>
+
+  <section id="bank" class="panel" hidden>
+    <div class="bank-head">
+      <h1>Challenge Bank</h1>
+      <p class="lead">Questions that make you apply, analyse and evaluate what you have learned. Type your answer, get instant feedback, then use the mark scheme to assess yourself honestly.</p>
+    </div>
+    <div class="bank-controls">
+      <label>Unit <select id="bank-unit"></select></label>
+      <label>Level <select id="bank-level"></select></label>
+      <label>Show <select id="bank-status"></select></label>
+    </div>
+    <p id="bank-summary" class="bank-summary" aria-live="polite"></p>
+    <div id="bank-list" class="bank-list"></div>
   </section>
 
   <section id="tasks" class="panel" hidden>

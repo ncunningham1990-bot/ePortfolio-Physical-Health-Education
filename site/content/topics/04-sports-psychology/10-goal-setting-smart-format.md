@@ -67,3 +67,17 @@ H: How would you know exactly when you had achieved it?
 SMART stands for Specific, {Measurable::Which letter M means you can track it with numbers?}, Achievable, {Relevant::What does R stand for?} and Time-bound.
 A goal about the actions you control is a {process::Which type of goal is about what you do, not the result?} goal.
 ```
+
+## Think deeper
+Apply what you have learned. Type your answer, then use the mark scheme to assess yourself.
+
+```written
+Level: Apply
+Q: A student says, "My goal is to get fitter." Explain why this is a weak goal and rewrite it as a SMART goal for improving their 1500 m time.
+* It is not specific or measurable (no clear aim or number) :: not specific | not measurable | vague | unclear | no number | no target | too general :: What is missing that would let you know when it is achieved?
+* The rewritten goal names the 1500 m run :: 1500 | 1500m | 1500 m :: Which exact activity will be improved?
+* It includes a measurable time target (for example 8:00 to 7:30) :: seconds | minutes | 7 | 8 | time target | from & to :: What number will show success?
+* It includes a deadline (for example within 8 weeks) :: weeks | deadline | by | within | time bound :: By when should it be done?
+* It is achievable and relevant (realistic and linked to the student's aim) :: achievable | realistic | relevant | team | aim | training plan :: Is the target realistic and does it matter to the student?
+Model: Get fitter is a weak goal because it is not specific or measurable, so you cannot tell when it is achieved. A SMART version is: I will improve my 1500 m run from 8 minutes to 7 minutes 30 seconds within 8 weeks by training three times a week. It names the 1500 m, it has a measurable time target, and it has a deadline of 8 weeks. It is achievable because it is a realistic improvement and relevant because it supports my training plan.
+```

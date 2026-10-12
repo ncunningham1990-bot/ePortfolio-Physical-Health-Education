@@ -68,3 +68,17 @@ Self-report = Answers given by the athlete about their own feelings | Who provid
 A questionnaire gives a starting score called a {baseline::What do we call the first measurement that later scores are compared with?}.
 Racing heart and sweaty palms are signs of {somatic::Which type of anxiety shows in the body?} anxiety.
 ```
+
+## Think deeper
+Apply what you have learned. Type your answer, then use the mark scheme to assess yourself.
+
+```written
+Level: Evaluate
+Q: A coach gives an athlete a CSAI-2 questionnaire before and after eight weeks of psychological skills training. Cognitive anxiety falls from 28 to 19 and self-confidence rises from 18 to 28. Evaluate how well this shows the training worked, including limitations.
+* Cognitive anxiety fell (28 to 19) and self-confidence rose (18 to 28), which suggests improvement :: fell | fallen | decrease* | drop* | lower | rose | increase* | improv* :: How did each score change between the two tests?
+* The baseline allows a fair before and after comparison :: baseline | before and after | compare* | comparison :: Why is the first questionnaire useful?
+* Limitation: self-report answers may not be honest or accurate, and mood changes day to day :: honest* | accura* | self report* | mood | biased | truthful* :: Why might the athlete's answers not be reliable?
+* Limitation: other factors (better results, more experience, a different match) could explain the change :: other factor* | other reason* | something else | experience* | not sure | cannot be sure | not proof | coincidence :: Could anything else have caused the change?
+* Judgement: it is good evidence but not proof, and should be combined with other evidence (performance, coach observation) :: good evidence | not proof | suggests | combine* | alongside | other evidence | performance | observation :: How strong is the evidence overall?
+Model: Cognitive anxiety fell from 28 to 19 and self-confidence rose from 18 to 28, which suggests an improvement. The first questionnaire is a baseline that allows a fair before and after comparison. However, the answers are self-reported, so the athlete may not be honest and their mood changes day to day. Other factors, such as more experience, could also explain the change. It is good evidence but not proof, and should be combined with other evidence such as performance and the coach's observations.
+```

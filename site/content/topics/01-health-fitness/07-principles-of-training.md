@@ -70,3 +70,17 @@ Tedium = Boredom from repeating the same training | Which principle is about kee
 FITT stands for {Frequency::What does F stand for? How often you train.}, Intensity, Time and {Type::What does the second T stand for? The kind of training.}.
 If you stop training your fitness falls. This is the principle of {reversibility::Which SPORT principle is about losing fitness when training stops?}.
 ```
+
+## Think deeper
+Apply what you have learned. Type your answer, then use the mark scheme to assess yourself.
+
+```written
+Level: Apply
+Q: For three months, Jo has jogged for 20 minutes, twice a week, at the same pace. Her fitness has stopped improving and she is bored. Use SPORT and FITT to suggest two changes and explain why they will help.
+* Identifies that Jo needs overload or progression (the demand has not increased) :: overload | progress* | increase* | harder | gradual* | adapt* :: Has the demand on Jo's body changed in three months?
+* A suitable FITT change (for example add a session, run a bit faster or longer) :: frequency | intensity | time | type | add a session | three times | faster | longer | 30 minutes :: Which of the FITT letters could Jo change?
+* Changes only one thing at a time or increases gradually :: one at a time | one thing | one variable | gradual* | slowly | small :: How should she make the change to avoid doing too much too soon?
+* Adds variety to avoid tedium (for example intervals, cycling or swimming) :: tedium | variety | vary | boring | bored | interval* | fartlek | cycling | swimming :: How could Jo make training more interesting?
+* Explains that the body adapts and needs rest to recover :: adapt* | recover* | rest | injur* :: Why does Jo need rest as well as harder training?
+Model: Jo's demand has not increased, so she needs progressive overload. Using FITT she could add a third session or run a little longer, changing only one thing at a time so the increase is gradual. She should also add variety, such as intervals or cycling, to avoid tedium because she is bored. The body adapts when it is challenged, but Jo also needs rest to recover.
+```

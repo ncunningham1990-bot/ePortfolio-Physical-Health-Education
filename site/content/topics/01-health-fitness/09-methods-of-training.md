@@ -59,3 +59,16 @@ Q: Which method is best described as 'speed play'?
 ```
 
 **Find out more (external site):** [Different types of training (Save My Exams)](https://www.savemyexams.co.uk/gcse/physical-education/aqa/16/revision-notes/physical-training/the-principles-of-training-in-sport/different-types-of-training/)
+
+## Think deeper
+Apply what you have learned. Type your answer, then use the mark scheme to assess yourself.
+
+```written
+Level: Apply
+Q: A netball centre needs to keep running for the whole match, change direction quickly and jump to intercept the ball. Choose two methods of training for her. Justify each choice and say which principle of training you are applying.
+* A suitable method for endurance (for example fartlek, interval or continuous training) :: fartlek | interval | continuous :: Which method builds the stamina needed for a whole match?
+* A suitable method for power or jumping (for example plyometric or circuit training) :: plyometric* | circuit | box jump* | jump* :: Which method develops explosive jumping?
+* Links each method to the match demands (stop-start running, jumping, changing direction) :: stop start | change* of pace | changing speed | direction | jump* | intercept* | match | game :: How does each method copy what happens in a netball match?
+* Applies specificity (training matches the demands of the sport) :: specific* | match* | copy* | suits :: Which principle says training should match the activity?
+Model: I would choose fartlek training for endurance because netball has changes of pace and she needs to keep going all match. I would also choose plyometric training, such as box jumps, to develop the explosive jumping she needs to intercept the ball. Both copy the stop-start running and jumping of a match. This applies the principle of specificity, because the training matches the demands of the sport.
+```

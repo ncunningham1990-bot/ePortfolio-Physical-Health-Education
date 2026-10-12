@@ -55,3 +55,16 @@ Q: Which statement about fibre types is correct?
 {Slow::Think about which fibre type is red, resists fatigue and is good for endurance.} twitch fibres are red and resist fatigue.
 {Fast::Which fibre type produces high force quickly?} twitch fibres produce high force but tire quickly.
 ```
+
+## Think deeper
+Apply what you have learned. Type your answer, then use the mark scheme to assess yourself.
+
+```written
+Level: Analyse
+Q: An athlete with a high proportion of fast twitch fibres joins a marathon club. Explain why they may find it hard, and what they could do.
+* Fast twitch fibres produce fast, powerful contractions but tire quickly :: fast twitch & (tire*|fatigue*|power*|quick*|force) :: What are fast twitch fibres good at and what is their weakness?
+* A marathon needs resistance to fatigue and aerobic endurance, which slow twitch fibres provide :: slow twitch | aerobic | endurance | fatigue resist* | resist* & fatigue :: Which fibre type suits long, steady events?
+* So they may fatigue earlier than someone with more slow twitch fibres :: fatigue* | tire* | slower | struggle* | earlier :: What would happen to them late in a long race?
+* Training can improve their endurance, or they could choose events that suit them (sprints, jumps) :: train* | improve | sprint* | jump* | throw* | suit* | choose :: What could they do about it?
+Model: Fast twitch fibres produce fast, powerful contractions but tire quickly. A marathon needs resistance to fatigue and aerobic endurance, which slow twitch fibres provide. So the athlete may fatigue earlier than someone with more slow twitch fibres. They could improve their endurance with training, or choose events that suit them, such as sprints or jumps.
+```

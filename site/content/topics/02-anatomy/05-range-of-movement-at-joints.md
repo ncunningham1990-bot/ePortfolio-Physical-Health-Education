@@ -76,3 +76,16 @@ Q: A sprinter pushes off the ground by pointing the toes down. What is this move
 Decreasing the angle at a joint is called {flexion::Which word means bending (angle gets smaller)?}. Increasing the angle is called {extension::Which word means straightening (angle gets bigger)?}.
 Moving a limb away from the midline is {abduction::Which movement takes a limb away from the body?}.
 ```
+
+## Think deeper
+Apply what you have learned. Type your answer, then use the mark scheme to assess yourself.
+
+```written
+Level: Apply
+Q: Describe the joint movements at the hip, knee and ankle as a person takes off for a vertical jump.
+* At the hip: extension (the thigh straightens and moves back) :: hip & extension | hip extend* | hips extend* :: What happens to the angle at the hip as you push up?
+* At the knee: extension (the leg straightens) :: knee & (extension|extend*|straighten*) :: What happens to the angle at the knee as you push up?
+* At the ankle: plantar flexion (toes point down, pushing off the ground) :: plantar & flex* | ankle & plantar | point* & toes :: What happens at the ankle as you push off the toes?
+* Uses the correct terms rather than just bend or straighten :: extension | flexion | plantar flexion :: Which technical word means increasing the angle at a joint?
+Model: As the person takes off for a vertical jump there is extension at the hip as the thigh moves back and straightens, and extension at the knee as the leg straightens. There is plantar flexion at the ankle as the toes point down to push off the ground.
+```

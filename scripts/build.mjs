@@ -40,7 +40,12 @@ function readPage(file) {
 const mdIn = (dir) =>
   existsSync(dir) ? readdirSync(dir).filter((f) => f.endsWith(".md")).sort().map((f) => join(dir, f)) : [];
 
-const manifest = { units: [], tasks: mdIn(join(contentDir, "tasks")).map(readPage) };
+const manifest = { units: [], tasks: mdIn(join(contentDir, "tasks")).map(readPage), bank: [] };
+
+for (const f of mdIn(join(contentDir, "bank"))) {
+  const { meta } = parse(readFileSync(f, "utf8"));
+  manifest.bank.push({ ...readPage(f), unit: Number(meta.unit) || 0 });
+}
 
 const topicsDir = join(contentDir, "topics");
 const unitDirs = readdirSync(topicsDir).filter((d) => statSync(join(topicsDir, d)).isDirectory()).sort();
@@ -64,4 +69,4 @@ if (errors.length) {
 }
 writeFileSync(join(contentDir, "manifest.json"), JSON.stringify(manifest, null, 2));
 const pages = manifest.units.reduce((n, u) => n + u.pages.length, 0);
-console.log(`Built: ${manifest.units.length} units, ${pages} lessons, ${manifest.tasks.length} task pages, ${widgetCount} interactive tasks.`);
+console.log(`Built: ${manifest.units.length} units, ${pages} lessons, ${manifest.tasks.length} task pages, ${manifest.bank.length} challenge-bank files, ${widgetCount} interactive tasks.`);

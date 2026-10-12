@@ -233,3 +233,49 @@ table.w-match{width:100%;display:table;border-collapse:collapse;border:0;margin:
 .speed{font:700 .85rem var(--head);padding:5px 12px;border-radius:999px;border:1px solid var(--border);background:var(--surface);color:var(--ink);cursor:pointer}
 .speed[aria-pressed=true]{background:var(--charcoal);color:#fff;border-color:var(--charcoal)}
 .w-audio .lead{margin:10px 0 0}
+
+/* ---------- written (higher-order) questions ---------- */
+.w-wmeta{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 8px}
+.chip.lvl{color:#fff}.lvl-apply{background:#15803d}.lvl-analyse{background:#2563eb}.lvl-evaluate{background:#b45309}.lvl-create{background:#7c3aed}
+.w-written .w-q{font-weight:700;font-size:1.05rem;margin:0 0 10px}
+.w-written textarea{width:100%;font:inherit;line-height:1.55;padding:12px 14px;border:2px solid var(--border);border-radius:14px;background:var(--surface);color:var(--ink);resize:vertical;min-height:140px}
+.w-written textarea:focus{border-color:var(--lime);outline:none;box-shadow:0 0 0 3px rgba(34,197,94,.25)}
+.wcount{display:block;margin:4px 2px 0;color:var(--muted)}
+.wmsg{margin:6px 0 0;color:var(--danger);font-weight:600;min-height:1.2em}
+.w-result{margin-top:16px;padding:16px;border-radius:16px;background:var(--surface);border:1px solid var(--border)}
+.w-result h4{margin:16px 0 6px;font-size:1rem}.w-result h4:first-child{margin-top:0}
+.w-fb{list-style:none;margin:8px 0;padding:0;display:grid;gap:6px}
+.w-fb li{padding:8px 12px;border-radius:10px;background:var(--bg);border-left:5px solid var(--border)}
+.w-fb li.right{border-left-color:var(--lime)}.w-fb li.wrong{border-left-color:var(--danger)}
+.w-note{font-size:.88rem;color:var(--muted);margin:8px 0}
+.w-ms{list-style:decimal;padding-left:26px;margin:8px 0;display:grid;gap:6px}
+.w-ms label{display:flex;gap:10px;align-items:flex-start;cursor:pointer}
+.w-ms input{margin-top:.3em;width:18px;height:18px;accent-color:var(--accent);flex:none}
+.w-model{margin:12px 0;padding:10px 14px;border-radius:12px;background:var(--tint)}
+.w-model summary{cursor:pointer;font-weight:700}
+.w-result textarea{min-height:0}
+/* challenge bank */
+.bank-head h1{margin:6px 0 6px}
+.bank-controls{display:flex;flex-wrap:wrap;gap:12px;margin:16px 0 6px}
+.bank-controls label{display:grid;gap:4px;font:700 .8rem var(--head);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.bank-controls select{font:600 .95rem var(--body);padding:9px 12px;border-radius:12px;border:1px solid var(--border);background:var(--surface);color:var(--ink);min-width:150px}
+.bank-summary{color:var(--muted);margin:6px 0 14px}
+.bank-list{display:grid;gap:10px}
+.bank-item{background:var(--surface);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);overflow:hidden}
+.bank-item[open]{border-color:var(--lime)}
+.bank-item summary{display:flex;gap:14px;align-items:center;padding:14px 16px;cursor:pointer;list-style:none}
+.bank-item summary::-webkit-details-marker{display:none}
+.bank-item summary::after{content:"+";font:800 1.4rem var(--head);color:var(--accent);margin-left:4px}
+.bank-item[open] summary::after{content:"\2212"}
+.b-unit{display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:var(--tint);font-size:1.4rem;flex:none}
+.b-main{flex:1;min-width:0;display:grid;gap:4px}
+.b-meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:.8rem}
+.b-topic{color:var(--muted);font-weight:600}.b-marks{color:var(--muted)}
+.b-q{font-weight:600;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.bank-item[open] .b-q{-webkit-line-clamp:unset;display:block}
+.b-status{font:700 .78rem var(--head);padding:5px 10px;border-radius:999px;background:var(--bg);color:var(--muted);white-space:nowrap}
+.b-status.done{background:var(--lime);color:var(--lime-ink)}
+.bank-body{padding:0 16px 18px}
+.bank-body .w-written .w-q,.bank-body .w-written .w-wmeta{display:none}
+@media(max-width:560px){.bank-item summary{flex-wrap:wrap}.b-status{order:3}}
+@media (max-width:560px){.w-match,.w-match tbody,.w-match tr,.w-match td{display:block;width:100%!important}.w-match td:first-child{border-bottom:0;padding-bottom:2px}.w-match select{width:100%}}

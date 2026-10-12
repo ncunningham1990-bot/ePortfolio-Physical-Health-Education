@@ -63,3 +63,16 @@ Turning the head = Pivot joint | Which synovial type rotates?
 A joint is where two or more {bones::What meets at a joint?} meet.
 Synovial joints are the {freely::Which word describes the type of joint with the widest movement?} moveable joints.
 ```
+
+## Think deeper
+Apply what you have learned. Type your answer, then use the mark scheme to assess yourself.
+
+```written
+Level: Analyse
+Q: The shoulder can move in many more directions than the knee, but it is dislocated more often. Explain this using the types of synovial joint.
+* The shoulder is a ball and socket joint :: shoulder & ball | ball & socket :: Which type of synovial joint is the shoulder?
+* Ball and socket allows movement in all directions and rotation :: all directions | every direction | rotation | rotate* | wide range | large range | greatest range :: What range of movement does this joint type allow?
+* The knee is a hinge joint that only bends and straightens :: knee & hinge | hinge :: Which type of joint is the knee and what can it do?
+* The more a joint can move, the less stable it is, so dislocation is more likely :: less stable | unstable | stab* | dislocat* | trade off :: What is the cost of a very large range of movement?
+Model: The shoulder is a ball and socket joint, which allows movement in all directions and rotation. The knee is a hinge joint that only bends and straightens. The more a joint can move, the less stable it is, so the shoulder is more likely to dislocate.
+```

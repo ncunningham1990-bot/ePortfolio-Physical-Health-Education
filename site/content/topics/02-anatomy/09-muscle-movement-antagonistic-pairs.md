@@ -63,3 +63,16 @@ Ankle plantar flexion: antagonist = Tibialis anterior | Which muscle relaxes whe
 The muscle that contracts to cause a movement is the {agonist::Which word is used for the prime mover?}.
 The muscle that relaxes is the {antagonist::Which word is used for the muscle opposing the prime mover?}.
 ```
+
+## Think deeper
+Apply what you have learned. Type your answer, then use the mark scheme to assess yourself.
+
+```written
+Level: Apply
+Q: Explain the roles of the quadriceps and hamstrings when a footballer swings her leg forward to kick, and then swings it back. Use the words agonist and antagonist.
+* Kicking forward: the quadriceps are the agonist and contract :: quadricep* & (agonist|contract*) :: Which muscle straightens the knee when you kick?
+* Kicking forward: the hamstrings are the antagonist and relax :: hamstring* & (antagonist|relax*) :: What does the opposite muscle do during the kick?
+* The knee extends (straightens) in the kick :: extend* | extension | straighten* :: What movement happens at the knee when you kick?
+* Swinging back: the roles swap (the hamstrings contract, the quadriceps relax) :: swap* | switch* | reverse* | hamstring* & (agonist|contract*) | roles :: What happens when the leg moves back the other way?
+Model: When she kicks forward, the quadriceps contract as the agonist and the hamstrings relax as the antagonist, so the knee extends. When she swings the leg back, the roles swap: the hamstrings contract as the agonist and the quadriceps relax.
+```

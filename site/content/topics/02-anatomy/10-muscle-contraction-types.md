@@ -55,3 +55,16 @@ Landing from a jump = Isotonic: eccentric | Is the muscle absorbing force by len
 In an {isometric::Which contraction keeps the muscle the same length?} contraction the muscle stays the same length.
 In a {concentric::Which isotonic contraction shortens the muscle?} contraction the muscle shortens.
 ```
+
+## Think deeper
+Apply what you have learned. Type your answer, then use the mark scheme to assess yourself.
+
+```written
+Level: Apply
+Q: A climber pulls herself up the wall, holds still with her arms bent, and then lowers herself slowly. Identify the type of muscle contraction in each phase and explain.
+* Pulling up: concentric, because the muscle shortens :: concentric & (shorten*|pull*|up) | concentric :: What happens to the length of the muscle as she pulls herself up?
+* Holding still: isometric, because the muscle length stays the same :: isometric & (hold*|same length|still|no movement) | isometric :: What happens to the muscle length when she holds a position?
+* Lowering slowly: eccentric, because the muscle lengthens while contracting :: eccentric & (lengthen*|lower*|control*|slowly) | eccentric :: What happens to the length of the muscle as she lowers herself under control?
+* Eccentric control prevents her dropping suddenly or injuring herself :: control* | injur* | drop* | fall* | absorb* | safe* :: Why is the lowering phase important?
+Model: When she pulls up, the contraction is concentric because the muscle shortens. When she holds still, the contraction is isometric because the muscle length stays the same. When she lowers herself slowly, the contraction is eccentric because the muscle lengthens while it contracts. This control prevents her dropping suddenly or injuring herself.
+```
