@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PE ePortfolio Hub</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap bar">
+    <a class="brand" href="#home">PE ePortfolio Hub</a>
+    <nav aria-label="Main" id="tabs">
+      <a href="#home" data-tab="home">Home</a>
+      <a href="#topics" data-tab="topics">Topics</a>
+      <a href="#tasks" data-tab="tasks">Key Tasks</a>
+      <a href="#assistant" data-tab="assistant">Study Guide Chat</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap" id="main" tabindex="-1">
+  <section id="home" class="panel">
+    <h1>Physical &amp; Health Education ePortfolio</h1>
+    <p class="lead">Everything you need for the course in one place.</p>
+    <div class="cards">
+      <a class="card" href="#topics"><h2>Topics</h2><p>Learn the course content, try activities and check your understanding.</p></a>
+      <a class="card" href="#tasks"><h2>Key Tasks</h2><p>Instructions, examples, scaffolds and the marking rubric for the 4 assessed tasks.</p></a>
+      <a class="card" href="#assistant"><h2>Study Guide Chat</h2><p>Ask questions and get feedback on your ideas. It guides you; it will not do the work for you.</p></a>
+    </div>
+  </section>
+
+  <section id="topics" class="panel" hidden>
+    <div class="split">
+      <nav class="side" aria-label="Topics"><ul id="topics-list"></ul></nav>
+      <article class="doc" id="topics-doc" aria-live="polite"></article>
+    </div>
+  </section>
+
+  <section id="tasks" class="panel" hidden>
+    <div class="split">
+      <nav class="side" aria-label="Key tasks"><ul id="tasks-list"></ul></nav>
+      <article class="doc" id="tasks-doc" aria-live="polite"></article>
+    </div>
+  </section>
+
+  <section id="assistant" class="panel" hidden>
+    <h1>Study Guide Chat</h1>
+    <p class="lead">I can ask you questions, explain ideas from the course, and give feedback on your work against the rubric. I will not write or rewrite your work.</p>
+    <p class="notice">Do not type your name, school or other personal details.</p>
+
+    <div class="controls">
+      <label>Language
+        <select id="lang"></select>
+      </label>
+      <label>Working on
+        <select id="task"></select>
+      </label>
+      <label id="code-wrap" hidden>Class code
+        <input id="code" type="password" autocomplete="off">
+      </label>
+    </div>
+
+    <div id="log" class="log" role="log" aria-live="polite" aria-label="Conversation"></div>
+
+    <form id="chat-form">
+      <label for="msg" class="sr">Your message</label>
+      <textarea id="msg" rows="3" placeholder="Ask a question, or paste what you have written and ask for feedback..." maxlength="8000"></textarea>
+      <div class="row">
+        <button type="submit" id="send">Send</button>
+        <button type="button" id="clear" class="ghost">Start over</button>
+      </div>
+    </form>
+  </section>
+</main>
+
+<script src="vendor/marked.min.js"></script>
+<script src="vendor/purify.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
