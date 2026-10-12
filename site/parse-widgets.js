@@ -227,6 +227,64 @@ export function scoreWritten(q, text) {
   return { matched, count: matched.filter(Boolean).length, total: q.points.length, words: (text.trim().match(/\S+/g) || []).length };
 }
 
+// ---- Coach's Clinic cases (a story told in scenes; not a lesson widget) ----
+// Patient: who the case is about      Intro: story set-up
+// Scene: what has happened and what you must decide     Data: chip | chip | chip
+// + best choice | what happens next     ~ partly right | what to improve     - wrong choice | hint (they try again)
+// Debrief: wrap-up shown at the end
+export function parseClinic(src) {
+  const out = { patient: "", intro: "", scenes: [], debrief: "" };
+  let field = null, scene = null;
+  for (const raw of src.split("\n")) {
+    const line = raw.trim();
+    if (!line) { field = null; continue; }
+    const kw = line.match(/^(Patient|Intro|Scene|Data|Debrief):\s*(.*)$/);
+    const opt = line.match(/^([+~-])\s+(.*)$/);
+    if (kw) {
+      const [, k, v] = kw;
+      if (k === "Patient") { out.patient = v; field = null; }
+      else if (k === "Intro") { out.intro = v; field = "intro"; }
+      else if (k === "Debrief") { out.debrief = v; field = "debrief"; }
+      else if (k === "Scene") { scene = { text: v, data: [], options: [] }; out.scenes.push(scene); field = "scene"; }
+      else if (k === "Data") {
+        if (!scene) throw new Error(`clinic: "Data:" must come after a "Scene:"`);
+        scene.data = v.split("|").map((x) => x.trim()).filter(Boolean);
+        field = null;
+      }
+    } else if (opt) {
+      if (!scene) throw new Error(`clinic: choice "${line.slice(0, 40)}" appears before any "Scene:"`);
+      const [text, fb] = splitHint(opt[2]);
+      if (!fb) throw new Error(`clinic: choice "${text}" needs feedback after " | "`);
+      scene.options.push({ text, feedback: fb, kind: opt[1] === "+" ? "best" : opt[1] === "~" ? "partial" : "wrong" });
+      field = null;
+    } else if (field === "intro") out.intro += " " + line;
+    else if (field === "debrief") out.debrief += " " + line;
+    else if (field === "scene") scene.text += " " + line;
+    else throw new Error(`clinic: unrecognised line "${line.slice(0, 50)}"`);
+  }
+  if (!out.patient) throw new Error('clinic: needs a "Patient:" line');
+  if (!out.intro) throw new Error('clinic: needs an "Intro:" line');
+  if (!out.debrief) throw new Error('clinic: needs a "Debrief:" line');
+  if (out.scenes.length < 3 || out.scenes.length > 7) throw new Error(`clinic: needs 3 to 7 scenes (found ${out.scenes.length})`);
+  out.scenes.forEach((sc, i) => {
+    const label = `scene ${i + 1}`;
+    if (!sc.text) throw new Error(`clinic: ${label} has no text`);
+    if (sc.options.length < 3 || sc.options.length > 5) throw new Error(`clinic: ${label} needs 3 to 5 choices`);
+    if (sc.options.filter((o) => o.kind === "best").length !== 1) throw new Error(`clinic: ${label} needs exactly one "+" (best) choice`);
+    if (!sc.options.some((o) => o.kind === "wrong")) throw new Error(`clinic: ${label} needs at least one "-" (wrong) choice`);
+  });
+  return out;
+}
+
+// Checks a Beat the Clock question file: every question must be quick to read (3 to 5 options).
+export function checkClock(markdown) {
+  const qs = [];
+  for (const m of markdown.matchAll(/^```quiz[ \t]*\n([\s\S]*?)^```/gm)) qs.push(...parseQuiz(m[1]));
+  for (const q of qs) if (q.options.length < 3 || q.options.length > 5) throw new Error(`clock: "${q.question}" needs 3 to 5 options`);
+  if (!qs.length) throw new Error("clock: no quiz block found");
+  return qs.length;
+}
+
 export const PARSERS = { quiz: parseQuiz, flashcards: parseFlashcards, match: parseMatch, fill: parseFill, order: parseOrder, label: parseLabel, video: parseVideo, audio: parseAudio, written: parseWritten };
 
 // Finds every widget block in a markdown string and parses it (throws on a mistake).

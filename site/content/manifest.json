@@ -428,5 +428,105 @@
       "path": "content/bank/04-sports-psychology.md",
       "unit": 4
     }
+  ],
+  "clock": [
+    {
+      "title": "Health & Fitness",
+      "unit": 1,
+      "path": "content/clock/01-health-fitness.md",
+      "questions": 20
+    },
+    {
+      "title": "Anatomy",
+      "unit": 2,
+      "path": "content/clock/02-anatomy.md",
+      "questions": 20
+    },
+    {
+      "title": "Diet & Nutrition",
+      "unit": 3,
+      "path": "content/clock/03-diet-nutrition.md",
+      "questions": 19
+    },
+    {
+      "title": "Sports Psychology",
+      "unit": 4,
+      "path": "content/clock/04-sports-psychology.md",
+      "questions": 19
+    }
+  ],
+  "clinic": [
+    {
+      "id": "01-the-tired-swimmer",
+      "title": "The tired swimmer",
+      "unit": 1,
+      "icon": "🏊",
+      "summary": "Maya's resting heart rate keeps climbing and she feels flat. Work out what is happening and plan her next steps.",
+      "path": "content/clinic/01-the-tired-swimmer.md",
+      "scenes": 4
+    },
+    {
+      "id": "02-the-stalled-jogger",
+      "title": "The stalled jogger",
+      "unit": 1,
+      "icon": "🏃",
+      "summary": "Jo has jogged the same way for months and has stopped improving. Use SPORT, FITT and heart rate zones to get her moving again.",
+      "path": "content/clinic/02-the-stalled-jogger.md",
+      "scenes": 4
+    },
+    {
+      "id": "03-the-knee-injury",
+      "title": "The knee injury",
+      "unit": 2,
+      "icon": "🦵",
+      "summary": "A footballer twists a knee. Use your knowledge of joints, ligaments and muscles to understand the injury and the recovery.",
+      "path": "content/clinic/03-the-knee-injury.md",
+      "scenes": 4
+    },
+    {
+      "id": "04-which-event",
+      "title": "Which event?",
+      "unit": 2,
+      "icon": "⚡",
+      "summary": "Zara is deciding between sprints and distance running. Muscle fibre types and muscle actions help you advise her.",
+      "path": "content/clinic/04-which-event.md",
+      "scenes": 4
+    },
+    {
+      "id": "05-the-tired-footballer",
+      "title": "The tired footballer",
+      "unit": 3,
+      "icon": "⚽",
+      "summary": "Sam trains every day, is losing weight and has no energy. Use energy balance and nutrition knowledge to help.",
+      "path": "content/clinic/05-the-tired-footballer.md",
+      "scenes": 4
+    },
+    {
+      "id": "06-the-fast-food-week",
+      "title": "The fast-food week",
+      "unit": 3,
+      "icon": "🍔",
+      "summary": "Alex eats takeaway most days and wants to improve at basketball. Evaluate the diet and make smart swaps.",
+      "path": "content/clinic/06-the-fast-food-week.md",
+      "scenes": 4
+    },
+    {
+      "id": "07-match-day-nerves",
+      "title": "Match-day nerves",
+      "unit": 4,
+      "icon": "🥅",
+      "summary": "A penalty taker freezes under pressure. Diagnose the anxiety, choose mental skills and check whether they work.",
+      "path": "content/clinic/07-match-day-nerves.md",
+      "scenes": 4
+    },
+    {
+      "id": "08-the-ankle-roll",
+      "title": "The ankle roll",
+      "unit": 4,
+      "icon": "🩹",
+      "summary": "A basketball player rolls an ankle. Choose first aid steps, know when to get help and set a SMART comeback goal.",
+      "path": "content/clinic/08-the-ankle-roll.md",
+      "scenes": 4
+    }
   ]
 }
