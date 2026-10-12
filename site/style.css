@@ -35,7 +35,7 @@ a{color:var(--accent)}
 .top::after{content:"";display:block;height:3px;background:linear-gradient(90deg,var(--lime),#16a34a 55%,transparent)}
 .head-inner{display:flex;flex-wrap:wrap;align-items:center;gap:6px 22px;padding-top:10px;padding-bottom:10px}
 .brand{display:flex;align-items:center;gap:10px;font:800 1.05rem var(--head);letter-spacing:.01em;color:#fff;text-decoration:none}
-.logo{width:30px;height:30px}
+.logo{width:44px;height:44px;border-radius:10px;background:#fff;padding:2px;object-fit:contain}
 nav#tabs{display:flex;flex-wrap:wrap;gap:4px}
 nav#tabs a{padding:8px 14px;border-radius:999px;color:#d8e2dc;text-decoration:none;font:600 .92rem var(--head);transition:background .2s,color .2s}
 nav#tabs a:hover{background:var(--charcoal-2);color:#fff}
@@ -279,3 +279,6 @@ table.w-match{width:100%;display:table;border-collapse:collapse;border:0;margin:
 .bank-body .w-written .w-q,.bank-body .w-written .w-wmeta{display:none}
 @media(max-width:560px){.bank-item summary{flex-wrap:wrap}.b-status{order:3}}
 @media (max-width:560px){.w-match,.w-match tbody,.w-match tr,.w-match td{display:block;width:100%!important}.w-match td:first-child{border-bottom:0;padding-bottom:2px}.w-match select{width:100%}}
+.hero{display:flex;align-items:center;gap:32px}
+.hero-logo{position:relative;z-index:1;flex:none;width:200px;height:200px;border-radius:24px;background:#fff;padding:8px;box-shadow:0 10px 30px rgba(0,0,0,.35);object-fit:contain}
+@media (max-width:700px){.hero{flex-direction:column;align-items:flex-start;gap:18px}.hero-logo{width:120px;height:120px;border-radius:18px}}
