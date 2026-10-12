@@ -1,16 +1,176 @@
 {
-  "topics": [
+  "units": [
     {
-      "title": "The 11 Major Muscles",
-      "summary": "Names, jobs and sporting examples for 11 major muscles.",
-      "activity": "activities/major-muscles.html",
-      "path": "content/topics/01-major-muscles.md"
+      "title": "Health & Fitness",
+      "summary": "What health means, the components of fitness, training principles and how to test and improve fitness.",
+      "overview": "content/topics/01-health-fitness/_unit.md",
+      "pages": [
+        {
+          "title": "What is health?",
+          "summary": "Physical, mental and social wellbeing, and what affects them.",
+          "activity": "",
+          "path": "content/topics/01-health-fitness/01-what-is-health.md"
+        },
+        {
+          "title": "Components of fitness",
+          "summary": "The 5 health-related and 6 skill-related components of fitness.",
+          "activity": "",
+          "path": "content/topics/01-health-fitness/02-components-of-fitness.md"
+        },
+        {
+          "title": "Principles of training",
+          "summary": "FITT, progressive overload, specificity, reversibility and variety.",
+          "activity": "",
+          "path": "content/topics/01-health-fitness/03-principles-of-training.md"
+        },
+        {
+          "title": "Fitness testing",
+          "summary": "Which test measures which component, and how to use your results.",
+          "activity": "",
+          "path": "content/topics/01-health-fitness/04-fitness-testing.md"
+        },
+        {
+          "title": "Warm-up and cool-down",
+          "summary": "Why and how to prepare for exercise and recover afterwards.",
+          "activity": "",
+          "path": "content/topics/01-health-fitness/05-warm-up-cool-down.md"
+        },
+        {
+          "title": "Unit review",
+          "summary": "A mixed revision quiz covering the whole unit.",
+          "activity": "",
+          "path": "content/topics/01-health-fitness/06-unit-review.md"
+        }
+      ]
     },
     {
-      "title": "Sample Topic (replace me)",
-      "summary": "Copy this file to add a new topic.",
-      "activity": "",
-      "path": "content/topics/02-sample-topic.md"
+      "title": "Anatomy",
+      "summary": "The skeletal, muscular, cardiovascular and respiratory systems and how they work together in movement.",
+      "overview": "content/topics/02-anatomy/_unit.md",
+      "pages": [
+        {
+          "title": "The skeletal system",
+          "summary": "Functions of the skeleton, key bones and connective tissue.",
+          "activity": "",
+          "path": "content/topics/02-anatomy/01-skeletal-system.md"
+        },
+        {
+          "title": "Joints and movement",
+          "summary": "Types of joint and the movements each allows.",
+          "activity": "",
+          "path": "content/topics/02-anatomy/02-joints-and-movement.md"
+        },
+        {
+          "title": "The major muscles",
+          "summary": "Names, jobs and sporting examples for 11 major muscles.",
+          "activity": "activities/major-muscles.html",
+          "path": "content/topics/02-anatomy/03-major-muscles.md"
+        },
+        {
+          "title": "The cardiovascular system",
+          "summary": "The heart, blood vessels, blood and how exercise changes them.",
+          "activity": "",
+          "path": "content/topics/02-anatomy/04-cardiovascular-system.md"
+        },
+        {
+          "title": "The respiratory system",
+          "summary": "Breathing, gas exchange and how exercise affects breathing.",
+          "activity": "",
+          "path": "content/topics/02-anatomy/05-respiratory-system.md"
+        },
+        {
+          "title": "Unit review",
+          "summary": "A mixed revision quiz covering the whole unit.",
+          "activity": "",
+          "path": "content/topics/02-anatomy/06-unit-review.md"
+        }
+      ]
+    },
+    {
+      "title": "Diet & Nutrition",
+      "summary": "Nutrients, hydration, balanced eating, fuelling for sport, energy balance and food labels.",
+      "overview": "content/topics/03-diet-nutrition/_unit.md",
+      "pages": [
+        {
+          "title": "Macronutrients",
+          "summary": "Carbohydrates, proteins and fats: functions and food sources.",
+          "activity": "",
+          "path": "content/topics/03-diet-nutrition/01-macronutrients.md"
+        },
+        {
+          "title": "Micronutrients and water",
+          "summary": "Vitamins, minerals, fibre and the importance of hydration.",
+          "activity": "",
+          "path": "content/topics/03-diet-nutrition/02-micronutrients-and-water.md"
+        },
+        {
+          "title": "A balanced diet",
+          "summary": "Eating a variety of foods in the right proportions, and what influences choices.",
+          "activity": "",
+          "path": "content/topics/03-diet-nutrition/03-balanced-diet.md"
+        },
+        {
+          "title": "Nutrition for sport",
+          "summary": "Eating and drinking before, during and after exercise.",
+          "activity": "",
+          "path": "content/topics/03-diet-nutrition/04-nutrition-for-sport.md"
+        },
+        {
+          "title": "Energy balance and food labels",
+          "summary": "Energy in versus energy out, and how to read food packaging.",
+          "activity": "",
+          "path": "content/topics/03-diet-nutrition/05-energy-balance-and-labels.md"
+        },
+        {
+          "title": "Unit review",
+          "summary": "A mixed revision quiz covering the whole unit.",
+          "activity": "",
+          "path": "content/topics/03-diet-nutrition/06-unit-review.md"
+        }
+      ]
+    },
+    {
+      "title": "Sports Psychology",
+      "summary": "Motivation, goal setting, stress and arousal, mental skills, confidence and teamwork.",
+      "overview": "content/topics/04-sports-psychology/_unit.md",
+      "pages": [
+        {
+          "title": "Motivation",
+          "summary": "Intrinsic and extrinsic motivation and how to build it.",
+          "activity": "",
+          "path": "content/topics/04-sports-psychology/01-motivation.md"
+        },
+        {
+          "title": "Goal setting",
+          "summary": "SMART goals and the three types of goals.",
+          "activity": "",
+          "path": "content/topics/04-sports-psychology/02-goal-setting.md"
+        },
+        {
+          "title": "Arousal, stress and anxiety",
+          "summary": "The inverted-U idea and ways to manage pressure.",
+          "activity": "",
+          "path": "content/topics/04-sports-psychology/03-arousal-stress-anxiety.md"
+        },
+        {
+          "title": "Mental rehearsal and self-talk",
+          "summary": "Imagery, self-talk and focusing strategies.",
+          "activity": "",
+          "path": "content/topics/04-sports-psychology/04-mental-rehearsal-and-self-talk.md"
+        },
+        {
+          "title": "Confidence and teamwork",
+          "summary": "Self-confidence, self-efficacy and team cohesion.",
+          "activity": "",
+          "path": "content/topics/04-sports-psychology/05-confidence-and-teamwork.md"
+        },
+        {
+          "title": "Unit review",
+          "summary": "A mixed revision quiz covering the whole unit.",
+          "activity": "",
+          "path": "content/topics/04-sports-psychology/06-unit-review.md"
+        }
+      ]
     }
   ],
   "tasks": [

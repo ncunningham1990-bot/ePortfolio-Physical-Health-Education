@@ -10,11 +10,7 @@
 <header class="top">
   <div class="wrap bar">
     <a class="brand" href="#home">PE ePortfolio Hub</a>
-    <nav aria-label="Main" id="tabs">
-      <a href="#home" data-tab="home">Home</a>
-      <a href="#topics" data-tab="topics">Topics</a>
-      <a href="#tasks" data-tab="tasks">Key Tasks</a>
-    </nav>
+    <nav aria-label="Main" id="tabs"></nav>
   </div>
 </header>
 
@@ -22,30 +18,37 @@
   <section id="home" class="panel">
     <h1>Physical &amp; Health Education ePortfolio</h1>
     <p class="lead">Everything you need for the course in one place.</p>
+    <h2 class="section-label">Course units</h2>
+    <div class="cards" id="unit-cards"></div>
+    <h2 class="section-label">ePortfolio</h2>
     <div class="cards">
-      <a class="card" href="#topics"><h2>Topics</h2><p>Learn the course content, try activities and check your understanding.</p></a>
       <a class="card" href="#tasks"><h2>Key Tasks</h2><p>Instructions, examples, scaffolds and the marking rubric for the 4 assessed tasks.</p></a>
     </div>
   </section>
 
-  <section id="topics" class="panel" hidden>
+  <section id="unit" class="panel" hidden>
     <div class="split">
-      <nav class="side" aria-label="Topics"><ul id="topics-list"></ul></nav>
-      <article class="doc" id="topics-doc" aria-live="polite"></article>
+      <nav class="side" aria-label="Lessons in this unit">
+        <h2 id="unit-title"></h2>
+        <ul id="unit-list"></ul>
+      </nav>
+      <article class="doc" id="unit-doc" aria-live="polite"></article>
     </div>
   </section>
 
   <section id="tasks" class="panel" hidden>
     <div class="split">
-      <nav class="side" aria-label="Key tasks"><ul id="tasks-list"></ul></nav>
+      <nav class="side" aria-label="Key tasks">
+        <h2>Key Tasks</h2>
+        <ul id="tasks-list"></ul>
+      </nav>
       <article class="doc" id="tasks-doc" aria-live="polite"></article>
     </div>
   </section>
-
 </main>
 
 <script src="vendor/marked.min.js"></script>
 <script src="vendor/purify.min.js"></script>
-<script src="app.js"></script>
+<script type="module" src="app.js"></script>
 </body>
 </html>
