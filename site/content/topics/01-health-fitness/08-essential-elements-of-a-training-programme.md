@@ -70,3 +70,17 @@ Static stretching = Holding a stretch in the cool-down | Which stretching type i
 A warm-up has a pulse raiser, mobility or dynamic {stretching::What do you call movements through the full range of a joint before exercise?} and sport-specific practice.
 The part of the session that gradually lowers your heart rate is the {cool-down|cool down::Which part of a session comes last and brings the body back to rest?}.
 ```
+
+## Think deeper
+Apply what you have learned. Type your answer, then use the mark scheme to assess yourself.
+
+```written
+Level: Apply
+Q: Maya skips her warm-up and cool-down to save time. Explain what might happen in the short and long term, and what you would advise her to do.
+* Without a warm-up the muscles are cold, so injuries such as strains are more likely :: cold | injur* | strain* | pull* | tear* | tight :: What is the condition of the muscles without a warm-up?
+* A warm-up raises heart rate, temperature and blood flow to prepare the body :: heart rate | temperature | blood flow | prepare* | pulse raiser | mobility :: What does a warm-up do to prepare the body?
+* Without a cool-down the body does not return gradually to rest (stiffness, dizziness) :: cool down | gradual* | return | resting | stiff* | sore* | dizz* :: What does a cool-down help the body to do?
+* A cool-down is a good time for static stretching to maintain or improve flexibility :: static | stretch* | flexib* :: What type of stretching is best done at the end of a session?
+* Advises Maya to do both, even if short, because injuries cost more time :: advise | should | do both | include | short | quick | worth it | miss more :: What would you tell Maya to do and why?
+Model: Without a warm-up the muscles are cold, so injuries such as strains are more likely. A warm-up raises heart rate, temperature and blood flow to prepare the body. Without a cool-down the body does not return gradually to its resting state, so she may feel stiff or sore. A cool-down is also a good time for static stretching to improve flexibility. I would advise Maya to include both, even if they are short, because an injury would cost her far more time.
+```

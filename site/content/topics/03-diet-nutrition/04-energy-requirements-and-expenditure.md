@@ -79,3 +79,17 @@ Ingredients on a label are listed from {largest|most|biggest|greatest|highest::C
 ```
 
 **Find out more (external PDF):** [Dietary energy (Australia and New Zealand nutrient reference values)](https://www.eatforhealth.gov.au/sites/default/files/2022-04/n35-dietaryenergy_0.pdf)
+
+## Think deeper
+Apply what you have learned. Type your answer, then use the mark scheme to assess yourself.
+
+```written
+Level: Analyse
+Q: A teenage footballer trains every day, feels tired all the time and is losing weight. Use energy balance to explain what may be happening and what should change.
+* Energy expenditure is higher than energy intake (negative energy balance) :: expenditure & (higher|more|greater|than) | burn* more | using more | intake & (lower|less|too low|not enough) | not eating enough | not enough energy :: How does the energy used compare with the energy taken in?
+* Daily training increases energy needs on top of BMR and growth :: train* | bmr | growth | grow* | activity :: What is using extra energy besides resting needs?
+* The body uses stored energy, so he loses weight and feels tired :: stored | store* | lose weight | weight loss | tired* | fatigue* | run down :: What does the body do when intake is too low?
+* He should eat more energy-rich, balanced meals and snacks, especially carbohydrate :: eat more | increase* | more food | more energy | carbohydrate* | snack* | balanced :: What should he change in his diet?
+* He should speak to a trusted adult, doctor or dietitian if the problem continues :: doctor | dietitian | trusted adult | parent* | coach | teacher | health professional :: Who could he ask for advice?
+Model: His energy expenditure is probably higher than his energy intake, so he is not getting enough energy. Daily training increases his energy needs on top of his BMR and growth. The body uses stored energy, so he loses weight and feels tired. He should eat more balanced meals and snacks with plenty of carbohydrate, and speak to a doctor, a dietitian or a trusted adult if the problem continues.
+```

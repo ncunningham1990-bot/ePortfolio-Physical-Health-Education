@@ -114,3 +114,17 @@ Q: Which is a limitation of a fitness test?
 A test is {valid::Does the test measure what it claims to measure? Which word describes that?} if it measures what it claims to measure.
 A test is {reliable::Which word means consistent results every time?} if it gives similar results every time under the same conditions.
 ```
+
+## Think deeper
+Apply what you have learned. Type your answer, then use the mark scheme to assess yourself.
+
+```written
+Level: Analyse
+Q: A school measures Year 10 on the bleep test in the gym in March and again on a windy field in June. The June scores are lower, even though students have been training. Explain what the problem is with this comparison and how the school should fix it.
+* The test conditions were different (indoor gym and windy field), so the results are not comparable :: different & (condition*|surface*|place*|location*|weather) | wind* | field | gym | not the same :: What changed between the two tests apart from the students' fitness?
+* This affects reliability (results should be consistent when conditions are the same) :: reliab* | consistent* | unreliable :: Which word describes getting similar results when you repeat a test under the same conditions?
+* Weather and surface can make students slower, so the scores do not show true fitness :: slower | harder | resist* | affect* | not true | not accurate | not fair :: How could wind or a different surface change someone's score?
+* Standardise the protocol: same place, surface, equipment and instructions each time :: standardis* | same place | same surface | same conditions | same equipment | same instructions | same recording :: What should stay exactly the same each time you test?
+* Retest under the same conditions to see real progress :: retest | repeat* | test again | compare* | baseline :: What should the school do next to find out whether students really improved?
+Model: The conditions were different, because one test was in a gym and the other on a windy field, so the results are not comparable. This affects reliability, because a test should give consistent results when it is repeated. Wind and a different surface can make students slower, so the scores do not show true fitness. The school should standardise the test by using the same place, surface, equipment and instructions each time, and then retest to compare real progress.
+```

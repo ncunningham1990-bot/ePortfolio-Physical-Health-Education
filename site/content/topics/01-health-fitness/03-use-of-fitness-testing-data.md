@@ -69,3 +69,17 @@ A bar chart = Compares separate categories | Which graph has separate columns fo
 Normative data = Typical scores for a similar group | Which term describes the comparison scores?
 Baseline = Your own starting result | What do you compare later results with?
 ```
+
+## Think deeper
+Apply what you have learned. Type your answer, then use the mark scheme to assess yourself.
+
+```written
+Level: Evaluate
+Q: Mia's sit-and-reach score is 28 cm, which is below the average of 30 cm for her age group. But eight weeks ago her score was 20 cm. Should Mia be worried? Justify your answer using baseline and normative data.
+* Her score improved by 8 cm since her baseline :: improv* | increase* | 8 | eight | better | progress :: How has her score changed since eight weeks ago?
+* She is only a little below the normative data (2 cm) and close to average :: 2 | two | close | nearly | almost | slightly | a little | just below :: How far below the average is she?
+* Normative data shows averages, so it is a guide, not a target for everyone :: average* | guide | norm* | compare* :: What does the normative data actually tell you?
+* Progress against her own baseline matters more than comparing with others :: baseline | own progress | own starting | personal | herself :: Why might her own progress be more useful than the class average?
+* Concludes she should not be worried, but should keep training and set a new target :: not worried | no need to worry | should not be worried | keep | continue | new target | goal | next step :: What is your overall judgement and what should she do next?
+Model: Mia should not be worried. Her score has improved by 8 cm since her baseline, which is good progress. She is only 2 cm below the average, so she is close. Normative data shows averages and is only a guide, and progress against her own baseline matters more than comparing with others. She should keep training and set a new target.
+```

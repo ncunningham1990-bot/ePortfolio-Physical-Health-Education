@@ -390,5 +390,43 @@
       "short": "",
       "path": "content/tasks/04-task-4.md"
     }
+  ],
+  "bank": [
+    {
+      "title": "Health & Fitness challenges",
+      "summary": "Higher-order questions on fitness testing, training principles, methods and monitoring.",
+      "activity": "",
+      "icon": "",
+      "short": "",
+      "path": "content/bank/01-health-fitness.md",
+      "unit": 1
+    },
+    {
+      "title": "Anatomy challenges",
+      "summary": "Higher-order questions on bones, joints, muscles and movement.",
+      "activity": "",
+      "icon": "",
+      "short": "",
+      "path": "content/bank/02-anatomy.md",
+      "unit": 2
+    },
+    {
+      "title": "Diet & Nutrition challenges",
+      "summary": "Higher-order questions on nutrients, balanced diets and energy.",
+      "activity": "",
+      "icon": "",
+      "short": "",
+      "path": "content/bank/03-diet-nutrition.md",
+      "unit": 3
+    },
+    {
+      "title": "Sports Psychology & Well-being challenges",
+      "summary": "Higher-order questions on motivation, arousal, anxiety, mental skills, goals and health.",
+      "activity": "",
+      "icon": "",
+      "short": "",
+      "path": "content/bank/04-sports-psychology.md",
+      "unit": 4
+    }
   ]
 }

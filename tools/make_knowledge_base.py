@@ -24,7 +24,7 @@ def parse(path):
     return meta, body.strip()
 
 def clean(body):
-    body = re.sub(r"^```(quiz|flashcards|match|fill|order|label|video|audio)[ \t]*\n.*?^```[ \t]*\n?", "", body, flags=re.M | re.S)
+    body = re.sub(r"^```(quiz|flashcards|match|fill|order|label|video|audio|written)[ \t]*\n.*?^```[ \t]*\n?", "", body, flags=re.M | re.S)
     body = re.sub(r"^!\[([^\]]*)\]\([^)]*\)\s*$", lambda m: f"[Diagram: {m.group(1)}]", body, flags=re.M)
     body = re.sub(r"^\*\*Find out more.*$", "", body, flags=re.M)
     body = re.sub(r"^## Try it\s*$", "", body, flags=re.M)

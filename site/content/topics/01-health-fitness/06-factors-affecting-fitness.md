@@ -68,3 +68,16 @@ H: Think about stress, worry or confidence. How could these affect focus on the 
 Motivation, stress and confidence are {psychological::Which group of factors is about the mind?} factors.
 Access to facilities and support from family are {social::Which group of factors is about other people and opportunities?} factors.
 ```
+
+## Think deeper
+Apply what you have learned. Type your answer, then use the mark scheme to assess yourself.
+
+```written
+Level: Analyse
+Q: Two students follow the same training programme for ten weeks. One improves a lot and the other hardly at all. Explain how physical, psychological and social factors could explain the difference.
+* Physical factors such as sleep, diet, genetics, injury or illness :: physical & (sleep|diet|genetic*|injur*|ill*|age|nutrition) | sleep | diet | genetic* | injur* :: Which things about the body, lifestyle or health could differ?
+* Psychological factors such as motivation, stress or confidence :: psycholog* & (motivat*|stress*|confiden*|attitude|mood) | motivat* | stress* | confiden* :: How might thoughts and feelings affect effort and results?
+* Social factors such as family support, friends, access to facilities or cost :: social & (family|friend*|support*|facilit*|cost|time|access|peer*) | family | friends | facilit* | cost :: Which factors involve other people or opportunities?
+* Explains the link: how a factor affects training quality or recovery :: because | so | which means | this means | as a result | leads to | therefore :: How does one of these factors actually change training results?
+Model: Physical factors such as sleep, diet and genetics could mean one student recovers and adapts better. Psychological factors such as motivation and stress could mean one student tries harder or worries more. Social factors such as family support, friends and access to facilities could mean one student has more opportunities to train. For example, a student with poor sleep recovers less, which means they improve less.
+```

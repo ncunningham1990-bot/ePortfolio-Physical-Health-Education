@@ -69,3 +69,17 @@ A higher resting heart rate is a {physiological::Which type of indicator is a ch
 ```
 
 **Find out more (external site):** [Overtraining syndrome (UMEM Educational Pearls)](https://umem.org/educational_pearls/5088/)
+
+## Think deeper
+Apply what you have learned. Type your answer, then use the mark scheme to assess yourself.
+
+```written
+Level: Apply
+Q: A swimmer's resting heart rate has been rising for two weeks and she feels tired. What might be happening, and what would you change?
+* She may be over-training (training load too high, too little recovery) :: over train* | overtrain* | too much training | too much | not enough recovery | not recover* | too little rest :: What happens when training load is too high and recovery is too short?
+* A rising resting heart rate and tiredness are physiological signs of this :: resting heart rate | resting hr | tired* | fatigue* | physiological | sign* :: Which signs in the question point to this problem?
+* Other signs to look for (poor sleep, illness, mood changes, performance getting worse) :: sleep | ill* | mood* | irritab* | performance | motivat* | slower :: What other signs could you look for to check?
+* Reduce the training load and add rest or recovery days :: reduce* | lower* | less | rest | recover* | easier | rest day* :: What should change in her programme?
+* Applies a principle (progressive overload and gradual increase, variety, rest) :: progress* | gradual* | overload | variety | fitt | frequency | intensity | tedium :: Which principle of training could help her avoid this in future?
+Model: She may be over-training, because the training load is too high and she is not recovering enough. A rising resting heart rate and tiredness are physiological signs of this. I would also check for poor sleep, illness, mood changes or slower performance. I would reduce the training load and add rest days to recover. In future she should use progressive overload and increase the load gradually, with variety and rest.
+```

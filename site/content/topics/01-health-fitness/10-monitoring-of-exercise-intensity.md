@@ -72,3 +72,17 @@ Multiply the reserve by the intensity percentage | Choose the % before adding an
 Add the resting HR back | This is the last step to get the target.
 ```
 **Find out more (external PDF):** [Target heart rate worked example (UCLA Health)](https://www.uclahealth.org/sites/default/files/documents/b1/rehab-pearls.pdf?f=5a282f33)
+
+## Think deeper
+Apply what you have learned. Type your answer, then use the mark scheme to assess yourself.
+
+```written
+Level: Apply
+Q: Ana is 16 and her resting heart rate is 60 bpm. Use the Karvonen method to find her target heart rate range for 60 to 80 percent intensity, showing your working. Then explain why this is more individual than using a percentage of maximum heart rate alone.
+* Estimated maximum heart rate is 220 - 16 = 204 bpm :: 204 :: What do you subtract from 220 to estimate maximum heart rate?
+* Heart rate reserve = 204 - 60 = 144 bpm :: 144 :: Heart rate reserve is maximum heart rate minus which other heart rate?
+* Range is about 146 to 175 bpm ((144 x 0.6) + 60 and (144 x 0.8) + 60) :: 146 | 147 | 86 :: Multiply the reserve by 0.6, then add the resting heart rate.
+* Upper end is about 175 bpm :: 175 | 176 | 115 :: Multiply the reserve by 0.8, then add the resting heart rate.
+* Karvonen uses resting heart rate, so it suits the individual's fitness :: resting & (individual*|personal*|fitness|fitter|different) | individual* | personal* :: What extra measurement does Karvonen use that a simple percentage does not?
+Model: Maximum heart rate is 220 minus 16, which is 204 bpm. Heart rate reserve is 204 minus 60, which is 144. At 60 percent, 144 times 0.6 is 86.4 plus 60, which is about 146 bpm. At 80 percent, 144 times 0.8 is 115.2 plus 60, which is about 175 bpm. The Karvonen method uses resting heart rate, so the zone is more individual and suits each person's fitness.
+```

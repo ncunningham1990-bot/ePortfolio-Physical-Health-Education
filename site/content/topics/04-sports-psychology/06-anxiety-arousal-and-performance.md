@@ -72,3 +72,16 @@ Gross skill = Higher arousal is best | Think about big, powerful movements such 
 The {inverted-U|inverted U::Which theory has a graph shaped like an upside-down U?} theory says performance is best at moderate arousal.
 {Drive::Which theory says performance rises in a straight line with arousal?} theory says performance increases in a straight line with arousal.
 ```
+
+## Think deeper
+Apply what you have learned. Type your answer, then use the mark scheme to assess yourself.
+
+```written
+Level: Analyse
+Q: Compare the best level of arousal for a golfer taking a short putt with a rugby prop forward about to push in a scrum. Use the inverted-U theory to explain the difference.
+* The putt is a fine skill needing precision, so a lower level of arousal is best :: putt* & (fine|precis*|lower|calm*) | golf* & (fine|lower|calm*) | fine skill :: What type of skill is a putt and what does it need?
+* The scrum is a gross skill needing power, so a higher level of arousal is best :: scrum* & (gross|power*|higher|aggress*) | prop & (gross|higher|power*) | gross skill :: What type of skill is a scrum and what does it need?
+* The inverted-U shows performance is best at an optimal level and falls if arousal is too low or too high :: optimal | inverted | too high | too low | over aroused | under aroused | falls | drops :: What does the inverted-U say happens either side of the best level?
+* The best level differs for each skill, so the peak of the curve shifts :: shift* | differ* | different | depends | peak :: Is the peak of the curve in the same place for every skill?
+Model: A putt is a fine skill that needs precision, so a lower level of arousal is best. A scrum is a gross skill that needs power, so a higher level of arousal is best. The inverted-U shows that performance is best at an optimal level and falls if arousal is too low or too high. The best level is different for each skill, so the peak of the curve shifts.
+```

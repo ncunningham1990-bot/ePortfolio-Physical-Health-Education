@@ -2,7 +2,7 @@
 // Used by the website (to render them) and by scripts/build.mjs (to catch typing mistakes).
 //
 // Wrong answers never reveal the correct answer: students get a hint and try again.
-export const WIDGET_TYPES = ["quiz", "flashcards", "match", "fill", "order", "label", "video", "audio"];
+export const WIDGET_TYPES = ["quiz", "flashcards", "match", "fill", "order", "label", "video", "audio", "written"];
 
 const lines = (s) => s.split("\n").map((l) => l.trim()).filter(Boolean);
 const splitHint = (text) => {
@@ -145,7 +145,89 @@ export function youtubeId(url) {
   return m ? m[1] : "";
 }
 
-export const PARSERS = { quiz: parseQuiz, flashcards: parseFlashcards, match: parseMatch, fill: parseFill, order: parseOrder, label: parseLabel, video: parseVideo, audio: parseAudio };
+
+// ---------- written (higher-order) questions ----------
+// Level: Apply | Analyse | Evaluate | Create
+// Q: the question (may continue on following lines)
+// * what a good answer includes :: keywords | alternative & both-words | stem* :: guiding prompt shown if the point is missed
+// Model: an example of a strong answer (must earn every mark point: the build checks this)
+// ID: optional fixed id (otherwise made from the question text)
+export const LEVELS = ["Apply", "Analyse", "Evaluate", "Create"];
+
+const hash36 = (s) => { let h = 5381; for (let i = 0; i < s.length; i++) h = ((h * 33) ^ s.charCodeAt(i)) >>> 0; return h.toString(36); };
+
+export function parseWritten(src) {
+  const out = { id: "", level: "Apply", question: "", points: [], model: "" };
+  let field = null;
+  for (const raw of src.split("\n")) {
+    const line = raw.trim();
+    if (!line) continue;
+    let m;
+    if ((m = line.match(/^Level:\s*(.+)$/i))) {
+      const lv = LEVELS.find((l) => l.toLowerCase() === m[1].trim().toLowerCase());
+      if (!lv) throw new Error(`written: Level must be one of ${LEVELS.join(", ")} (got "${m[1].trim()}")`);
+      out.level = lv; field = null;
+    } else if ((m = line.match(/^ID:\s*([\w-]+)$/i))) { out.id = m[1]; field = null; }
+    else if (/^Q:/.test(line)) { out.question = line.slice(2).trim(); field = "question"; }
+    else if (/^Model:/i.test(line)) { out.model = line.slice(6).trim(); field = "model"; }
+    else if (line.startsWith("* ")) {
+      const parts = line.slice(2).split(" :: ").map((x) => x.trim());
+      if (parts.length !== 3 || parts.some((x) => !x)) throw new Error(`written: a mark point needs "* what to include :: keywords :: prompt": "${line.slice(0, 70)}"`);
+      let expr;
+      try { expr = parseExpr(parts[1]); } catch (e) { throw new Error(`written: keywords for "${parts[0]}": ${e.message}`); }
+      out.points.push({ text: parts[0], keywords: parts[1], expr, prompt: parts[2] });
+      field = null;
+    } else if (field) out[field] += " " + line;
+    else throw new Error(`written: unrecognised line "${line.slice(0, 60)}"`);
+  }
+  const label = out.question.slice(0, 50);
+  if (!out.question) throw new Error('written: needs a "Q:" line');
+  if (out.points.length < 2 || out.points.length > 8) throw new Error(`written: "${label}" needs 2 to 8 mark points (has ${out.points.length})`);
+  if (!out.model) throw new Error(`written: "${label}" needs a "Model:" answer`);
+  if (!out.id) out.id = "q" + hash36(out.question);
+  return out;
+}
+
+// Keywords: a | b = either, a & b = both, ( ) group, word* = any ending. "&" binds tighter than "|".
+function parseExpr(str) {
+  let i = 0;
+  const ws = () => { while (str[i] === " ") i++; };
+  const atom = () => {
+    ws();
+    if (str[i] === "(") { i++; const e = or(); ws(); if (str[i] !== ")") throw new Error("missing )"); i++; return e; }
+    const start = i;
+    while (i < str.length && !"|&()".includes(str[i])) i++;
+    const t = str.slice(start, i).trim();
+    if (!t) throw new Error("an empty keyword (check the | & and brackets)");
+    return { term: t };
+  };
+  const and = () => { const parts = [atom()]; ws(); while (str[i] === "&") { i++; parts.push(atom()); ws(); } return parts.length === 1 ? parts[0] : { and: parts }; };
+  const or = () => { const parts = [and()]; ws(); while (str[i] === "|") { i++; parts.push(and()); ws(); } return parts.length === 1 ? parts[0] : { or: parts }; };
+  const e = or(); ws();
+  if (i < str.length) throw new Error("unexpected ) ");
+  return e;
+}
+const evalExpr = (e, t) => (e.term ? termRegex(e.term).test(t) : e.and ? e.and.every((x) => evalExpr(x, t)) : e.or.some((x) => evalExpr(x, t)));
+
+const normText = (s) => s.toLowerCase().replace(/[\u2018\u2019]/g, "'").replace(/[-\u2013\u2014_/]/g, " ").replace(/\s+/g, " ");
+const escRe = (w) => w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+const reCache = new Map();
+function termRegex(term) {
+  if (!reCache.has(term)) {
+    const words = normText(term).trim().split(" ").filter(Boolean).map((w) => (w.endsWith("*") ? escRe(w.slice(0, -1)) + "\\w*" : escRe(w) + "(?:s|es|ed|ing|d)?"));
+    reCache.set(term, new RegExp("(?:^|\\W)" + words.join("\\W+") + "(?=$|\\W)", "i"));
+  }
+  return reCache.get(term);
+}
+
+// Which mark points does the answer earn? (keyword matching, so it is an estimate)
+export function scoreWritten(q, text) {
+  const t = normText(text);
+  const matched = q.points.map((p) => evalExpr(p.expr, t));
+  return { matched, count: matched.filter(Boolean).length, total: q.points.length, words: (text.trim().match(/\S+/g) || []).length };
+}
+
+export const PARSERS = { quiz: parseQuiz, flashcards: parseFlashcards, match: parseMatch, fill: parseFill, order: parseOrder, label: parseLabel, video: parseVideo, audio: parseAudio, written: parseWritten };
 
 // Finds every widget block in a markdown string and parses it (throws on a mistake).
 export function checkWidgets(markdown) {
@@ -153,7 +235,12 @@ export function checkWidgets(markdown) {
   let n = 0;
   for (const m of markdown.matchAll(re)) {
     n++;
-    PARSERS[m[1]](m[2]);
+    const parsed = PARSERS[m[1]](m[2]);
+    if (m[1] === "written") {
+      const r = scoreWritten(parsed, parsed.model);
+      const miss = parsed.points.find((_, i) => !r.matched[i]);
+      if (miss) throw new Error(`written: the Model answer for "${parsed.question.slice(0, 50)}" does not earn the mark point "${miss.text}". Add the words the model answer uses to that point's keywords.`);
+    }
   }
   return n;
 }

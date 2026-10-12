@@ -61,3 +61,17 @@ Q: Which bone is the origin of the biceps?
 A muscle's attachment to the bone that does not move is the {origin::Which attachment is the fixed end?}.
 The attachment to the bone that moves is the {insertion::Which attachment is the moving end?}.
 ```
+
+## Think deeper
+Apply what you have learned. Type your answer, then use the mark scheme to assess yourself.
+
+```written
+Level: Apply
+Q: Explain how a bicep curl moves the forearm, using the words origin, insertion, tendon and contraction.
+* The biceps contract (shorten) :: contract* | shorten* | get shorter :: What does the biceps muscle do to produce movement?
+* The tendon attaches the muscle to the bone :: tendon* :: What connects the muscle to the bone?
+* The origin on the scapula stays fixed (does not move) :: origin & (scapula|fixed|stay*|not move|shoulder) | origin :: Which end of the muscle stays still?
+* The insertion on the radius is pulled towards the origin, so the forearm moves up :: insertion & (radius|pull*|towards|moves|forearm) | insertion :: Which end moves, and what does it move towards?
+* The elbow flexes (bends) :: flex* | bend* | bending | hinge :: What movement happens at the elbow joint?
+Model: When the biceps contract and shorten, they pull on a tendon that attaches the muscle to the bone. The origin on the scapula stays fixed, but the insertion on the radius is pulled towards the origin, so the forearm moves up. The elbow flexes.
+```

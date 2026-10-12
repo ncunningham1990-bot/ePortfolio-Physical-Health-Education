@@ -61,3 +61,17 @@ Health data from apps should be handled carefully because of {privacy::Which iss
 ```
 
 **Find out more (external site):** [Can wearables really monitor your heart health? (Mount Sinai)](https://health.mountsinai.org/blog/can-wearables-really-monitor-your-heart-health-a-mount-sinai-cardiologist-explains/)
+
+## Think deeper
+Apply what you have learned. Type your answer, then use the mark scheme to assess yourself.
+
+```written
+Level: Evaluate
+Q: For a week, Sam's fitness watch shows his resting heart rate rising and his sleep getting worse. His coach says, "Ignore it and train harder." Evaluate what Sam should do with this data.
+* The data may be a sign that Sam is not recovering (possible over-training or illness) :: recover* | over train* | overtrain* | tired* | illness | ill | stress* | fatigue* :: What can a rising resting heart rate and poor sleep suggest about the body?
+* Wearable data is useful but not always accurate and is not a diagnosis :: accura* | reliab* | not a diagnosis | not diagnos* | not perfect | errors :: Can Sam completely trust the numbers?
+* Sam should combine the data with how he feels and talk to his coach or an adult :: how he feels | feel* | talk* | tell* | discuss* | coach | trusted adult | parent* | doctor :: Who could Sam speak to, and what else should he consider?
+* Sensible action: reduce load, rest or recover rather than pushing harder :: rest | reduce* | lower* | recover* | easier | less training | sleep :: What would be a sensible change to training?
+* Judges that technology supports decisions but should not replace judgement :: support* | help* | guide* | not replace | alongside | together | balance :: How should Sam use technology in his decision?
+Model: The data may be a sign that Sam is not recovering, such as over-training or illness. Wearable data is useful but not always accurate, and it is not a diagnosis. Sam should combine it with how he feels and talk to his coach or a trusted adult. A sensible action is to reduce his training and rest and recover instead of pushing harder. Technology should support his decisions and not replace them.
+```

@@ -58,3 +58,16 @@ Carbohydrates are stored in muscles and the liver as {glycogen::What is the stor
 Proteins are needed for growth and {repair::What does protein do to damaged muscle tissue?}.
 Fats provide about {9::How many kcal does one gram of fat provide?} kcal per gram.
 ```
+
+## Think deeper
+Apply what you have learned. Type your answer, then use the mark scheme to assess yourself.
+
+```written
+Level: Apply
+Q: Explain why a rugby player in training might need more carbohydrate and protein than an inactive person, and give a food source for each.
+* Carbohydrate is the main source of energy for training and matches :: carbohydrate* & (energy|fuel|main) | energy | fuel :: What is the main job of carbohydrate?
+* Carbohydrate is stored as glycogen and used up in hard exercise :: glycogen | stored | store* | used up | run out :: What happens to carbohydrate stores in long or hard training?
+* Protein is needed for growth and repair of muscle after training :: protein & (repair*|growth|grow*|build*|muscle) | repair* | muscle growth :: What does protein do for damaged muscle?
+* Gives a food source for each (for example pasta or rice; chicken, eggs or beans) :: pasta | rice | bread | potato* | oats | chicken | egg* | fish | bean* | lentil* | tofu | milk :: Which foods supply each nutrient?
+Model: Carbohydrate is the main source of energy for training and matches, and it is stored as glycogen and used up in hard exercise, so a rugby player needs more, for example from pasta or rice. Protein is needed for growth and repair of muscle after training, so they need more, for example from chicken, eggs or beans.
+```

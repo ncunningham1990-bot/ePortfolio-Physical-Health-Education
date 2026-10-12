@@ -76,3 +76,17 @@ Q: Which of these is a reason to seek medical help straight away?
 RICE stands for Rest, Ice, {Compression::What does the C stand for? A firm bandage gives this.} and {Elevation::What does the E stand for? Raising the injury above heart level.}.
 A {sprain::Which injury is damage to a ligament?} is damage to a ligament.
 ```
+
+## Think deeper
+Apply what you have learned. Type your answer, then use the mark scheme to assess yourself.
+
+```written
+Level: Apply
+Q: During a basketball game, Ali rolls his ankle. It is swollen and painful but he can still put some weight on it. Describe the first aid treatment you would use, in order, and explain why each step helps. Say when he should see a doctor.
+* Rest: stop playing to prevent further damage :: rest | stop* :: What should Ali do straight away?
+* Ice (wrapped in a cloth) for 10 to 20 minutes to reduce swelling and pain :: ice | cold | cool* :: How could you reduce swelling and pain?
+* Compression with a firm bandage to support and reduce swelling :: compress* | bandage* | support* | strap* :: What could be used to support the ankle and limit swelling?
+* Elevation above heart level to reduce swelling :: elevat* | raise* | above the heart | above heart | lift* :: How can gravity help reduce swelling?
+* See a doctor if severe pain, deformity, numbness or he cannot put weight on it, or it is not improving :: doctor | medical | hospital | severe | numb* | deform* | cannot & weight | not improv* :: When is first aid not enough?
+Model: First rest, so Ali stops playing and does not cause more damage. Then ice wrapped in a cloth for 10 to 20 minutes to reduce swelling and pain. Then compression with a firm bandage to support the ankle and limit swelling, and elevation above heart level to reduce swelling. He should see a doctor if there is severe pain, deformity, numbness, if he cannot put weight on it, or if it is not improving.
+```

@@ -77,3 +77,17 @@ About a third or more of the plate is made up of fruit and {vegetables::What do 
 ```
 
 **Find out more (external site):** [The Eatwell Guide (NHS)](https://www.nhs.uk/live-well/eat-well/food-guidelines-and-food-labels/the-eatwell-guide/)
+
+## Think deeper
+Apply what you have learned. Type your answer, then use the mark scheme to assess yourself.
+
+```written
+Level: Evaluate
+Q: A student has no breakfast, chips and a fizzy drink for lunch, and pizza for dinner. Evaluate this diet and suggest three improvements.
+* The diet lacks variety and is low in fruit, vegetables and fibre :: variety | fruit* | vegetable* | veg | fibre | not balanced | unbalanced :: Which food groups are missing from this day?
+* It is high in fat, sugar and salt :: fat | sugar* | salt | fizzy | chips :: Which foods in the day are high in fat, sugar or salt?
+* Skipping breakfast can cause low energy and poor concentration or performance :: breakfast & (energy|concentrat*|tired*|perform*) | skipping | skip* :: What could missing a meal do to energy and focus?
+* Suggests improvements (for example add fruit and vegetables, wholegrain carbohydrate, protein, water) :: add | swap | instead | fruit* | vegetable* | wholegrain | water | porridge | salad | lean protein :: What simple changes would improve each meal?
+* Links improvements to health or performance :: performance | energy | health* | growth | concentrat* | training :: Why would those changes help the student?
+Model: The diet lacks variety and is low in fruit, vegetables and fibre, and it is high in fat, sugar and salt, so it is not balanced. Skipping breakfast can cause low energy and poor concentration. To improve it the student could have porridge with fruit for breakfast, swap chips for a salad or wholegrain sandwich with some protein, and drink water instead of a fizzy drink. These changes would improve energy, health and performance in training.
+```

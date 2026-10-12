@@ -63,3 +63,17 @@ The {synovial membrane::Which feature lines the capsule and makes the fluid?} pr
 {Ligaments::Which tissue joins bone to bone?} join bone to bone and {tendons::Which tissue joins muscle to bone?} join muscle to bone.
 ```
 **Find out more (external site):** [Structure of a synovial joint (Oak National Academy)](https://www.thenational.academy/pupils/programmes/physical-education-secondary-year-10-gcse-aqa/units/anatomy-and-physiology-the-musculoskeletal-system/lessons/structure-of-a-synovial-joint/video)
+
+## Think deeper
+Apply what you have learned. Type your answer, then use the mark scheme to assess yourself.
+
+```written
+Level: Analyse
+Q: A footballer has damaged the articular cartilage in his knee. Explain how this could affect his movement and why.
+* Cartilage normally covers the bone ends and reduces friction :: cartilage & (friction|smooth*|cover*|slippery) | reduces friction :: What does cartilage normally do at the ends of the bones?
+* It also absorbs shock when he runs and jumps :: shock | absorb* | cushion* | impact :: What other job does cartilage do when the legs hit the ground?
+* Damage means more friction, so the knee may be painful, stiff or catch :: friction | pain* | stiff* | rub* | catch* | grind* | swell* :: What would happen when rough bone ends rub together?
+* This could reduce his range of movement and performance :: range of movement | performance | move less | limit* | slower | cannot & (run|play|jump) | reduce* :: How could this affect what he can do on the pitch?
+* He should rest and get medical advice :: rest | doctor | physio* | medical | advice :: What should he do about it?
+Model: Cartilage normally covers the bone ends and reduces friction, and it absorbs shock when he runs and jumps. If it is damaged there is more friction, so the knee may be painful, stiff and may catch. This could reduce his range of movement and his performance. He should rest and get medical advice from a doctor or physio.
+```
