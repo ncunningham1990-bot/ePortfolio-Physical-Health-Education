@@ -117,7 +117,7 @@ button:disabled{opacity:.6;cursor:wait}
 .side a[aria-current=true] .lnum{color:var(--lime)}
 .tick{flex:none;width:18px;height:18px;border-radius:50%;border:2px solid var(--border);align-self:center}
 .tick.on{background:var(--lime) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 10.5l3.2 3.2L15 6.8' fill='none' stroke='%2304130a' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/80% no-repeat;border-color:var(--lime)}
-.doc{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:10px 28px 30px;box-shadow:var(--shadow);overflow-wrap:anywhere}
+.doc{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:10px 28px 30px;box-shadow:var(--shadow);overflow-wrap:break-word}
 @media(max-width:560px){.doc{padding:6px 16px 22px}}
 .doc h1{margin:6px 0 14px;font-weight:800;font-size:clamp(1.55rem,4vw,2.15rem)}
 .doc h2{margin:30px 0 10px;font-weight:800;font-size:1.35rem;padding-bottom:6px;border-bottom:3px solid var(--lime);display:inline-block}
@@ -220,3 +220,5 @@ table.w-match{width:100%;display:table;border-collapse:collapse;border:0;margin:
 .chat-text p{margin:0 0 6px;color:#d4e3da;font-size:.96rem}
 .chat-text small{color:#a9bdb1;font-size:.82rem}
 .chip.soon{background:rgba(255,255,255,.14);color:#fff;font-size:.8rem;padding:8px 16px}
+.chat-logo{width:112px;height:112px;flex:none;border-radius:22px;background:#fff;padding:4px;object-fit:contain;box-shadow:0 6px 18px rgba(0,0,0,.35)}
+@media(max-width:560px){.chat-logo{width:88px;height:88px}}

@@ -446,14 +446,17 @@ function renderChatCard() {
   let url = "";
   try { const u = new URL(chatbot.url || ""); if (u.protocol === "https:" || u.protocol === "http:") url = u.href; } catch {}
   const title = chatbot.title || "Study Guide Chat";
+  const logo = chatbot.image && /^[\w./-]+$/.test(chatbot.image)
+    ? h("img", { class: "chat-logo", src: chatbot.image, alt: `${title} logo`, width: "112", height: "112" })
+    : h("span", { class: "chat-icon", "aria-hidden": "true" }, "💬");
   card.replaceChildren(
-    h("span", { class: "chat-icon", "aria-hidden": "true" }, "💬"),
+    logo,
     h("div", { class: "chat-text" },
       h("h2", { id: "chat-title" }, title),
       h("p", {}, chatbot.description || "Ask questions and get guidance on your ePortfolio."),
       chatbot.privacy ? h("small", {}, chatbot.privacy) : ""),
     url
-      ? h("a", { class: "btn lime", href: url, target: "_blank", rel: "noopener noreferrer" }, "Open the chatbot ↗")
+      ? h("a", { class: "btn lime", href: url, target: "_blank", rel: "noopener noreferrer" }, `Open ${title} ↗`)
       : h("span", { class: "chip soon" }, "Coming soon"));
 }
 
