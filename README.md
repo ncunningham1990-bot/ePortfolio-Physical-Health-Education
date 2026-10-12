@@ -66,6 +66,16 @@ url: https://www.youtube.com/watch?v=XXXXXXXXXXX
 note: Optional text under the video
 ```
 ````
+**Podcast / audio.** Upload the MP3 to `site/audio/` and add:
+````
+```audio
+title: Name of the podcast
+url: audio/my-podcast.mp3
+note: Optional text under the player
+```
+````
+Students get a player with speed buttons and a download link.
+
 If you make a typing mistake in one of these, the build stops and the **Actions** tab shows which file and what is wrong.
 
 ## Images and diagrams
