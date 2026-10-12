@@ -92,6 +92,9 @@ Runners shuttle between two lines **20 m** apart, timed to recorded beeps that g
 - **Reliable:** you get similar results each time when conditions are the same.
 - **Limitations:** results can be affected by motivation, weather, surface, footwear, the tester's skill, and how well rested you are. A single test measures only one component. Some tests (like the bleep test) depend on pacing and effort. Many tests are shown to be most useful for comparison *with yourself* over time.
 
+### Think deeper
+Apply what you have learned. Type your answer, then use the mark scheme to assess yourself.
+
 
 ## Lesson: Use of fitness testing data
 
@@ -124,6 +127,9 @@ But remember: norms are *averages*. Everyone starts from a different place, so *
 3. Describe the pattern or comparison, using numbers.
 4. Explain what it means for fitness and what to do next.
 
+### Think deeper
+Apply what you have learned. Type your answer, then use the mark scheme to assess yourself.
+
 
 ## Lesson: Innovative tools for performance
 
@@ -148,6 +154,9 @@ Fitness watches, heart-rate straps, GPS trackers, smart insoles and phone apps a
 - **Privacy:** health data can be shared, stored or sold. Check the settings and who can see your data.
 - **Too much data** can overwhelm you or cause anxiety. Data should support, not replace, how you feel and your coach's advice.
 - Data can be wrong, or even faked.
+
+### Think deeper
+Apply what you have learned. Type your answer, then use the mark scheme to assess yourself.
 
 
 ## Lesson: Maximum oxygen uptake (VO₂ max)
@@ -201,6 +210,9 @@ Genetics, age, sex, training (it can improve with regular aerobic training), bod
 - **Time:** school, work and family commitments.
 - **Media and social media** influences.
 
+### Think deeper
+Apply what you have learned. Type your answer, then use the mark scheme to assess yourself.
+
 
 ## Lesson: Principles of training: SPORT and FITT
 
@@ -230,6 +242,9 @@ Progression and overload work together as **progressive overload**.
 
 Change **one** FITT variable at a time and build up gradually. Allow time for **rest and recovery**.
 
+### Think deeper
+Apply what you have learned. Type your answer, then use the mark scheme to assess yourself.
+
 
 ## Lesson: Essential elements of a general training programme
 
@@ -257,6 +272,9 @@ Training that makes muscles work against a **resistance** (body weight, free wei
 
 **Why:** helps the body return to its resting state, reduces stiffness and is a good time to improve flexibility.
 
+### Think deeper
+Apply what you have learned. Type your answer, then use the mark scheme to assess yourself.
+
 
 ## Lesson: Methods of training
 
@@ -277,6 +295,9 @@ Training that makes muscles work against a **resistance** (body weight, free wei
 [Diagram: Intensity profiles of continuous, interval and fartlek training]
 ### Choosing a method
 Use the **specificity** principle: match the method to your sport and the component you want to improve. A sprinter might choose interval and plyometric training. A marathon runner might choose continuous and fartlek.
+
+### Think deeper
+Apply what you have learned. Type your answer, then use the mark scheme to assess yourself.
 
 
 ## Lesson: Monitoring of exercise intensity
@@ -308,6 +329,9 @@ The Karvonen method also uses your **resting heart rate**, so it personalises th
 
 [Diagram: Worked example of the Karvonen method]
 
+### Think deeper
+Apply what you have learned. Type your answer, then use the mark scheme to assess yourself.
+
 
 ## Lesson: Indicators of over-training
 
@@ -338,6 +362,9 @@ The Karvonen method also uses your **resting heart rate**, so it personalises th
 - Vary the type of training (avoids tedium).
 - Monitor resting heart rate, sleep and mood.
 - If you notice several signs, **reduce the load** and talk to a coach, teacher, parent or doctor.
+
+### Think deeper
+Apply what you have learned. Type your answer, then use the mark scheme to assess yourself.
 
 
 
@@ -415,6 +442,9 @@ A **joint** is a place where **two or more bones meet**.
 | **Gliding** | Small sliding movements | Between carpals and between vertebrae |
 | **Saddle** | Back-and-forth and side-to-side | Base of the thumb |
 
+### Think deeper
+Apply what you have learned. Type your answer, then use the mark scheme to assess yourself.
+
 
 ## Lesson: Features of a synovial joint
 
@@ -432,6 +462,9 @@ A **joint** is a place where **two or more bones meet**.
 | **Joint capsule** | A tough sleeve that surrounds the joint and holds the fluid in |
 
 **Tendons** are not part of the joint, but they cross it: they attach **muscle to bone** so that muscles can move the joint.
+
+### Think deeper
+Apply what you have learned. Type your answer, then use the mark scheme to assess yourself.
 
 
 ## Lesson: Range of movement at joints
@@ -457,6 +490,9 @@ A **joint** is a place where **two or more bones meet**.
 **Memory tip:** *Ab*duction takes the limb **ab**ay from the body; *ad*duction **ad**ds it back. *Supination:* "soup" bowl in your palm.
 
 First practise matching, then label the movements shown in the diagram.
+
+### Think deeper
+Apply what you have learned. Type your answer, then use the mark scheme to assess yourself.
 
 
 ## Lesson: Types of muscle and major muscles
@@ -513,6 +549,9 @@ When a muscle **contracts** (gets shorter), it pulls its **insertion towards its
 - **Insertion:** the radius (forearm), by a tendon just below the elbow.
 - **Action:** when the biceps contracts, the forearm is pulled up towards the shoulder, so the elbow **flexes**.
 
+### Think deeper
+Apply what you have learned. Type your answer, then use the mark scheme to assess yourself.
+
 
 ## Lesson: Muscle fibre types
 
@@ -531,6 +570,9 @@ When a muscle **contracts** (gets shorter), it pulls its **insertion towards its
 | Best for | Endurance and posture: marathon running, long-distance cycling | Speed and power: sprinting, jumping, throwing, weightlifting |
 
 Most people have a **mix** of fibre types. The proportion is partly inherited, and training can change how the fibres perform.
+
+### Think deeper
+Apply what you have learned. Type your answer, then use the mark scheme to assess yourself.
 
 
 ## Lesson: Muscle movement: antagonistic pairs
@@ -558,6 +600,9 @@ When the movement reverses, the roles swap.
 | Ankle plantar flexion | Gastrocnemius | Tibialis anterior |
 | Ankle dorsiflexion | Tibialis anterior | Gastrocnemius |
 
+### Think deeper
+Apply what you have learned. Type your answer, then use the mark scheme to assess yourself.
+
 
 ## Lesson: Muscle contraction types
 
@@ -574,6 +619,9 @@ When the movement reverses, the roles swap.
 | **Isotonic: eccentric** | Muscle **lengthens** while contracting under load | Yes | Lowering the weight in a bicep curl; landing from a jump |
 
 **Isotonic** means the muscle changes length. Concentric and eccentric are the two kinds of isotonic contraction. Eccentric contractions help us **control** a movement and absorb force.
+
+### Think deeper
+Apply what you have learned. Type your answer, then use the mark scheme to assess yourself.
 
 
 
@@ -599,6 +647,9 @@ Carbohydrates, proteins and fats are **macronutrients**: we need them in **large
 ### Types of carbohydrate and fat
 - **Complex carbohydrates** (wholegrains, oats, vegetables) release energy slowly. **Simple carbohydrates / sugars** (sweets, sugary drinks) release energy quickly.
 - **Unsaturated fats** (olive oil, nuts, avocado, oily fish) are healthier choices. **Saturated fats** (fatty meat, butter, pastries) are best eaten in smaller amounts.
+
+### Think deeper
+Apply what you have learned. Type your answer, then use the mark scheme to assess yourself.
 
 
 ## Lesson: Food groups: vitamins and minerals, fibre and water
@@ -669,6 +720,9 @@ Many countries publish their own food guide (for example the UK's **Eatwell Guid
 | **Media and advertising** | Social media, marketing, trends |
 | **Skills and time** | Cooking skills, busy schedules |
 
+### Think deeper
+Apply what you have learned. Type your answer, then use the mark scheme to assess yourself.
+
 
 ## Lesson: Energy requirements and expenditure
 
@@ -709,6 +763,9 @@ Energy needs depend on **age, sex, body size and composition, growth, and activi
 | **Ingredients list** | Listed from **largest to smallest** amount by weight |
 
 Compare **per 100 g** columns to compare two products fairly.
+
+### Think deeper
+Apply what you have learned. Type your answer, then use the mark scheme to assess yourself.
 
 
 
@@ -793,6 +850,9 @@ Some guides add **P** for **Protect** (PRICE). Newer guidance for soft-tissue in
 ### When to get medical help
 Severe pain, obvious deformity, numbness or tingling, being unable to put weight on the injury, a head injury, or no improvement after a few days. **In an emergency, call for help and tell a teacher or adult at once.**
 
+### Think deeper
+Apply what you have learned. Type your answer, then use the mark scheme to assess yourself.
+
 
 ## Lesson: Physique: body types
 
@@ -868,6 +928,9 @@ The **inverted-U theory** says performance is best at a **moderate (optimal) lev
 - **Gross skills** (large, powerful movements: rugby tackle, shot put, weightlifting) work best at **higher** arousal.
 - Optimal arousal also varies with the **person** (experienced or beginner, personality) and the **situation**.
 
+### Think deeper
+Apply what you have learned. Type your answer, then use the mark scheme to assess yourself.
+
 
 ## Lesson: Measurement of anxiety and well-being
 
@@ -896,6 +959,9 @@ In these tools you rate statements on a scale, for example from 1 (*not at all*)
 - **Strengths:** quick, cheap, private, and easy to repeat.
 - **Limitations:** answers are **self-reported** and can be inaccurate or untruthful; mood changes day to day; wording and scales may not suit everyone; they show scores, not the *cause*.
 - They are **not a diagnosis**. If you are worried about your anxiety or mood, talk to a trusted adult, such as a teacher, school counsellor, parent or doctor.
+
+### Think deeper
+Apply what you have learned. Type your answer, then use the mark scheme to assess yourself.
 
 
 ## Lesson: Responses to arousal
@@ -958,6 +1024,9 @@ What you say to yourself, silently or aloud.
 
 Change negative thoughts into helpful ones: "Don't mess up" becomes "Focus on a smooth release." Short **cue words** ("smooth", "explode") help you refocus.
 
+### Think deeper
+Apply what you have learned. Type your answer, then use the mark scheme to assess yourself.
+
 
 ## Lesson: Goal setting: SMART format
 
@@ -988,3 +1057,6 @@ Goals give **direction**, increase **motivation and focus**, let you **measure p
 | **Process** | The actions needed to perform well | Keep my head up and arms relaxed when running |
 
 Break a **long-term goal** into **short-term goals** (stepping stones), review progress often and adjust goals when needed.
+
+### Think deeper
+Apply what you have learned. Type your answer, then use the mark scheme to assess yourself.

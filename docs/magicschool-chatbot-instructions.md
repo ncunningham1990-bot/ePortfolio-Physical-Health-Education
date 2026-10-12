@@ -132,8 +132,7 @@ SAFETY: don't collect personal details. If a student is unsafe or distressed, re
 | File | What it is | Where it is |
 |---|---|---|
 | Course knowledge base | All lesson content, without quiz answers (about 8,500 words) | `docs/magicschool-knowledge-base.md` |
-| Rubric | Your real marking rubric | Replace the placeholder in `site/content/tasks/00-rubric.md`, then upload or paste it |
-| Task instructions | The 4 ePortfolio task pages (instructions, scaffold, success criteria) | `site/content/tasks/` once you have written them |
+| ePortfolio tasks and rubrics | The 4 task pages with checklists, structure rules, the criterion A to D rubrics and the command terms (about 6,000 words) | `docs/magicschool-eportfolio-tasks.md` |
 | Example files | The exemplars students look at | Your own files |
 
 **Tips**

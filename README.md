@@ -136,6 +136,7 @@ Pictures go in `site/images/` and are shown with `![Description](images/name.svg
 The chatbot lives in MagicSchool, not on this site, so you can monitor it from your MagicSchool account.
 - `docs/magicschool-chatbot-instructions.md`: set-up steps, the instructions to paste into MagicSchool, a test checklist and a monitoring checklist.
 - `docs/magicschool-knowledge-base.md`: all lesson content without quiz answers, to upload as the bot's knowledge. Regenerate it with `python3 tools/make_knowledge_base.py`.
+- `docs/magicschool-eportfolio-tasks.md`: the four task pages and rubrics, for the bot to give feedback against. Created by the same command.
 - `site/content/chatbot.json`: paste the MagicSchool room link after `"url":` and the **ePortfolio** tab shows the e-Coach card with an "Open PHE e-Coach" button. While `url` is empty it shows "Coming soon".
 
 ## Preview on your computer

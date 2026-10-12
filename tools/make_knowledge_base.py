@@ -1,4 +1,5 @@
-"""Builds docs/magicschool-knowledge-base.md from the lesson files (without quiz answers).
+"""Builds docs/magicschool-knowledge-base.md from the lesson files (without quiz answers)
+and docs/magicschool-eportfolio-tasks.md from the ePortfolio task pages and rubrics.
 Run from the repo root:  python3 tools/make_knowledge_base.py
 """
 import glob, os, re
@@ -31,6 +32,27 @@ def clean(body):
     body = re.sub(r"\n{3,}", "\n\n", body)
     return body.strip()
 
+TASKS = "site/content/tasks"
+TASKS_HEADER = """# PHE ePortfolio tasks and rubrics (for the chatbot)
+
+Source: the ePortfolio tab on the PHE ePortfolio Hub website. Upload this file to your MagicSchool chatbot so PHE e-Coach can
+explain the tasks and give feedback against the real rubrics.
+Re-generate it with `python3 tools/make_knowledge_base.py` after you change the task pages.
+"""
+
+def tasks_doc():
+    out = [TASKS_HEADER]
+    for p in sorted(glob.glob(os.path.join(TASKS, "*.md"))):
+        m, b = parse(p)
+        b = re.sub(r"^```audio[ \t]*\n.*?^```[ \t]*\n?", "", b, flags=re.M | re.S)
+        b = re.sub(r"^!\[([^\]]*)\]\([^)]*\)\s*$", lambda x: f"[Image: {x.group(1)}]", b, flags=re.M)
+        b = b.replace("<br><br>", " / ").replace("<br>", " ")
+        b = re.sub(r"\n{3,}", "\n\n", b).strip()
+        out.append(f"\n\n# {m.get('title')}\n\n{b.replace(chr(10) + '## ', chr(10) + '## ')}\n")
+    text = "\n".join(out)
+    open("docs/magicschool-eportfolio-tasks.md", "w", encoding="utf8").write(text)
+    print(f"docs/magicschool-eportfolio-tasks.md: {len(text.split())} words")
+
 def main():
     out = [HEADER]
     units = sorted(d for d in os.listdir(ROOT) if os.path.isdir(os.path.join(ROOT, d)))
@@ -51,3 +73,4 @@ def main():
     print(f"docs/magicschool-knowledge-base.md: {len(text.split())} words")
 
 main()
+tasks_doc()
