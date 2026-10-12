@@ -124,10 +124,10 @@ const RUBRIC = {
       CITE_CHECK,
     ],
     next: {
-      "1-2": "To reach 3-4: move from lists to a brief account. Describe your client's current ability, strengths and weaknesses for both physical performance and health, and start suggesting solutions. Use some PHE terminology.",
-      "3-4": "To reach 5-6: add distinguishing features. Show how your health and physical findings relate to each other, use your lesson knowledge to investigate the issues, and offer mostly relevant solutions with frequent PHE terms.",
-      "5-6": "To reach 7-8: justify. Give a detailed account that justifies your judgements with evidence, investigate issues in depth and consistently use PHE terminology.",
-      "7-8": "You are working at the top band. Check that every judgement is justified with evidence and that nothing in the checklist is missing.",
+      "1-2": "Next focus: move from lists to a brief account. Describe your client's current ability, strengths and weaknesses for both physical performance and health, and start suggesting solutions. Use some PHE terminology.",
+      "3-4": "Next focus: add distinguishing features. Show how your health and physical findings relate to each other, use your lesson knowledge to investigate the issues, and offer mostly relevant solutions with frequent PHE terms.",
+      "5-6": "Next focus: justify. Give a detailed account that justifies your judgements with evidence, investigate issues in depth and consistently use PHE terminology.",
+      "7-8": "You are meeting the highest descriptors. Check that every judgement is justified with evidence and that nothing in the checklist is missing.",
     },
   },
   2: {
@@ -203,10 +203,10 @@ const RUBRIC = {
       CITE_CHECK,
     ],
     next: {
-      "1-2": "To reach 3-4: outline a basic plan that is logical, refers to drills and technique, and connects your health and physical goals. Respond to your client's development.",
-      "3-4": "To reach 5-6: make the plan detailed, clear and logical, with drills for appropriate technique, a health element that connects to the physical goal, and a clear adaptation after the interim results.",
-      "5-6": "To reach 7-8: justify your goals and design choices, keep the plan specific, clear and concise, and adapt and justify changes after every session.",
-      "7-8": "You are working at the top band. Check that every design choice has a valid reason and that adaptations are justified session by session.",
+      "1-2": "Next focus: outline a basic plan that is logical, refers to drills and technique, and connects your health and physical goals. Respond to your client's development.",
+      "3-4": "Next focus: make the plan detailed, clear and logical, with drills for appropriate technique, a health element that connects to the physical goal, and a clear adaptation after the interim results.",
+      "5-6": "Next focus: justify your goals and design choices, keep the plan specific, clear and concise, and adapt and justify changes after every session.",
+      "7-8": "You are meeting the highest descriptors. Check that every design choice has a valid reason and that adaptations are justified session by session.",
     },
   },
   3: {
@@ -253,10 +253,10 @@ const RUBRIC = {
         ["Display your initial and final results on screen as text.", "Mention the difference and what it shows."]),
     ],
     next: {
-      "1-2": "To reach 3-4: show basic skills and technique and some basic strategies and patterns of movement.",
-      "3-4": "To reach 5-6: show a simple combination of skills, intermediate technique, and patterns of movement showing some use of space, time, force and flow.",
-      "5-6": "To reach 7-8: show a combination of complex skills, sophisticated technique and skilled use of space, time, force and flow.",
-      "7-8": "You are working at the top band. Keep the video within 3 minutes with clear annotation and audio.",
+      "1-2": "Next focus: show basic skills and technique and some basic strategies and patterns of movement.",
+      "3-4": "Next focus: show a simple combination of skills, intermediate technique, and patterns of movement showing some use of space, time, force and flow.",
+      "5-6": "Next focus: show a combination of complex skills, sophisticated technique and skilled use of space, time, force and flow.",
+      "7-8": "You are meeting the highest descriptors. Keep the video within 3 minutes with clear annotation and audio.",
     },
   },
   4: {
@@ -319,10 +319,10 @@ const RUBRIC = {
       CITE_CHECK,
     ],
     next: {
-      "1-2": "To reach 3-4: describe and explain feedback, negotiation and the outcome of the plan. Give detailed evidence of how goals were met.",
-      "3-4": "To reach 5-6: analyse the effectiveness of the plan, say what you would do differently, and evaluate your performance by weighing strengths and limitations.",
-      "5-6": "To reach 7-8: give reasons for your strategies, show how feedback led to changes in the plan, and critically review your performance against your goals and the aims of PHE.",
-      "7-8": "You are working at the top band. Check every claim has reasons and evidence.",
+      "1-2": "Next focus: describe and explain feedback, negotiation and the outcome of the plan. Give detailed evidence of how goals were met.",
+      "3-4": "Next focus: analyse the effectiveness of the plan, say what you would do differently, and evaluate your performance by weighing strengths and limitations.",
+      "5-6": "Next focus: give reasons for your strategies, show how feedback led to changes in the plan, and critically review your performance against your goals and the aims of PHE.",
+      "7-8": "You are meeting the highest descriptors. Check every claim has reasons and evidence.",
     },
   },
 };

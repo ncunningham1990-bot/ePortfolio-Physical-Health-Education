@@ -388,7 +388,7 @@ export function renderSelfCheck(el, taskNumber, ctx) {
     const r = runSelfCheck(taskNumber, text);
     ctx.onSelfCheck(taskNumber);
     out.append(resultView(r, lastRun[taskNumber]));
-    lastRun[taskNumber] = { cov: r.coverage, band: r.bandName };
+    lastRun[taskNumber] = { strong: r.results.filter((x) => x.level === 2).length };
     out.firstChild.scrollIntoView({ block: "start", behavior: "smooth" });
   };
   el.replaceChildren(h("div", { class: "tl" },
@@ -397,9 +397,9 @@ export function renderSelfCheck(el, taskNumber, ctx) {
       h("p", {}, h("strong", {}, "How it works")),
       h("ol", {},
         h("li", {}, taskNumber === 3 ? "Paste your video script or voice-over notes into the box." : "Paste a section of your draft, or the whole task, into the box."),
-        h("li", {}, "Press Check my work. You get an estimate of the rubric band, your strengths, and what to improve with steps for how to do it."),
+        h("li", {}, "Press Check my work. You get written feedback: what is working, and what to improve with steps for how to do it."),
         h("li", {}, "Improve your work in your own document, then paste it again to see what changed.")),
-      h("p", { class: "tl-note" }, "This tool never writes or rewrites your work. It looks for key words and ideas, so it can miss a good point written differently, and it is only an estimate. Your teacher marks your real work. What you paste stays in this browser tab: it is not saved or sent anywhere."),
+      h("p", { class: "tl-note" }, "This tool never writes or rewrites your work. It gives written feedback only, with no grade or band. It looks for key words and ideas, so it can miss a good point written differently. Your teacher marks your real work. What you paste stays in this browser tab: it is not saved or sent anywhere."),
       info.note ? h("p", { class: "tl-note" }, info.note) : false),
     h("label", { for: "sc-" + taskNumber, class: "tl-lab" }, "Your work"), ta, h("div", { class: "tl-meta" }, h("span", {}), count),
     h("div", { class: "tl-actions" }, go, clr), out));
@@ -411,14 +411,12 @@ function resultView(r, prev) {
   const strong = r.results.filter((x) => x.level === 2);
   const partial = r.results.filter((x) => x.level === 1);
   const missing = r.results.filter((x) => x.level === 0);
-  const pct = Math.round(r.coverage * 100);
-  const bandLabel = r.bandName.replace("-", " to ");
   box.append(h("div", { class: "tl-sum" },
-    h("div", { class: "tl-band" }, h("small", {}, "Estimated rubric band"), h("strong", {}, bandLabel), h("span", {}, "out of 8")),
     h("div", { class: "tl-sumtext" },
-      h("p", {}, h("strong", {}, `${r.criterion}.`), ` Based on ${r.stats.words} words, you covered ${strong.length} of ${r.results.length} checklist areas fully and ${partial.length} partly (${pct}%).`),
-      prev ? h("p", { class: "tl-prev" }, `Last check: ${prev.band.replace("-", " to ")} (${Math.round(prev.cov * 100)}% coverage). Now: ${bandLabel} (${pct}%).`) : false,
-      h("p", { class: "tl-note" }, "This is an estimate from the words found, not your mark."))));
+      h("h3", {}, `Feedback on your work: ${r.criterion}`),
+      h("p", {}, `Based on the ${r.stats.words} words you pasted, ${strong.length} of ${r.results.length} checklist areas are covered well and ${partial.length} are partly covered.`),
+      prev ? h("p", { class: "tl-prev" }, `Since your last check: ${prev.strong} areas were covered well before, and ${strong.length} are now.`) : false,
+      h("p", { class: "tl-note" }, "This is feedback to help you improve. It is not a grade."))));
   if (r.short) box.append(h("p", { class: "tl-warnbox" }, `You have pasted ${r.stats.words} words. A full submission is usually longer (about ${r.minWords}+ words), so areas you have not pasted will show as missing. Paste more of your work for a complete check.`));
   // depth
   const lvl = ["Developing", "Good", "Strong"];
@@ -440,10 +438,10 @@ function resultView(r, prev) {
   const gaps = [...missing.map((x) => card(x, "missing")), ...partial.map((x) => card(x, "partial"))];
   if (gaps.length) box.append(...gaps); else box.append(h("p", {}, "Every checklist area is covered. Now focus on depth below."));
   if (depthGaps.length) box.append(...depthGaps.map((k) => h("details", { class: "tl-imp partial" },
-    h("summary", {}, h("span", { class: "tl-chip mid" }, "Depth"), h("strong", {}, { reasoning: "Explaining why", evaluating: "Weighing up and evaluating", terminology: "PHE terminology" }[k]), h("small", {}, "Moves your work up the rubric bands")),
+    h("summary", {}, h("span", { class: "tl-chip mid" }, "Depth"), h("strong", {}, { reasoning: "Explaining why", evaluating: "Weighing up and evaluating", terminology: "PHE terminology" }[k]), h("small", {}, "Deepens your analysis")),
     h("p", {}, DEPTH_TEXT[k][r.depth[k]]), h("p", {}, h("strong", {}, "How to improve it:")), h("ol", {}, DEPTH_HOW[k].map((s) => h("li", {}, s))))));
   // next band
-  box.append(h("h3", {}, "To reach the next band"), h("p", { class: "tl-next" }, r.next + (r.capped ? " Your coverage is strong, but explaining reasons and using PHE terms consistently will lift your estimate to the top band." : "")));
+  box.append(h("h3", {}, "What to focus on next"), h("p", { class: "tl-next" }, r.next + (r.capped ? " Your coverage is strong. Explaining reasons and using PHE terms consistently will strengthen it further." : "")));
   box.append(h("h3", {}, "Things this tool cannot check"), h("p", {}, "Check these yourself before you submit:"), h("ul", {}, (CANT_CHECK[r.task] || []).map((t) => h("li", {}, t))));
   return box;
 }
