@@ -1,5 +1,7 @@
 ---
 title: Sports Psychology & Well-being
+icon: 🧠
+short: Sports Psychology
 summary: Health and well-being, safe practice, injuries, body types, motivation, arousal and anxiety, psychological skills and goal setting.
 ---
 ## About this unit

@@ -1,5 +1,6 @@
 ---
 title: Anatomy
+icon: 🦴
 summary: The skeleton, bone and joint types, synovial joints, joint movements, muscle types, fibre types, origin and insertion, antagonistic pairs and contraction types.
 ---
 ## About this unit
