@@ -76,6 +76,12 @@ Pictures go in `site/images/` and are shown with `![Description](images/name.svg
 - **Unit tab details:** in each unit's `_unit.md` header you can set `icon:` (an emoji shown on the unit card and badge) and `short:` (a shorter name for the top menu).
 - **Progress and badges:** saved in the student's own browser (no login, nothing is sent anywhere). A lesson completes when every quiz, matching, fill-in, ordering and labelling activity in it is finished correctly. Badges are defined in `badgeDefs()` in `site/app.js`.
 
+## Study Guide chatbot (MagicSchool)
+The chatbot lives in MagicSchool, not on this site, so you can monitor it from your MagicSchool account.
+- `docs/magicschool-chatbot-instructions.md`: set-up steps, the instructions to paste into MagicSchool, a test checklist and a monitoring checklist.
+- `docs/magicschool-knowledge-base.md`: all lesson content without quiz answers, to upload as the bot's knowledge. Regenerate it with `python3 tools/make_knowledge_base.py`.
+- `site/content/chatbot.json`: paste the MagicSchool room link after `"url":` and the **ePortfolio** tab shows an "Open the chatbot" button. While `url` is empty it shows "Coming soon".
+
 ## Preview on your computer
 ```
 npm install

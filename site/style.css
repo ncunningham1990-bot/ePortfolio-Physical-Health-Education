@@ -210,3 +210,13 @@ table.w-match{width:100%;display:table;border-collapse:collapse;border:0;margin:
   .hero{padding:30px 20px 64px;border-radius:20px}
   .side{max-height:none}
 }
+
+/* ---------- study guide chat card (ePortfolio tab) ---------- */
+.chat-card{display:flex;flex-wrap:wrap;align-items:center;gap:16px 20px;margin:0 0 22px;padding:20px 24px;border-radius:20px;color:#fff;box-shadow:var(--shadow);
+  background:radial-gradient(500px 200px at 90% -20%,rgba(34,197,94,.45),transparent 60%),linear-gradient(135deg,#0f1412,#12301f)}
+.chat-icon{display:grid;place-items:center;width:56px;height:56px;border-radius:16px;background:rgba(255,255,255,.1);font-size:1.9rem;flex:none}
+.chat-text{flex:1 1 280px;min-width:0}
+.chat-text h2{margin:0 0 4px;font-size:1.25rem}
+.chat-text p{margin:0 0 6px;color:#d4e3da;font-size:.96rem}
+.chat-text small{color:#a9bdb1;font-size:.82rem}
+.chip.soon{background:rgba(255,255,255,.14);color:#fff;font-size:.8rem;padding:8px 16px}
