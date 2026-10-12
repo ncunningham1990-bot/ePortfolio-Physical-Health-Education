@@ -351,40 +351,40 @@
   ],
   "tasks": [
     {
-      "title": "Marking Rubric",
-      "summary": "How your ePortfolio is assessed. The chatbot gives feedback against this.",
+      "title": "Rubric overview and command terms",
+      "summary": "The four assessed tasks, their criteria and due dates, how levels work, and what command words like justify and evaluate mean.",
       "activity": "",
       "icon": "",
       "short": "",
       "path": "content/tasks/00-rubric.md"
     },
     {
-      "title": "Task 1 (rename me)",
-      "summary": "Short description of what students submit for Task 1.",
+      "title": "Task 1: Initial Observation and Analysis",
+      "summary": "Criterion A, Knowing and Understanding. Analyse your client's health and physical performance. Draft 1 due Friday 5th December.",
       "activity": "",
       "icon": "",
       "short": "",
       "path": "content/tasks/01-task-1.md"
     },
     {
-      "title": "Task 2 (rename me)",
-      "summary": "Short description of what students submit for Task 2.",
+      "title": "Task 2: Performance Development Plan",
+      "summary": "Criterion B, Planning for Performance. Plan and run an 8-session training programme. Draft due Tuesday 3rd February, final 22nd February.",
       "activity": "",
       "icon": "",
       "short": "",
       "path": "content/tasks/02-task-2.md"
     },
     {
-      "title": "Task 3 (rename me)",
-      "summary": "Short description of what students submit for Task 3.",
+      "title": "Task 3: Applying and Performing",
+      "summary": "Criterion C. Produce a 3-minute annotated video of your final performance. Draft 1 due 17th February, final 2nd March.",
       "activity": "",
       "icon": "",
       "short": "",
       "path": "content/tasks/03-task-3.md"
     },
     {
-      "title": "Task 4 (rename me)",
-      "summary": "Short description of what students submit for Task 4.",
+      "title": "Task 4: Reflecting and Improving Performance",
+      "summary": "Criterion D. Reflect as a coach and as a client, and evaluate the plan and your final performance. First draft 27th February, final 10th March.",
       "activity": "",
       "icon": "",
       "short": "",
