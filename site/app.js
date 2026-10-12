@@ -243,7 +243,7 @@ const WIDGETS = {
 function buildNav() {
   const links = [["home", "#home", "Home"],
     ...manifest.units.map((u, i) => [`unit-${i + 1}`, `#unit/${i + 1}/0`, `${i + 1} · ${u.title}`]),
-    ["tasks", "#tasks/0", "Key Tasks"]];
+    ["tasks", "#tasks/0", "ePortfolio"]];
   $("tabs").innerHTML = links.map(([k, href, label]) => `<a href="${href}" data-tab="${k}">${esc(label)}</a>`).join("");
   $("unit-cards").innerHTML = manifest.units.map((u, i) =>
     `<a class="card" href="#unit/${i + 1}/0"><span class="num">Unit ${i + 1}</span><h2>${esc(u.title)}</h2><p>${esc(u.summary)}</p></a>`).join("");
