@@ -12,6 +12,7 @@ const h = (tag, attrs = {}, ...kids) => {
 };
 
 let manifest = { units: [], tasks: [] };
+let chatbot = {};
 
 // ---------- markdown + interactive tasks ----------
 marked.use({
@@ -440,7 +441,24 @@ function showUnit(n, p) {
   loadDoc(items[page], $("unit-doc"), (i) => `#unit/${n}/${i}`, items, page, page > 0 ? { n, p: page, unit } : null);
 }
 
+function renderChatCard() {
+  const card = $("chat-card");
+  let url = "";
+  try { const u = new URL(chatbot.url || ""); if (u.protocol === "https:" || u.protocol === "http:") url = u.href; } catch {}
+  const title = chatbot.title || "Study Guide Chat";
+  card.replaceChildren(
+    h("span", { class: "chat-icon", "aria-hidden": "true" }, "💬"),
+    h("div", { class: "chat-text" },
+      h("h2", { id: "chat-title" }, title),
+      h("p", {}, chatbot.description || "Ask questions and get guidance on your ePortfolio."),
+      chatbot.privacy ? h("small", {}, chatbot.privacy) : ""),
+    url
+      ? h("a", { class: "btn lime", href: url, target: "_blank", rel: "noopener noreferrer" }, "Open the chatbot ↗")
+      : h("span", { class: "chip soon" }, "Coming soon"));
+}
+
 function showTasks(i) {
+  renderChatCard();
   const items = manifest.tasks;
   $("tasks-list").innerHTML = items.map((it, n) =>
     `<li><a href="#tasks/${n}" ${n === i ? 'aria-current="true"' : ""}><span>${esc(it.title)}</span><small>${esc(it.summary)}</small></a></li>`).join("");
@@ -501,6 +519,7 @@ async function init() {
   } catch {
     $("main").insertAdjacentHTML("afterbegin", '<p class="notice">Could not load course content. Run <code>npm run build</code>.</p>');
   }
+  try { chatbot = await (await fetch("content/chatbot.json")).json(); } catch {}
   buildNav();
   $("reset-progress").addEventListener("click", () => {
     if (confirm("Reset all your progress, streak and badges on this device? This cannot be undone.")) { state = blank(); saveState(); renderHome(); }

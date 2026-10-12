@@ -2,7 +2,7 @@
 title: Marking Rubric
 summary: How your ePortfolio is assessed. The chatbot gives feedback against this.
 ---
-> **Placeholder rubric.** Replace the criteria and descriptors with your real rubric. The chatbot reads this page, so the more precise the descriptors, the better its feedback.
+> **Placeholder rubric.** Replace the criteria and descriptors with your real rubric. The Study Guide chatbot gives feedback against this rubric (see `docs/magicschool-chatbot-instructions.md`), so the more precise the descriptors, the better its feedback.
 
 | Criterion | Developing | Competent | Proficient | Excellent |
 |---|---|---|---|---|
