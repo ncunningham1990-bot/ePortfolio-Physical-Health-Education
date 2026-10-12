@@ -40,7 +40,14 @@ function readPage(file) {
 const mdIn = (dir) =>
   existsSync(dir) ? readdirSync(dir).filter((f) => f.endsWith(".md")).sort().map((f) => join(dir, f)) : [];
 
-const manifest = { units: [], tasks: mdIn(join(contentDir, "tasks")).map(readPage), bank: [], clock: [], clinic: [] };
+// counts the top-level checklist items on a task page (the tickable tracker items)
+function checklistCount(file) {
+  const body = parse(readFileSync(file, "utf8")).body;
+  const m = body.match(/^## Checklist[^\n]*\n([\s\S]*?)(?=^## |$(?![\s\S]))/m);
+  return m ? (m[1].match(/^(?:\d+\.|[-*])\s/gm) || []).length : 0;
+}
+const taskPages = mdIn(join(contentDir, "tasks")).map((f) => ({ ...readPage(f), checklist: checklistCount(f) }));
+const manifest = { units: [], tasks: taskPages, bank: [], clock: [], clinic: [] };
 
 for (const f of mdIn(join(contentDir, "bank"))) {
   const { meta } = parse(readFileSync(f, "utf8"));
@@ -81,6 +88,21 @@ for (const d of unitDirs) {
     overview: overview.path,
     pages: mdIn(dir).filter((f) => !f.endsWith("_unit.md")).map(readPage),
   });
+}
+
+// deadlines: site/content/deadlines.json maps a task file name to a list of { label, date: "YYYY-MM-DD" }
+const dlFile = join(contentDir, "deadlines.json");
+if (existsSync(dlFile)) {
+  try {
+    const dl = JSON.parse(readFileSync(dlFile, "utf8"));
+    const names = manifest.tasks.map((t) => t.path.split("/").pop());
+    for (const [file, list] of Object.entries(dl)) {
+      if (!names.includes(file)) errors.push(`content/deadlines.json: "${file}" is not a task file in content/tasks`);
+      for (const d of list) {
+        if (!d.label || !/^\d{4}-\d{2}-\d{2}$/.test(d.date || "") || Number.isNaN(Date.parse(d.date))) errors.push(`content/deadlines.json: "${file}" has a deadline that needs a label and a date like 2026-02-03`);
+      }
+    }
+  } catch (e) { errors.push(`content/deadlines.json: ${e.message}`); }
 }
 
 if (errors.length) {

@@ -356,7 +356,8 @@
       "activity": "",
       "icon": "",
       "short": "",
-      "path": "content/tasks/00-rubric.md"
+      "path": "content/tasks/00-rubric.md",
+      "checklist": 0
     },
     {
       "title": "Task 1: Initial Observation and Analysis",
@@ -364,7 +365,8 @@
       "activity": "",
       "icon": "",
       "short": "",
-      "path": "content/tasks/01-task-1.md"
+      "path": "content/tasks/01-task-1.md",
+      "checklist": 25
     },
     {
       "title": "Task 2: Performance Development Plan",
@@ -372,7 +374,8 @@
       "activity": "",
       "icon": "",
       "short": "",
-      "path": "content/tasks/02-task-2.md"
+      "path": "content/tasks/02-task-2.md",
+      "checklist": 37
     },
     {
       "title": "Task 3: Applying and Performing",
@@ -380,7 +383,8 @@
       "activity": "",
       "icon": "",
       "short": "",
-      "path": "content/tasks/03-task-3.md"
+      "path": "content/tasks/03-task-3.md",
+      "checklist": 12
     },
     {
       "title": "Task 4: Reflecting and Improving Performance",
@@ -388,7 +392,8 @@
       "activity": "",
       "icon": "",
       "short": "",
-      "path": "content/tasks/04-task-4.md"
+      "path": "content/tasks/04-task-4.md",
+      "checklist": 19
     }
   ],
   "bank": [
