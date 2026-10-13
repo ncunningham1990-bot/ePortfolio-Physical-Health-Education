@@ -1,0 +1,16 @@
+{
+  "name": "PHE ePortfolio Hub",
+  "short_name": "PHE Hub",
+  "description": "Learn the content, test yourself and build your PHE ePortfolio, all from one home base.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0f1412",
+  "theme_color": "#0f1412",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

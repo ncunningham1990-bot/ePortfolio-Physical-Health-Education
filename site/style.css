@@ -460,3 +460,14 @@ li.trk.done>p,li.trk.done>:not(ul):not(ol):not(input){opacity:.82}
 .tl-imp>:not(summary){margin:6px 14px}.tl-imp ol{padding-left:22px}.tl-imp>ol:last-child{margin-bottom:14px}
 .tl-next{background:var(--tint);border-left:5px solid var(--lime);padding:12px 16px;border-radius:10px}
 @media (max-width:560px){.tl-letter{flex-direction:column;gap:6px}.tl-badge{width:34px;height:34px}.trk-box{left:-2.45em}.doc ol.trk-list,.doc ul.trk-list{padding-left:2.7em}.doc ol.trk-list .trk-box{left:-2.7em}}
+
+/* ---------- install as an app ---------- */
+.install-card{display:flex;gap:16px;align-items:center;flex-wrap:wrap;background:var(--surface);border:1px solid var(--border);border-left:6px solid var(--lime);border-radius:var(--radius);padding:14px 18px;margin:18px 0;box-shadow:var(--shadow)}
+.install-card[hidden]{display:none}
+.install-card>img{flex:none;width:56px;height:56px;border-radius:14px;border:1px solid var(--border)}
+.install-text{flex:1;min-width:220px}
+.install-text h2{margin:0 0 2px;font-size:1.15rem}.install-text p{margin:0 0 6px;color:var(--muted);font-size:.95rem}
+.install-help summary{cursor:pointer;font:700 .88rem var(--head);color:var(--accent)}
+.install-help ul{margin:6px 0 0;padding-left:20px;font-size:.92rem}.install-help li[hidden]{display:none}
+.install-actions{display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+@media (display-mode:standalone){.install-card{display:none}}

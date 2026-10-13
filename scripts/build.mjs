@@ -2,6 +2,7 @@
 // the list of units and pages the website shows. Also checks interactive tasks for typing mistakes.
 // Run with: npm run build
 import { readdirSync, readFileSync, writeFileSync, existsSync, statSync } from "node:fs";
+import { createHash } from "node:crypto";
 import { join, relative } from "node:path";
 import { checkWidgets, parseClinic, checkClock } from "../site/parse-widgets.js";
 
@@ -110,5 +111,22 @@ if (errors.length) {
   process.exit(1);
 }
 writeFileSync(join(contentDir, "manifest.json"), JSON.stringify(manifest, null, 2));
+// ---- offline support: write site/sw.js (service worker) listing every file to keep for offline use ----
+// Big files (audio, exemplar PDFs and page images) are cached the first time a student opens them instead.
+function listFiles(dir) {
+  return readdirSync(dir).flatMap((n) => {
+    const f = join(dir, n);
+    return statSync(f).isDirectory() ? listFiles(f) : [f];
+  });
+}
+const skipOffline = /^(sw\.js|audio\/|exemplars\/)/;
+const offlineFiles = listFiles(siteDir).map((f) => relative(siteDir, f)).filter((f) => !skipOffline.test(f)).sort();
+const hash = createHash("sha1");
+for (const f of offlineFiles) { hash.update(f); hash.update(readFileSync(join(siteDir, f))); }
+const version = hash.digest("hex").slice(0, 10);
+const swSource = readFileSync(join(root, "scripts", "sw-template.js"), "utf8")
+  .replace("__VERSION__", version)
+  .replace("__FILES__", JSON.stringify(["./", ...offlineFiles], null, 1));
+writeFileSync(join(siteDir, "sw.js"), swSource);
 const pages = manifest.units.reduce((n, u) => n + u.pages.length, 0);
 console.log(`Built: ${manifest.units.length} units, ${pages} lessons, ${manifest.tasks.length} task pages, ${manifest.bank.length} challenge-bank files, ${clockQs} Beat the Clock questions, ${manifest.clinic.length} Coach's Clinic cases, ${widgetCount} interactive tasks.`);
