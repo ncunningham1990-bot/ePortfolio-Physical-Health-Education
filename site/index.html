@@ -8,7 +8,12 @@
 <link rel="preload" href="vendor/fonts/barlow-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="vendor/fonts/barlow-condensed-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="images/favicon.png" type="image/png">
-<link rel="apple-touch-icon" href="images/favicon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="PHE Hub">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -38,6 +43,26 @@
       </div>
       <svg class="ecg" viewBox="0 0 600 120" aria-hidden="true" preserveAspectRatio="none"><path d="M0 70 H150 L175 70 L195 20 L225 105 L250 45 L270 70 H600" /></svg>
     </div>
+
+    <aside id="install-card" class="install-card" aria-labelledby="install-title" hidden>
+      <img src="icons/icon-192.png" alt="" width="56" height="56">
+      <div class="install-text">
+        <h2 id="install-title">Get the PHE Hub app</h2>
+        <p id="install-lead">Add it to your phone or laptop. It opens like an app and the lessons work offline.</p>
+        <details class="install-help">
+          <summary>How to install</summary>
+          <ul>
+            <li id="how-ios"><strong>iPhone or iPad (Safari):</strong> tap the Share button, then <em>Add to Home Screen</em>, then <em>Add</em>.</li>
+            <li id="how-android"><strong>Android (Chrome):</strong> tap the <em>⋮</em> menu, then <em>Install app</em> (or <em>Add to Home screen</em>).</li>
+            <li id="how-desktop"><strong>Laptop (Chrome or Edge):</strong> click the install icon at the right of the address bar.</li>
+          </ul>
+        </details>
+      </div>
+      <div class="install-actions">
+        <button type="button" class="btn lime" id="install-btn" hidden>Install app</button>
+        <button type="button" class="link-btn" id="install-dismiss">Not now</button>
+      </div>
+    </aside>
 
     <section aria-labelledby="progress-title" class="dash">
       <h2 id="progress-title" class="section-label">Your progress</h2>

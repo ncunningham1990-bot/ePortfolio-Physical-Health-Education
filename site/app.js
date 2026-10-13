@@ -1213,6 +1213,42 @@ async function loadDoc(item, doc, hrefFor, items, index, track) {
   }
 }
 
+// ---------- install as an app (PWA) ----------
+let installEvent = null;
+const isStandalone = () => matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
+function setupInstall() {
+  if ("serviceWorker" in navigator && location.protocol !== "file:") {
+    const reg = () => navigator.serviceWorker.register("sw.js").catch((e) => console.warn("Offline mode unavailable", e));
+    if (document.readyState === "complete") reg(); else window.addEventListener("load", reg);
+  }
+  const card = $("install-card");
+  if (!card || isStandalone()) return;
+  let dismissed = false;
+  try { dismissed = localStorage.getItem("pe-hub-install-dismissed") === "1"; } catch {}
+  if (dismissed) return;
+  const ua = navigator.userAgent;
+  const ios = /iphone|ipad|ipod/i.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  const android = /android/i.test(ua);
+  $("how-ios").hidden = !ios;
+  $("how-android").hidden = !android;
+  $("how-desktop").hidden = ios || android;
+  card.hidden = false;
+  window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    installEvent = e;
+    $("install-btn").hidden = false;
+  });
+  $("install-btn").onclick = async () => {
+    if (!installEvent) return;
+    installEvent.prompt();
+    await installEvent.userChoice.catch(() => {});
+    installEvent = null;
+    $("install-btn").hidden = true;
+  };
+  window.addEventListener("appinstalled", () => { card.hidden = true; toast("📲", "App installed", "Open PHE Hub from your home screen."); });
+  $("install-dismiss").onclick = () => { card.hidden = true; try { localStorage.setItem("pe-hub-install-dismissed", "1"); } catch {} };
+}
+
 async function init() {
   try {
     manifest = await (await fetch("content/manifest.json")).json();
@@ -1226,6 +1262,7 @@ async function init() {
   $("reset-progress").addEventListener("click", () => {
     if (confirm("Reset all your progress, streak, badges, checklist ticks and saved goals and planner on this device? This cannot be undone.")) { state = blank(); saveState(); renderHome(); }
   });
+  setupInstall();
   window.addEventListener("hashchange", route);
   route();
 }
