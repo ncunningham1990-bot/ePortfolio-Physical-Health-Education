@@ -1,5 +1,6 @@
 import { PARSERS, youtubeId, scoreWritten, parseClinic } from "./parse-widgets.js";
 import { renderSmart, renderPlanner, renderSelfCheck } from "./tools.js";
+import { STATE_VERSION, migrateState, makeBackup, backupFileName, parseBackup, mergeStates, describe } from "./progress-io.js";
 
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -30,16 +31,18 @@ const TITLES = { quiz: "Quiz", flashcards: "Flashcards: click a card to flip it"
 let uid = 0;
 const TRACKED = new Set(["quiz", "match", "fill", "order", "label", "written"]);
 function hydrate(root, ctx = null) {
-  let idx = 0, wn = 0;
+  let idx = 0, wn = 0, di = 0;
   const keys = [];
   root.querySelectorAll(".widget").forEach((el) => {
     const type = el.dataset.type;
+    const perm = ctx && ctx.ids && ctx.ids[di++]; // permanent activity ID from the build
     try {
       const data = PARSERS[type](decodeURIComponent(el.dataset.src));
+      if (type === "written" && perm) data.id = perm.id;
       el.classList.add(`widget-${type}`);
       if (type !== "video" && type !== "audio") el.append(h("h3", { class: "w-title" }, TITLES[type]));
       let key = null;
-      if (TRACKED.has(type)) { key = type === "written" ? `W${wn++}` : String(idx++); keys.push(key); }
+      if (TRACKED.has(type)) { key = perm ? perm.id : type === "written" ? `W${wn++}` : String(idx++); keys.push(key); }
       const report = (r) => { if (ctx && key !== null) progress.widgetDone(ctx, key, r); };
       el.append(WIDGETS[type](data, `w${++uid}`, report));
     } catch (e) {
@@ -366,14 +369,16 @@ const WIDGETS = {
 
 // ---------- progress, badges, toasts ----------
 const STORE_KEY = "pe-hub-progress-v1";
-const blank = () => ({ widgets: {}, lessons: {}, written: {}, clock: { best: {}, plays: 0, top: 0 }, clinic: {}, tracker: {}, tools: { smart: {}, planner: {} }, stats: { done: 0, flawless: 0, recovered: 0, written: 0, selfSaved: 0, selfChecks: 0 }, badges: {}, streak: { count: 0, last: "" }, last: "" });
+const blank = () => ({ v: STATE_VERSION, backup: {}, widgets: {}, lessons: {}, written: {}, clock: { best: {}, plays: 0, top: 0 }, clinic: {}, tracker: {}, tools: { smart: {}, planner: {} }, stats: { done: 0, flawless: 0, recovered: 0, written: 0, selfSaved: 0, selfChecks: 0 }, badges: {}, streak: { count: 0, last: "" }, last: "" });
 let state = blank();
-try { const raw = localStorage.getItem(STORE_KEY); if (raw) { const o = JSON.parse(raw); state = { ...blank(), ...o, stats: { ...blank().stats, ...(o.stats || {}) } }; } } catch {}
+try { const raw = localStorage.getItem(STORE_KEY); if (raw) { const o = JSON.parse(raw); state = { ...blank(), ...o, v: o.v || 1, stats: { ...blank().stats, ...(o.stats || {}) } }; } } catch {}
 const saveState = () => { try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch {} };
 
 const lessonCount = () => manifest.units.reduce((n, u) => n + u.pages.length, 0);
-const doneCount = () => manifest.units.reduce((n, u, i) => n + u.pages.filter((_, k) => state.lessons[`${i + 1}-${k + 1}`]).length, 0);
-const unitDone = (i) => manifest.units[i].pages.length > 0 && manifest.units[i].pages.every((_, k) => state.lessons[`${i + 1}-${k + 1}`]);
+// permanent lesson ID (set by the build); positions are only a fallback
+const lessonId = (u, k) => (manifest.units[u] && manifest.units[u].pages[k] && manifest.units[u].pages[k].id) || `${u + 1}-${k + 1}`;
+const doneCount = () => manifest.units.reduce((n, u, i) => n + u.pages.filter((_, k) => state.lessons[lessonId(i, k)]).length, 0);
+const unitDone = (i) => manifest.units[i].pages.length > 0 && manifest.units[i].pages.every((_, k) => state.lessons[lessonId(i, k)]);
 const dayStr = (d) => `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
 const currentStreak = () => {
   const { count, last } = state.streak;
@@ -514,7 +519,7 @@ function renderHome() {
   $("stat-badges-of").textContent = `of ${defs.length}`;
   $("badge-grid").innerHTML = defs.map((d) => `<li class="badge ${state.badges[d.id] ? "on" : ""}"><span class="b-icon" aria-hidden="true">${d.icon}</span><strong>${esc(d.name)}</strong><small>${state.badges[d.id] ? "" : '<span class="sr">Locked. </span>'}${esc(d.desc)}</small></li>`).join("");
   $("unit-cards").innerHTML = manifest.units.map((u, i) => {
-    const dn = u.pages.filter((_, k) => state.lessons[`${i + 1}-${k + 1}`]).length;
+    const dn = u.pages.filter((_, k) => state.lessons[lessonId(i, k)]).length;
     const pc = u.pages.length ? Math.round((dn / u.pages.length) * 100) : 0;
     return `<a class="card" href="#unit/${i + 1}/0"><span class="num">Unit ${i + 1}</span><span class="u-icon" aria-hidden="true">${u.icon || "📘"}</span><h3>${esc(u.title)}</h3><p>${esc(u.summary)}</p><div class="bar" role="progressbar" aria-valuenow="${pc}" aria-valuemin="0" aria-valuemax="100" aria-label="Unit ${i + 1} progress"><span style="width:${pc}%"></span></div><small>${dn} of ${u.pages.length} lessons complete</small></a>`;
   }).join("");
@@ -525,6 +530,7 @@ function renderHome() {
   $("bank-progress").textContent = bankItems.length ? `${doneQ} of ${bankItems.length} challenges done` : "";
   updateGameNotes();
   updateTaskNote();
+  updateBackupUi();
   $("bank-random").href = pick ? `#bank/${pick.id}` : "#bank";
   // continue button
   const m = (state.last || "").match(/^#unit\/(\d+)\/(\d+)$/);
@@ -578,14 +584,14 @@ function renderUnitList() {
   const { n, p } = shownUnit;
   const unit = manifest.units[n - 1];
   const items = [{ title: "Unit overview", summary: unit.summary }, ...unit.pages];
-  const dn = unit.pages.filter((_, k) => state.lessons[`${n}-${k + 1}`]).length;
+  const dn = unit.pages.filter((_, k) => state.lessons[lessonId(n - 1, k)]).length;
   const pc = unit.pages.length ? Math.round((dn / unit.pages.length) * 100) : 0;
   $("unit-title").textContent = `${unit.icon || ""} Unit ${n}: ${unit.title}`.trim();
   $("unit-bar").firstElementChild.style.width = `${pc}%`;
   $("unit-bar").setAttribute("aria-valuenow", String(pc));
   $("unit-count").textContent = `${dn} of ${unit.pages.length} lessons complete`;
   $("unit-list").innerHTML = items.map((it, i) => {
-    const done = i > 0 && state.lessons[`${n}-${i}`];
+    const done = i > 0 && state.lessons[lessonId(n - 1, i - 1)];
     return `<li><a href="#unit/${n}/${i}" ${i === p ? 'aria-current="true"' : ""}>${i ? `<span class="tick ${done ? "on" : ""}" aria-hidden="true"></span><span class="lnum">${n}.${i}</span>` : ""}<span>${esc(it.title)}${done ? '<span class="sr"> (complete)</span>' : ""}</span><small>${esc(it.summary)}</small></a></li>`;
   }).join("");
 }
@@ -612,7 +618,7 @@ async function loadBank() {
       const items = [];
       for (const m of raw.matchAll(/^## (.+)$|^```written[ \t]*\n([\s\S]*?)^```/gm)) {
         if (m[1]) topic = m[1].trim();
-        else items.push({ ...PARSERS.written(m[2]), unit: Number(f.unit) || fi + 1, topic });
+        else { const q = { ...PARSERS.written(m[2]), unit: Number(f.unit) || fi + 1, topic }; if (f.ids && f.ids[items.length]) q.id = f.ids[items.length]; items.push(q); }
       }
       out.push({ fi, items });
     } catch (e) { console.error("bank file failed", f.path, e); }
@@ -1079,11 +1085,12 @@ function enhanceTask(doc, item) {
   if (!lis.length) return;
   const set = trackerSet(item);
   const keys = new Set();
-  const entries = lis.map((li) => {
+  const permIds = item.checklistIds && item.checklistIds.length === lis.length ? item.checklistIds : null;
+  const entries = lis.map((li, li_i) => {
     const c = li.cloneNode(true);
     c.querySelectorAll("ul,ol").forEach((n) => n.remove());
     const text = c.textContent.replace(/\s+/g, " ").trim();
-    const key = hash36(text.toLowerCase().slice(0, 120));
+    const key = permIds ? permIds[li_i] : hash36(text.toLowerCase().slice(0, 120));
     keys.add(key);
     const cb = h("input", { type: "checkbox", class: "trk-box", "aria-label": `Included in my work: ${text.slice(0, 90)}` });
     cb.checked = !!set[key];
@@ -1179,11 +1186,11 @@ async function loadDoc(item, doc, hrefFor, items, index, track) {
     }
     let ctx = null;
     if (track) {
-      const lessonKey = `${track.n}-${track.p}`;
+      const lessonKey = lessonId(track.n - 1, track.p - 1);
       const status = h("span", { class: "chip status" });
       doc.querySelector("h1").before(h("div", { class: "crumbs" }, h("span", { class: "chip" }, `Unit ${track.n} · ${track.unit.title}`), status));
       ctx = {
-        lessonKey, keys: [],
+        lessonKey, keys: [], ids: (track.unit.pages[track.p - 1] || {}).widgets || [],
         doneWidgets: () => lessonKeysDone(ctx),
         refresh: () => {
           const done = !!state.lessons[lessonKey];
@@ -1211,6 +1218,86 @@ async function loadDoc(item, doc, hrefFor, items, index, track) {
     console.error(e);
     doc.innerHTML = "<p>Could not load this page. Check your connection and try again.</p>";
   }
+}
+
+// ---------- save, restore and remind: progress backup ----------
+const progressPoints = () => state.stats.done + Object.values(state.lessons).filter(Boolean).length + Object.values(state.tracker).reduce((n, t) => n + Object.keys(t || {}).length, 0);
+const fmtDate = (t) => new Date(t).toLocaleDateString(undefined, { day: "numeric", month: "short", year: "numeric" });
+function backupMsg(text) { const el = $("backup-msg"); if (el) el.textContent = text; }
+
+async function saveBackup() {
+  const text = makeBackup(state);
+  const name = backupFileName();
+  const ios = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  let done = false;
+  try {
+    const file = new File([text], name, { type: "application/json" });
+    if (ios && navigator.canShare && navigator.canShare({ files: [file] })) { await navigator.share({ files: [file], title: "PHE Hub progress backup" }); done = true; }
+  } catch (e) { if (e && e.name === "AbortError") return; }
+  if (!done) {
+    const url = URL.createObjectURL(new Blob([text], { type: "application/json" }));
+    const a = h("a", { href: url, download: name });
+    document.body.append(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 10000);
+  }
+  state.backup = { ...(state.backup || {}), last: Date.now(), points: progressPoints(), snooze: 0 };
+  saveState();
+  updateBackupUi();
+  backupMsg(`Saved as ${name}. Keep this file somewhere safe, such as your Downloads, Files or a school drive.`);
+}
+
+function updateBackupUi() {
+  const b = state.backup || {};
+  const pts = progressPoints();
+  const info = $("backup-info");
+  if (info) info.textContent = b.last ? `Last saved: ${fmtDate(b.last)}` : pts ? "Not saved yet" : "";
+  const card = $("backup-card");
+  if (card) {
+    const grown = pts - (b.points || 0);
+    const stale = b.last && Date.now() - b.last > 14 * 864e5 && grown > 0;
+    card.hidden = !((grown >= 10 || stale) && pts >= 10 && !(b.snooze && b.snooze > Date.now()));
+  }
+}
+
+async function chooseBackupFile(file) {
+  if (!file) return;
+  const parsed = file.size > 2_000_000 ? { ok: false, error: "That file is too large to be a progress backup." } : parseBackup(await file.text(), blank);
+  if (!parsed.ok) { backupMsg(parsed.error); return; }
+  const incoming = migrateState(parsed.data, manifest);
+  const dlg = h("dialog", { class: "rs-dialog", "aria-labelledby": "rs-title" });
+  const a = describe(incoming), d = describe(state);
+  const line = (x) => `${x.lessons} lessons complete, ${x.badges} badges, ${x.activities} activities, ${x.ticks} checklist ticks`;
+  const merge = h("input", { type: "radio", name: "rs-mode", value: "merge", checked: true });
+  const replace = h("input", { type: "radio", name: "rs-mode", value: "replace" });
+  const close = () => { dlg.close(); dlg.remove(); };
+  const go = h("button", { type: "button", class: "btn lime" }, "Restore");
+  go.onclick = () => {
+    const keep = state.backup;
+    state = replace.checked ? { ...blank(), ...incoming, v: STATE_VERSION, backup: keep } : { ...mergeStates(state, incoming), v: STATE_VERSION, backup: keep };
+    saveState(); awardBadges(); saveState();
+    close(); renderHome(); backupMsg("Your progress has been restored.");
+    toast("♻️", "Progress restored", replace.checked ? "Your backup replaced the progress on this device." : "Your backup was merged with this device.");
+  };
+  const cancel = h("button", { type: "button", class: "btn ghost" }, "Cancel");
+  cancel.onclick = close;
+  dlg.append(
+    h("h2", { id: "rs-title" }, "Restore your progress"),
+    h("p", {}, h("strong", {}, `Backup${parsed.savedAt ? " from " + fmtDate(parsed.savedAt) : ""}: `), line(a)),
+    h("p", {}, h("strong", {}, "This device now: "), line(d)),
+    h("label", { class: "rs-opt" }, merge, h("span", {}, h("strong", {}, "Merge (recommended). "), "Keep everything from both. If both have typed text for the same box, this device's version is kept.")),
+    h("label", { class: "rs-opt" }, replace, h("span", {}, h("strong", {}, "Replace. "), "Use the backup only. Anything newer on this device is lost.")),
+    h("div", { class: "w-row" }, go, cancel));
+  document.body.append(dlg);
+  if (typeof dlg.showModal === "function") dlg.showModal();
+  else if (confirm("Restore this backup and merge it with the progress on this device?")) { merge.checked = true; go.onclick(); } else close();
+}
+
+function setupBackup() {
+  $("backup-save").onclick = saveBackup;
+  $("backup-card-save").onclick = saveBackup;
+  $("backup-card-later").onclick = () => { state.backup = { ...(state.backup || {}), snooze: Date.now() + 3 * 864e5 }; saveState(); updateBackupUi(); };
+  $("backup-restore").onclick = () => $("backup-file").click();
+  $("backup-file").onchange = (e) => { const f = e.target.files[0]; e.target.value = ""; chooseBackupFile(f); };
 }
 
 // ---------- install as an app (PWA) ----------
@@ -1257,12 +1344,14 @@ async function init() {
   }
   try { chatbot = await (await fetch("content/chatbot.json")).json(); } catch {}
   try { deadlines = await (await fetch("content/deadlines.json")).json(); } catch {}
+  if ((state.v || 1) < STATE_VERSION) { state = migrateState(state, manifest); saveState(); }
   await loadBank();
   buildNav();
   $("reset-progress").addEventListener("click", () => {
     if (confirm("Reset all your progress, streak, badges, checklist ticks and saved goals and planner on this device? This cannot be undone.")) { state = blank(); saveState(); renderHome(); }
   });
   setupInstall();
+  setupBackup();
   window.addEventListener("hashchange", route);
   route();
 }

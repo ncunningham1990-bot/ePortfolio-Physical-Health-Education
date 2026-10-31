@@ -471,3 +471,15 @@ li.trk.done>p,li.trk.done>:not(ul):not(ol):not(input){opacity:.82}
 .install-help ul{margin:6px 0 0;padding-left:20px;font-size:.92rem}.install-help li[hidden]{display:none}
 .install-actions{display:flex;flex-direction:column;align-items:flex-start;gap:6px}
 @media (display-mode:standalone){.install-card{display:none}}
+
+/* ---------- progress backup ---------- */
+.backup-row{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;margin:16px 0 4px}
+.btn.small{padding:7px 16px;font-size:.85rem}
+.backup-info{color:var(--muted);font-size:.85rem}
+.backup-msg{margin:4px 0 0;color:var(--accent);font-size:.9rem;min-height:1.2em}
+.install-card .emoji{flex:none;font-size:2.2rem;line-height:1}
+.rs-dialog{border:0;border-radius:var(--radius);padding:22px 24px;max-width:520px;width:calc(100% - 32px);background:var(--surface);color:var(--ink);box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.rs-dialog::backdrop{background:rgba(5,10,8,.6)}
+.rs-dialog h2{margin:0 0 8px}
+.rs-opt{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:2px solid var(--border);border-radius:12px;margin:8px 0;cursor:pointer}
+.rs-opt input{margin-top:.35em;width:18px;height:18px;accent-color:var(--accent)}

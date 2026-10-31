@@ -4,7 +4,8 @@
 import { readdirSync, readFileSync, writeFileSync, existsSync, statSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { join, relative } from "node:path";
-import { checkWidgets, parseClinic, checkClock } from "../site/parse-widgets.js";
+import { checkWidgets, parseClinic, checkClock, parseWritten, WIDGET_TYPES } from "../site/parse-widgets.js";
+import { reconcile } from "./ids.mjs";
 
 const root = new URL("..", import.meta.url).pathname;
 const siteDir = join(root, "site");
@@ -27,6 +28,25 @@ function parse(raw) {
 const errors = [];
 let widgetCount = 0;
 
+// ---- permanent IDs (see scripts/ids.mjs). Remembered in site/content/ids.json so progress survives edits ----
+const idsFile = join(contentDir, "ids.json");
+let registry = { next: 1, groups: {} };
+if (existsSync(idsFile)) { try { registry = JSON.parse(readFileSync(idsFile, "utf8")); } catch { errors.push("content/ids.json is not valid JSON"); } }
+const seenGroups = new Set();
+const newId = () => "w" + (registry.next++).toString(36);
+function assignIds(group, blocks) {
+  seenGroups.add(group);
+  const list = reconcile(registry.groups[group] || [], blocks, newId);
+  registry.groups[group] = list;
+  return list;
+}
+const fences = (body, types) => {
+  const re = new RegExp("^```(" + types.join("|") + ")[ \\t]*\\n([\\s\\S]*?)^```", "gm");
+  return [...body.matchAll(re)].map((m) => ({ t: m[1], text: m[2] }));
+};
+const slugOf = (name) => name.replace(/\.md$/, "").replace(/^\d+-/, "");
+
+
 function readPage(file) {
   const { meta, body } = parse(readFileSync(file, "utf8"));
   const path = relative(siteDir, file);
@@ -41,18 +61,25 @@ function readPage(file) {
 const mdIn = (dir) =>
   existsSync(dir) ? readdirSync(dir).filter((f) => f.endsWith(".md")).sort().map((f) => join(dir, f)) : [];
 
-// counts the top-level checklist items on a task page (the tickable tracker items)
-function checklistCount(file) {
+// the top-level checklist items on a task page (the tickable tracker items)
+function checklistItems(file) {
   const body = parse(readFileSync(file, "utf8")).body;
   const m = body.match(/^## Checklist[^\n]*\n([\s\S]*?)(?=^## |$(?![\s\S]))/m);
-  return m ? (m[1].match(/^(?:\d+\.|[-*])\s/gm) || []).length : 0;
+  return m ? (m[1].match(/^(?:\d+\.|[-*])\s.*$/gm) || []).map((l) => l.replace(/^(?:\d+\.|[-*])\s/, "")) : [];
 }
-const taskPages = mdIn(join(contentDir, "tasks")).map((f) => ({ ...readPage(f), checklist: checklistCount(f) }));
+const taskPages = mdIn(join(contentDir, "tasks")).map((f) => {
+  const items = checklistItems(f);
+  const ids = assignIds("tasks/" + f.split("/").pop(), items.map((text) => ({ t: "c", text }))).map((x) => x.id);
+  return { ...readPage(f), checklist: items.length, checklistIds: ids };
+});
 const manifest = { units: [], tasks: taskPages, bank: [], clock: [], clinic: [] };
 
 for (const f of mdIn(join(contentDir, "bank"))) {
   const { meta } = parse(readFileSync(f, "utf8"));
-  manifest.bank.push({ ...readPage(f), unit: Number(meta.unit) || 0 });
+  const entry = { ...readPage(f), unit: Number(meta.unit) || 0 };
+  const blocks = fences(parse(readFileSync(f, "utf8")).body, ["written"]).map((b) => ({ t: b.t, text: b.text, legacyId: parseWritten(b.text).id }));
+  entry.ids = assignIds("bank/" + slugOf(f.split("/").pop()), blocks).map((x) => x.id);
+  manifest.bank.push(entry);
 }
 
 let clockQs = 0;
@@ -87,9 +114,21 @@ for (const d of unitDirs) {
     icon: overview.icon,
     short: overview.short,
     overview: overview.path,
-    pages: mdIn(dir).filter((f) => !f.endsWith("_unit.md")).map(readPage),
+    pages: mdIn(dir).filter((f) => !f.endsWith("_unit.md")).map((f) => {
+      const page = readPage(f);
+      const { meta, body } = parse(readFileSync(f, "utf8"));
+      page.id = meta.id || `${slugOf(d)}/${slugOf(f.split("/").pop())}`;
+      const blocks = fences(body, WIDGET_TYPES).map((b) => ({ t: b.t, text: b.text, legacyId: b.t === "written" ? parseWritten(b.text).id : undefined }));
+      page.widgets = assignIds("lesson/" + page.id, blocks).map((x) => ({ id: x.id, t: x.t }));
+      return page;
+    }),
   });
 }
+
+// save the ID registry (groups that no longer exist are dropped)
+for (const g of Object.keys(registry.groups)) if (!seenGroups.has(g)) delete registry.groups[g];
+const regText = "{\n \"next\": " + registry.next + ",\n \"groups\": {\n" + Object.keys(registry.groups).sort().map((g) => "  " + JSON.stringify(g) + ": " + JSON.stringify(registry.groups[g])).join(",\n") + "\n }\n}\n";
+if (!errors.length && (!existsSync(idsFile) || readFileSync(idsFile, "utf8") !== regText)) writeFileSync(idsFile, regText);
 
 // deadlines: site/content/deadlines.json maps a task file name to a list of { label, date: "YYYY-MM-DD" }
 const dlFile = join(contentDir, "deadlines.json");
