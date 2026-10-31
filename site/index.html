@@ -64,6 +64,18 @@
       </div>
     </aside>
 
+    <aside id="backup-card" class="install-card" aria-labelledby="backup-title" hidden>
+      <span class="emoji" aria-hidden="true">💾</span>
+      <div class="install-text">
+        <h2 id="backup-title">Save a backup of your progress</h2>
+        <p>You have made good progress. A backup file lets you get it back if you change device or clear your browser.</p>
+      </div>
+      <div class="install-actions">
+        <button type="button" class="btn lime" id="backup-card-save">Save backup</button>
+        <button type="button" class="link-btn" id="backup-card-later">Remind me later</button>
+      </div>
+    </aside>
+
     <section aria-labelledby="progress-title" class="dash">
       <h2 id="progress-title" class="section-label">Your progress</h2>
       <div class="stats">
@@ -77,6 +89,13 @@
       </div>
       <h3 class="sub-label">Badges</h3>
       <ul class="badges" id="badge-grid"></ul>
+      <div class="backup-row">
+        <button type="button" class="btn ghost small" id="backup-save">Save my progress</button>
+        <button type="button" class="btn ghost small" id="backup-restore">Restore my progress</button>
+        <input type="file" id="backup-file" accept=".json,application/json" hidden>
+        <span id="backup-info" class="backup-info"></span>
+      </div>
+      <p id="backup-msg" class="backup-msg" role="status" aria-live="polite"></p>
       <p class="reset-row"><button type="button" class="link-btn" id="reset-progress">Reset my progress</button></p>
     </section>
 

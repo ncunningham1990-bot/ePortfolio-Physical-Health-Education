@@ -13,7 +13,30 @@
           "activity": "",
           "icon": "",
           "short": "",
-          "path": "content/topics/01-health-fitness/01-definition-and-components-of-fitness.md"
+          "path": "content/topics/01-health-fitness/01-definition-and-components-of-fitness.md",
+          "id": "health-fitness/definition-and-components-of-fitness",
+          "widgets": [
+            {
+              "id": "w1",
+              "t": "video"
+            },
+            {
+              "id": "w2",
+              "t": "flashcards"
+            },
+            {
+              "id": "w3",
+              "t": "match"
+            },
+            {
+              "id": "w4",
+              "t": "quiz"
+            },
+            {
+              "id": "w5",
+              "t": "fill"
+            }
+          ]
         },
         {
           "title": "Fitness testing",
@@ -21,7 +44,38 @@
           "activity": "",
           "icon": "",
           "short": "",
-          "path": "content/topics/01-health-fitness/02-fitness-testing.md"
+          "path": "content/topics/01-health-fitness/02-fitness-testing.md",
+          "id": "health-fitness/fitness-testing",
+          "widgets": [
+            {
+              "id": "w6",
+              "t": "video"
+            },
+            {
+              "id": "w7",
+              "t": "video"
+            },
+            {
+              "id": "w8",
+              "t": "order"
+            },
+            {
+              "id": "w9",
+              "t": "match"
+            },
+            {
+              "id": "wa",
+              "t": "quiz"
+            },
+            {
+              "id": "wb",
+              "t": "fill"
+            },
+            {
+              "id": "q3qp43g",
+              "t": "written"
+            }
+          ]
         },
         {
           "title": "Use of fitness testing data",
@@ -29,7 +83,30 @@
           "activity": "",
           "icon": "",
           "short": "",
-          "path": "content/topics/01-health-fitness/03-use-of-fitness-testing-data.md"
+          "path": "content/topics/01-health-fitness/03-use-of-fitness-testing-data.md",
+          "id": "health-fitness/use-of-fitness-testing-data",
+          "widgets": [
+            {
+              "id": "wc",
+              "t": "video"
+            },
+            {
+              "id": "wd",
+              "t": "quiz"
+            },
+            {
+              "id": "we",
+              "t": "fill"
+            },
+            {
+              "id": "wf",
+              "t": "match"
+            },
+            {
+              "id": "q172ol92",
+              "t": "written"
+            }
+          ]
         },
         {
           "title": "Innovative tools for performance",
@@ -37,7 +114,30 @@
           "activity": "",
           "icon": "",
           "short": "",
-          "path": "content/topics/01-health-fitness/04-innovative-tools-for-performance.md"
+          "path": "content/topics/01-health-fitness/04-innovative-tools-for-performance.md",
+          "id": "health-fitness/innovative-tools-for-performance",
+          "widgets": [
+            {
+              "id": "wg",
+              "t": "video"
+            },
+            {
+              "id": "wh",
+              "t": "quiz"
+            },
+            {
+              "id": "wi",
+              "t": "match"
+            },
+            {
+              "id": "wj",
+              "t": "fill"
+            },
+            {
+              "id": "qtmjixj",
+              "t": "written"
+            }
+          ]
         },
         {
           "title": "Maximum oxygen uptake (VO₂ max)",
@@ -45,7 +145,26 @@
           "activity": "",
           "icon": "",
           "short": "",
-          "path": "content/topics/01-health-fitness/05-maximum-oxygen-uptake-vo2-max.md"
+          "path": "content/topics/01-health-fitness/05-maximum-oxygen-uptake-vo2-max.md",
+          "id": "health-fitness/maximum-oxygen-uptake-vo2-max",
+          "widgets": [
+            {
+              "id": "wk",
+              "t": "video"
+            },
+            {
+              "id": "wl",
+              "t": "quiz"
+            },
+            {
+              "id": "wm",
+              "t": "match"
+            },
+            {
+              "id": "wn",
+              "t": "fill"
+            }
+          ]
         },
         {
           "title": "Factors affecting fitness",
@@ -53,7 +172,30 @@
           "activity": "",
           "icon": "",
           "short": "",
-          "path": "content/topics/01-health-fitness/06-factors-affecting-fitness.md"
+          "path": "content/topics/01-health-fitness/06-factors-affecting-fitness.md",
+          "id": "health-fitness/factors-affecting-fitness",
+          "widgets": [
+            {
+              "id": "wo",
+              "t": "video"
+            },
+            {
+              "id": "wp",
+              "t": "match"
+            },
+            {
+              "id": "wq",
+              "t": "quiz"
+            },
+            {
+              "id": "wr",
+              "t": "fill"
+            },
+            {
+              "id": "qu20az2",
+              "t": "written"
+            }
+          ]
         },
         {
           "title": "Principles of training: SPORT and FITT",
@@ -61,7 +203,30 @@
           "activity": "",
           "icon": "",
           "short": "",
-          "path": "content/topics/01-health-fitness/07-principles-of-training.md"
+          "path": "content/topics/01-health-fitness/07-principles-of-training.md",
+          "id": "health-fitness/principles-of-training",
+          "widgets": [
+            {
+              "id": "ws",
+              "t": "video"
+            },
+            {
+              "id": "wt",
+              "t": "quiz"
+            },
+            {
+              "id": "wu",
+              "t": "match"
+            },
+            {
+              "id": "wv",
+              "t": "fill"
+            },
+            {
+              "id": "q1yqylk2",
+              "t": "written"
+            }
+          ]
         },
         {
           "title": "Essential elements of a general training programme",
@@ -69,7 +234,34 @@
           "activity": "",
           "icon": "",
           "short": "",
-          "path": "content/topics/01-health-fitness/08-essential-elements-of-a-training-programme.md"
+          "path": "content/topics/01-health-fitness/08-essential-elements-of-a-training-programme.md",
+          "id": "health-fitness/essential-elements-of-a-training-programme",
+          "widgets": [
+            {
+              "id": "ww",
+              "t": "video"
+            },
+            {
+              "id": "wx",
+              "t": "order"
+            },
+            {
+              "id": "wy",
+              "t": "quiz"
+            },
+            {
+              "id": "wz",
+              "t": "match"
+            },
+            {
+              "id": "w10",
+              "t": "fill"
+            },
+            {
+              "id": "qurxcya",
+              "t": "written"
+            }
+          ]
         },
         {
           "title": "Methods of training",
@@ -77,7 +269,30 @@
           "activity": "",
           "icon": "",
           "short": "",
-          "path": "content/topics/01-health-fitness/09-methods-of-training.md"
+          "path": "content/topics/01-health-fitness/09-methods-of-training.md",
+          "id": "health-fitness/methods-of-training",
+          "widgets": [
+            {
+              "id": "w11",
+              "t": "video"
+            },
+            {
+              "id": "w12",
+              "t": "match"
+            },
+            {
+              "id": "w13",
+              "t": "quiz"
+            },
+            {
+              "id": "w14",
+              "t": "fill"
+            },
+            {
+              "id": "q1n79wqr",
+              "t": "written"
+            }
+          ]
         },
         {
           "title": "Monitoring of exercise intensity",
@@ -85,7 +300,34 @@
           "activity": "",
           "icon": "",
           "short": "",
-          "path": "content/topics/01-health-fitness/10-monitoring-of-exercise-intensity.md"
+          "path": "content/topics/01-health-fitness/10-monitoring-of-exercise-intensity.md",
+          "id": "health-fitness/monitoring-of-exercise-intensity",
+          "widgets": [
+            {
+              "id": "w15",
+              "t": "video"
+            },
+            {
+              "id": "w16",
+              "t": "quiz"
+            },
+            {
+              "id": "w17",
+              "t": "fill"
+            },
+            {
+              "id": "w18",
+              "t": "fill"
+            },
+            {
+              "id": "w19",
+              "t": "order"
+            },
+            {
+              "id": "q1088z9q",
+              "t": "written"
+            }
+          ]
         },
         {
           "title": "Indicators of over-training",
@@ -93,7 +335,30 @@
           "activity": "",
           "icon": "",
           "short": "",
-          "path": "content/topics/01-health-fitness/11-indicators-of-over-training.md"
+          "path": "content/topics/01-health-fitness/11-indicators-of-over-training.md",
+          "id": "health-fitness/indicators-of-over-training",
+          "widgets": [
+            {
+              "id": "w1a",
+              "t": "video"
+            },
+            {
+              "id": "w1b",
+              "t": "match"
+            },
+            {
+              "id": "w1c",
+              "t": "quiz"
+            },
+            {
+              "id": "w1d",
+              "t": "fill"
+            },
+            {
+              "id": "qum252y",
+              "t": "written"
+            }
+          ]
         },
         {
           "title": "Unit review",
@@ -101,7 +366,22 @@
           "activity": "",
           "icon": "",
           "short": "",
-          "path": "content/topics/01-health-fitness/12-unit-review.md"
+          "path": "content/topics/01-health-fitness/12-unit-review.md",
+          "id": "health-fitness/unit-review",
+          "widgets": [
+            {
+              "id": "w1e",
+              "t": "quiz"
+            },
+            {
+              "id": "w1f",
+              "t": "match"
+            },
+            {
+              "id": "w1g",
+              "t": "fill"
+            }
+          ]
         }
       ]
     },
@@ -118,7 +398,30 @@
           "activity": "",
           "icon": "",
           "short": "",
-          "path": "content/topics/02-anatomy/01-functions-of-the-skeleton-and-examples-of-bones.md"
+          "path": "content/topics/02-anatomy/01-functions-of-the-skeleton-and-examples-of-bones.md",
+          "id": "anatomy/functions-of-the-skeleton-and-examples-of-bones",
+          "widgets": [
+            {
+              "id": "w1h",
+              "t": "video"
+            },
+            {
+              "id": "w1i",
+              "t": "label"
+            },
+            {
+              "id": "w1j",
+              "t": "match"
+            },
+            {
+              "id": "w1k",
+              "t": "quiz"
+            },
+            {
+              "id": "w1l",
+              "t": "fill"
+            }
+          ]
         },
         {
           "title": "Different types of bone",
@@ -126,7 +429,26 @@
           "activity": "",
           "icon": "",
           "short": "",
-          "path": "content/topics/02-anatomy/02-different-types-of-bone.md"
+          "path": "content/topics/02-anatomy/02-different-types-of-bone.md",
+          "id": "anatomy/different-types-of-bone",
+          "widgets": [
+            {
+              "id": "w1m",
+              "t": "video"
+            },
+            {
+              "id": "w1n",
+              "t": "match"
+            },
+            {
+              "id": "w1o",
+              "t": "quiz"
+            },
+            {
+              "id": "w1p",
+              "t": "fill"
+            }
+          ]
         },
         {
           "title": "Joints and types of joint",
@@ -134,7 +456,30 @@
           "activity": "",
           "icon": "",
           "short": "",
-          "path": "content/topics/02-anatomy/03-joints-and-types-of-joint.md"
+          "path": "content/topics/02-anatomy/03-joints-and-types-of-joint.md",
+          "id": "anatomy/joints-and-types-of-joint",
+          "widgets": [
+            {
+              "id": "w1q",
+              "t": "video"
+            },
+            {
+              "id": "w1r",
+              "t": "quiz"
+            },
+            {
+              "id": "w1s",
+              "t": "match"
+            },
+            {
+              "id": "w1t",
+              "t": "fill"
+            },
+            {
+              "id": "q7463od",
+              "t": "written"
+            }
+          ]
         },
         {
           "title": "Features of a synovial joint",
@@ -142,7 +487,34 @@
           "activity": "",
           "icon": "",
           "short": "",
-          "path": "content/topics/02-anatomy/04-features-of-a-synovial-joint.md"
+          "path": "content/topics/02-anatomy/04-features-of-a-synovial-joint.md",
+          "id": "anatomy/features-of-a-synovial-joint",
+          "widgets": [
+            {
+              "id": "w1u",
+              "t": "video"
+            },
+            {
+              "id": "w1v",
+              "t": "label"
+            },
+            {
+              "id": "w1w",
+              "t": "match"
+            },
+            {
+              "id": "w1x",
+              "t": "quiz"
+            },
+            {
+              "id": "w1y",
+              "t": "fill"
+            },
+            {
+              "id": "q15d9o8k",
+              "t": "written"
+            }
+          ]
         },
         {
           "title": "Range of movement at joints",
@@ -150,7 +522,34 @@
           "activity": "",
           "icon": "",
           "short": "",
-          "path": "content/topics/02-anatomy/05-range-of-movement-at-joints.md"
+          "path": "content/topics/02-anatomy/05-range-of-movement-at-joints.md",
+          "id": "anatomy/range-of-movement-at-joints",
+          "widgets": [
+            {
+              "id": "w1z",
+              "t": "video"
+            },
+            {
+              "id": "w20",
+              "t": "match"
+            },
+            {
+              "id": "w21",
+              "t": "label"
+            },
+            {
+              "id": "w22",
+              "t": "quiz"
+            },
+            {
+              "id": "w23",
+              "t": "fill"
+            },
+            {
+              "id": "q14drnr4",
+              "t": "written"
+            }
+          ]
         },
         {
           "title": "Types of muscle and major muscles",
@@ -158,7 +557,30 @@
           "activity": "activities/major-muscles.html",
           "icon": "",
           "short": "",
-          "path": "content/topics/02-anatomy/06-types-of-muscle-and-major-muscles.md"
+          "path": "content/topics/02-anatomy/06-types-of-muscle-and-major-muscles.md",
+          "id": "anatomy/types-of-muscle-and-major-muscles",
+          "widgets": [
+            {
+              "id": "w24",
+              "t": "video"
+            },
+            {
+              "id": "w25",
+              "t": "match"
+            },
+            {
+              "id": "w26",
+              "t": "match"
+            },
+            {
+              "id": "w27",
+              "t": "quiz"
+            },
+            {
+              "id": "w28",
+              "t": "fill"
+            }
+          ]
         },
         {
           "title": "Origin and insertion of muscles",
@@ -166,7 +588,30 @@
           "activity": "",
           "icon": "",
           "short": "",
-          "path": "content/topics/02-anatomy/07-origin-and-insertion-of-muscles.md"
+          "path": "content/topics/02-anatomy/07-origin-and-insertion-of-muscles.md",
+          "id": "anatomy/origin-and-insertion-of-muscles",
+          "widgets": [
+            {
+              "id": "w29",
+              "t": "video"
+            },
+            {
+              "id": "w2a",
+              "t": "label"
+            },
+            {
+              "id": "w2b",
+              "t": "quiz"
+            },
+            {
+              "id": "w2c",
+              "t": "fill"
+            },
+            {
+              "id": "q1shrkv1",
+              "t": "written"
+            }
+          ]
         },
         {
           "title": "Muscle fibre types",
@@ -174,7 +619,30 @@
           "activity": "",
           "icon": "",
           "short": "",
-          "path": "content/topics/02-anatomy/08-muscle-fibre-types.md"
+          "path": "content/topics/02-anatomy/08-muscle-fibre-types.md",
+          "id": "anatomy/muscle-fibre-types",
+          "widgets": [
+            {
+              "id": "w2d",
+              "t": "video"
+            },
+            {
+              "id": "w2e",
+              "t": "match"
+            },
+            {
+              "id": "w2f",
+              "t": "quiz"
+            },
+            {
+              "id": "w2g",
+              "t": "fill"
+            },
+            {
+              "id": "q124mo05",
+              "t": "written"
+            }
+          ]
         },
         {
           "title": "Muscle movement: antagonistic pairs",
@@ -182,7 +650,30 @@
           "activity": "",
           "icon": "",
           "short": "",
-          "path": "content/topics/02-anatomy/09-muscle-movement-antagonistic-pairs.md"
+          "path": "content/topics/02-anatomy/09-muscle-movement-antagonistic-pairs.md",
+          "id": "anatomy/muscle-movement-antagonistic-pairs",
+          "widgets": [
+            {
+              "id": "w2h",
+              "t": "video"
+            },
+            {
+              "id": "w2i",
+              "t": "quiz"
+            },
+            {
+              "id": "w2j",
+              "t": "match"
+            },
+            {
+              "id": "w2k",
+              "t": "fill"
+            },
+            {
+              "id": "q110kakj",
+              "t": "written"
+            }
+          ]
         },
         {
           "title": "Muscle contraction types",
@@ -190,7 +681,30 @@
           "activity": "",
           "icon": "",
           "short": "",
-          "path": "content/topics/02-anatomy/10-muscle-contraction-types.md"
+          "path": "content/topics/02-anatomy/10-muscle-contraction-types.md",
+          "id": "anatomy/muscle-contraction-types",
+          "widgets": [
+            {
+              "id": "w2l",
+              "t": "video"
+            },
+            {
+              "id": "w2m",
+              "t": "quiz"
+            },
+            {
+              "id": "w2n",
+              "t": "match"
+            },
+            {
+              "id": "w2o",
+              "t": "fill"
+            },
+            {
+              "id": "qsornqz",
+              "t": "written"
+            }
+          ]
         },
         {
           "title": "Unit review",
@@ -198,7 +712,22 @@
           "activity": "",
           "icon": "",
           "short": "",
-          "path": "content/topics/02-anatomy/11-unit-review.md"
+          "path": "content/topics/02-anatomy/11-unit-review.md",
+          "id": "anatomy/unit-review",
+          "widgets": [
+            {
+              "id": "w2p",
+              "t": "quiz"
+            },
+            {
+              "id": "w2q",
+              "t": "match"
+            },
+            {
+              "id": "w2r",
+              "t": "fill"
+            }
+          ]
         }
       ]
     },
@@ -215,7 +744,30 @@
           "activity": "",
           "icon": "",
           "short": "",
-          "path": "content/topics/03-diet-nutrition/01-food-groups-carbohydrates-proteins-and-fats.md"
+          "path": "content/topics/03-diet-nutrition/01-food-groups-carbohydrates-proteins-and-fats.md",
+          "id": "diet-nutrition/food-groups-carbohydrates-proteins-and-fats",
+          "widgets": [
+            {
+              "id": "w2s",
+              "t": "video"
+            },
+            {
+              "id": "w2t",
+              "t": "match"
+            },
+            {
+              "id": "w2u",
+              "t": "quiz"
+            },
+            {
+              "id": "w2v",
+              "t": "fill"
+            },
+            {
+              "id": "q4d2yoc",
+              "t": "written"
+            }
+          ]
         },
         {
           "title": "Food groups: vitamins and minerals, fibre and water",
@@ -223,7 +775,26 @@
           "activity": "",
           "icon": "",
           "short": "",
-          "path": "content/topics/03-diet-nutrition/02-food-groups-vitamins-minerals-fibre-and-water.md"
+          "path": "content/topics/03-diet-nutrition/02-food-groups-vitamins-minerals-fibre-and-water.md",
+          "id": "diet-nutrition/food-groups-vitamins-minerals-fibre-and-water",
+          "widgets": [
+            {
+              "id": "w2w",
+              "t": "video"
+            },
+            {
+              "id": "w2x",
+              "t": "match"
+            },
+            {
+              "id": "w2y",
+              "t": "quiz"
+            },
+            {
+              "id": "w2z",
+              "t": "fill"
+            }
+          ]
         },
         {
           "title": "Examples of food groups and a healthy balanced diet",
@@ -231,7 +802,30 @@
           "activity": "",
           "icon": "",
           "short": "",
-          "path": "content/topics/03-diet-nutrition/03-examples-of-food-groups-and-a-healthy-balanced-diet.md"
+          "path": "content/topics/03-diet-nutrition/03-examples-of-food-groups-and-a-healthy-balanced-diet.md",
+          "id": "diet-nutrition/examples-of-food-groups-and-a-healthy-balanced-diet",
+          "widgets": [
+            {
+              "id": "w30",
+              "t": "video"
+            },
+            {
+              "id": "w31",
+              "t": "quiz"
+            },
+            {
+              "id": "w32",
+              "t": "match"
+            },
+            {
+              "id": "w33",
+              "t": "fill"
+            },
+            {
+              "id": "q1p8bz40",
+              "t": "written"
+            }
+          ]
         },
         {
           "title": "Energy requirements and expenditure",
@@ -239,7 +833,30 @@
           "activity": "",
           "icon": "",
           "short": "",
-          "path": "content/topics/03-diet-nutrition/04-energy-requirements-and-expenditure.md"
+          "path": "content/topics/03-diet-nutrition/04-energy-requirements-and-expenditure.md",
+          "id": "diet-nutrition/energy-requirements-and-expenditure",
+          "widgets": [
+            {
+              "id": "w34",
+              "t": "video"
+            },
+            {
+              "id": "w35",
+              "t": "quiz"
+            },
+            {
+              "id": "w36",
+              "t": "match"
+            },
+            {
+              "id": "w37",
+              "t": "fill"
+            },
+            {
+              "id": "q1omsnox",
+              "t": "written"
+            }
+          ]
         },
         {
           "title": "Unit review",
@@ -247,7 +864,22 @@
           "activity": "",
           "icon": "",
           "short": "",
-          "path": "content/topics/03-diet-nutrition/05-unit-review.md"
+          "path": "content/topics/03-diet-nutrition/05-unit-review.md",
+          "id": "diet-nutrition/unit-review",
+          "widgets": [
+            {
+              "id": "w38",
+              "t": "quiz"
+            },
+            {
+              "id": "w39",
+              "t": "match"
+            },
+            {
+              "id": "w3a",
+              "t": "fill"
+            }
+          ]
         }
       ]
     },
@@ -264,7 +896,26 @@
           "activity": "",
           "icon": "",
           "short": "",
-          "path": "content/topics/04-sports-psychology/01-definition-of-health-and-well-being.md"
+          "path": "content/topics/04-sports-psychology/01-definition-of-health-and-well-being.md",
+          "id": "sports-psychology/definition-of-health-and-well-being",
+          "widgets": [
+            {
+              "id": "w3b",
+              "t": "video"
+            },
+            {
+              "id": "w3c",
+              "t": "quiz"
+            },
+            {
+              "id": "w3d",
+              "t": "match"
+            },
+            {
+              "id": "w3e",
+              "t": "fill"
+            }
+          ]
         },
         {
           "title": "Safe practice: the PAR-Q",
@@ -272,7 +923,26 @@
           "activity": "",
           "icon": "",
           "short": "",
-          "path": "content/topics/04-sports-psychology/02-safe-practice-par-q.md"
+          "path": "content/topics/04-sports-psychology/02-safe-practice-par-q.md",
+          "id": "sports-psychology/safe-practice-par-q",
+          "widgets": [
+            {
+              "id": "w3f",
+              "t": "video"
+            },
+            {
+              "id": "w3g",
+              "t": "order"
+            },
+            {
+              "id": "w3h",
+              "t": "quiz"
+            },
+            {
+              "id": "w3i",
+              "t": "fill"
+            }
+          ]
         },
         {
           "title": "Treatment of injuries",
@@ -280,7 +950,34 @@
           "activity": "",
           "icon": "",
           "short": "",
-          "path": "content/topics/04-sports-psychology/03-treatment-of-injuries.md"
+          "path": "content/topics/04-sports-psychology/03-treatment-of-injuries.md",
+          "id": "sports-psychology/treatment-of-injuries",
+          "widgets": [
+            {
+              "id": "w3j",
+              "t": "video"
+            },
+            {
+              "id": "w3k",
+              "t": "order"
+            },
+            {
+              "id": "w3l",
+              "t": "match"
+            },
+            {
+              "id": "w3m",
+              "t": "quiz"
+            },
+            {
+              "id": "w3n",
+              "t": "fill"
+            },
+            {
+              "id": "qep4vem",
+              "t": "written"
+            }
+          ]
         },
         {
           "title": "Physique: body types",
@@ -288,7 +985,26 @@
           "activity": "",
           "icon": "",
           "short": "",
-          "path": "content/topics/04-sports-psychology/04-physique-body-types.md"
+          "path": "content/topics/04-sports-psychology/04-physique-body-types.md",
+          "id": "sports-psychology/physique-body-types",
+          "widgets": [
+            {
+              "id": "w3o",
+              "t": "video"
+            },
+            {
+              "id": "w3p",
+              "t": "match"
+            },
+            {
+              "id": "w3q",
+              "t": "quiz"
+            },
+            {
+              "id": "w3r",
+              "t": "fill"
+            }
+          ]
         },
         {
           "title": "Motivation: definition and types",
@@ -296,7 +1012,26 @@
           "activity": "",
           "icon": "",
           "short": "",
-          "path": "content/topics/04-sports-psychology/05-motivation-definition-and-types.md"
+          "path": "content/topics/04-sports-psychology/05-motivation-definition-and-types.md",
+          "id": "sports-psychology/motivation-definition-and-types",
+          "widgets": [
+            {
+              "id": "w3s",
+              "t": "video"
+            },
+            {
+              "id": "w3t",
+              "t": "match"
+            },
+            {
+              "id": "w3u",
+              "t": "quiz"
+            },
+            {
+              "id": "w3v",
+              "t": "fill"
+            }
+          ]
         },
         {
           "title": "Anxiety, arousal and performance",
@@ -304,7 +1039,30 @@
           "activity": "",
           "icon": "",
           "short": "",
-          "path": "content/topics/04-sports-psychology/06-anxiety-arousal-and-performance.md"
+          "path": "content/topics/04-sports-psychology/06-anxiety-arousal-and-performance.md",
+          "id": "sports-psychology/anxiety-arousal-and-performance",
+          "widgets": [
+            {
+              "id": "w3w",
+              "t": "video"
+            },
+            {
+              "id": "w3x",
+              "t": "quiz"
+            },
+            {
+              "id": "w3y",
+              "t": "match"
+            },
+            {
+              "id": "w3z",
+              "t": "fill"
+            },
+            {
+              "id": "qjj1y0w",
+              "t": "written"
+            }
+          ]
         },
         {
           "title": "Measurement of anxiety and well-being",
@@ -312,7 +1070,30 @@
           "activity": "",
           "icon": "",
           "short": "",
-          "path": "content/topics/04-sports-psychology/07-measurement-of-anxiety-and-well-being.md"
+          "path": "content/topics/04-sports-psychology/07-measurement-of-anxiety-and-well-being.md",
+          "id": "sports-psychology/measurement-of-anxiety-and-well-being",
+          "widgets": [
+            {
+              "id": "w40",
+              "t": "video"
+            },
+            {
+              "id": "w41",
+              "t": "quiz"
+            },
+            {
+              "id": "w42",
+              "t": "match"
+            },
+            {
+              "id": "w43",
+              "t": "fill"
+            },
+            {
+              "id": "qc2047k",
+              "t": "written"
+            }
+          ]
         },
         {
           "title": "Responses to arousal",
@@ -320,7 +1101,26 @@
           "activity": "",
           "icon": "",
           "short": "",
-          "path": "content/topics/04-sports-psychology/08-responses-to-arousal.md"
+          "path": "content/topics/04-sports-psychology/08-responses-to-arousal.md",
+          "id": "sports-psychology/responses-to-arousal",
+          "widgets": [
+            {
+              "id": "w44",
+              "t": "video"
+            },
+            {
+              "id": "w45",
+              "t": "match"
+            },
+            {
+              "id": "w46",
+              "t": "quiz"
+            },
+            {
+              "id": "w47",
+              "t": "fill"
+            }
+          ]
         },
         {
           "title": "Psychological skills training (PST)",
@@ -328,7 +1128,30 @@
           "activity": "",
           "icon": "",
           "short": "",
-          "path": "content/topics/04-sports-psychology/09-psychological-skills-training.md"
+          "path": "content/topics/04-sports-psychology/09-psychological-skills-training.md",
+          "id": "sports-psychology/psychological-skills-training",
+          "widgets": [
+            {
+              "id": "w48",
+              "t": "video"
+            },
+            {
+              "id": "w49",
+              "t": "match"
+            },
+            {
+              "id": "w4a",
+              "t": "quiz"
+            },
+            {
+              "id": "w4b",
+              "t": "fill"
+            },
+            {
+              "id": "q3tio5s",
+              "t": "written"
+            }
+          ]
         },
         {
           "title": "Goal setting: SMART format",
@@ -336,7 +1159,30 @@
           "activity": "",
           "icon": "",
           "short": "",
-          "path": "content/topics/04-sports-psychology/10-goal-setting-smart-format.md"
+          "path": "content/topics/04-sports-psychology/10-goal-setting-smart-format.md",
+          "id": "sports-psychology/goal-setting-smart-format",
+          "widgets": [
+            {
+              "id": "w4c",
+              "t": "video"
+            },
+            {
+              "id": "w4d",
+              "t": "match"
+            },
+            {
+              "id": "w4e",
+              "t": "quiz"
+            },
+            {
+              "id": "w4f",
+              "t": "fill"
+            },
+            {
+              "id": "qbfp627",
+              "t": "written"
+            }
+          ]
         },
         {
           "title": "Unit review",
@@ -344,7 +1190,22 @@
           "activity": "",
           "icon": "",
           "short": "",
-          "path": "content/topics/04-sports-psychology/11-unit-review.md"
+          "path": "content/topics/04-sports-psychology/11-unit-review.md",
+          "id": "sports-psychology/unit-review",
+          "widgets": [
+            {
+              "id": "w4g",
+              "t": "quiz"
+            },
+            {
+              "id": "w4h",
+              "t": "match"
+            },
+            {
+              "id": "w4i",
+              "t": "fill"
+            }
+          ]
         }
       ]
     }
@@ -357,7 +1218,8 @@
       "icon": "",
       "short": "",
       "path": "content/tasks/00-rubric.md",
-      "checklist": 0
+      "checklist": 0,
+      "checklistIds": []
     },
     {
       "title": "Task 1: Initial Observation and Analysis",
@@ -366,7 +1228,8 @@
       "icon": "",
       "short": "",
       "path": "content/tasks/01-task-1.md",
-      "checklist": 0
+      "checklist": 0,
+      "checklistIds": []
     },
     {
       "title": "Task 2: Performance Development Plan",
@@ -375,7 +1238,8 @@
       "icon": "",
       "short": "",
       "path": "content/tasks/02-task-2.md",
-      "checklist": 0
+      "checklist": 0,
+      "checklistIds": []
     },
     {
       "title": "Task 3: Applying and Performing",
@@ -384,7 +1248,8 @@
       "icon": "",
       "short": "",
       "path": "content/tasks/03-task-3.md",
-      "checklist": 0
+      "checklist": 0,
+      "checklistIds": []
     },
     {
       "title": "Task 4: Reflecting and Improving Performance",
@@ -393,7 +1258,8 @@
       "icon": "",
       "short": "",
       "path": "content/tasks/04-task-4.md",
-      "checklist": 0
+      "checklist": 0,
+      "checklistIds": []
     }
   ],
   "bank": [
@@ -404,7 +1270,20 @@
       "icon": "",
       "short": "",
       "path": "content/bank/01-health-fitness.md",
-      "unit": 1
+      "unit": 1,
+      "ids": [
+        "quy6pjp",
+        "qsekk7q",
+        "q1dc3vbk",
+        "q1sh1pab",
+        "q1txstq3",
+        "qsico48",
+        "qjz6j25",
+        "qbe36nr",
+        "q79ltll",
+        "qf9fzk1",
+        "q1hbzk6h"
+      ]
     },
     {
       "title": "Anatomy challenges",
@@ -413,7 +1292,18 @@
       "icon": "",
       "short": "",
       "path": "content/bank/02-anatomy.md",
-      "unit": 2
+      "unit": 2,
+      "ids": [
+        "q1s2lca7",
+        "qx4jfzy",
+        "q1v6rhy7",
+        "q1cq64ud",
+        "q1yd3svf",
+        "q1am76no",
+        "q1vsapma",
+        "qjcbmne",
+        "qrr6v7c"
+      ]
     },
     {
       "title": "Diet & Nutrition challenges",
@@ -422,7 +1312,17 @@
       "icon": "",
       "short": "",
       "path": "content/bank/03-diet-nutrition.md",
-      "unit": 3
+      "unit": 3,
+      "ids": [
+        "q1bwen2b",
+        "qruua0y",
+        "q1xd0qte",
+        "q1izlabj",
+        "q1gwah88",
+        "q14jjun1",
+        "q1vxvesw",
+        "q1w5ni6a"
+      ]
     },
     {
       "title": "Sports Psychology & Well-being challenges",
@@ -431,7 +1331,19 @@
       "icon": "",
       "short": "",
       "path": "content/bank/04-sports-psychology.md",
-      "unit": 4
+      "unit": 4,
+      "ids": [
+        "q78vhk",
+        "qnoo7so",
+        "q1gknz6i",
+        "q1tpomyc",
+        "qxle6ji",
+        "q1q4n5gp",
+        "q1stcyxn",
+        "q1fdcg4y",
+        "qeuxo70",
+        "qgrjngm"
+      ]
     }
   ],
   "clock": [
