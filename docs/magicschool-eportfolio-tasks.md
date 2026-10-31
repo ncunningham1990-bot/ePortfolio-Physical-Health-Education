@@ -19,7 +19,7 @@ Your ePortfolio is assessed on four MYP criteria, one for each task. Each task p
 | [Task 3: Applying and Performing](#tasks/3) | C: Applying and Performing | To be confirmed | To be confirmed |
 | [Task 4: Reflecting and Improving Performance](#tasks/4) | D: Reflecting and Improving | To be confirmed | To be confirmed |
 
-Details of this year's tasks are coming soon. Exemplars from a previous student are on the pages for Tasks 1, 2 and 4.
+Details of this year's tasks are coming soon. An exemplar of high-quality work will be added to each task page.
 
 ## How the levels work
 
@@ -67,9 +67,7 @@ Details coming soon.
 
 ## Exemplar: see high-quality work
 
-Look at this example from a previous student to see the standard to aim for: how the work is organised, how evidence is presented and how ideas are explained. It is there to **learn from, not to copy**. Your client, data, photos and words must be your own.
-
-[Download the Task 1 exemplar (PDF, 6 pages)](exemplars/task-1-exemplar.pdf)
+An exemplar of high-quality work will be added here soon. You will be able to view it on this page and download it.
 
 ## Checklist: what to include
 
@@ -99,12 +97,14 @@ Details coming soon.
 
 ## Rubric: Criterion A, Knowing and Understanding
 
+Find the level that best matches your work, then look at the level above to see how to improve.
+
 | Level | Task-specific clarification |
 |---|---|
-| **1-2** | Details coming soon. |
-| **3-4** | Details coming soon. |
-| **5-6** | Details coming soon. |
-| **7-8** | Details coming soon. |
+| **1-2** | From your client's initial physical performance, you submit a **list** that includes: • current ability in the desired skill, and/or • strengths and weaknesses, and/or • features of correct skill execution. / From your client's initial health assessment, you state through a **list**: • aspects of well-being, and/or • strengths and weaknesses, and/or • relationship to physical performance. / You suggest inappropriate, brief and/or basic solutions to the client's selected areas for improvement. You rarely use subject-specific terminology. |
+| **3-4** | From your client's initial physical performance, you submit a **brief account** of: • current ability in the desired skill, and/or • strengths and weaknesses, and/or • features of correct skill execution. / From your client's initial health assessment, you submit a **brief account** of: • basic aspects of well-being, and/or • basic strengths and weaknesses, and/or • basic relationship to physical performance. / You partially investigate the issues highlighted by your client and present solutions that may be superficial, inappropriate or incomplete. You use some appropriate subject-specific terminology. |
+| **5-6** | From your client's initial physical performance, you submit a brief account of **distinguishing features** of: • current ability in the desired skill • strengths and weaknesses • features of correct skill execution. / From your client's initial health assessment, you submit a brief account of **distinguishing features** of: • aspects of well-being • strengths and weaknesses • relationship to physical performance. / You use your knowledge (from strand A(i)) to investigate the issues highlighted by the client and present solutions that are mostly relevant. You frequently use appropriate subject-specific terminology. |
+| **7-8** | From your client's initial physical performance, you submit a **detailed account that justifies** your determination of: • current ability in the desired skill • strengths and weaknesses • features of correct skill execution. / From your client's initial health assessment, you submit a **detailed account that justifies** your determination of: • current well-being • strengths and weaknesses • relationship to physical performance. / You use knowledge from strand A(i) to **investigate in depth** the issues highlighted by the client and develop relevant solutions. You consistently use most or all of the relevant subject-specific terminology. |
 
 Not sure what command words like *justify* or *analyse* mean? See the [command terms on the rubric page](#tasks/0).
 
@@ -120,9 +120,7 @@ Details coming soon.
 
 ## Exemplar: see high-quality work
 
-Look at this example from a previous student to see the standard to aim for: how the work is organised, how evidence is presented and how ideas are explained. It is there to **learn from, not to copy**. Your client, data, photos and words must be your own.
-
-[Download the Task 2 exemplar (PDF, 4 pages)](exemplars/task-2-exemplar.pdf)
+An exemplar of high-quality work will be added here soon. You will be able to view it on this page and download it.
 
 ## Checklist: what to include
 
@@ -172,14 +170,16 @@ Details coming soon.
 
 ## Rubric: Criterion B, Planning for Performance
 
-| Level | Task-specific clarification |
-|---|---|
-| **1-2** | Details coming soon. |
-| **3-4** | Details coming soon. |
-| **5-6** | Details coming soon. |
-| **7-8** | Details coming soon. |
+Find the level that best matches your work, then look at the level above to see how to improve.
 
-Not sure what command words like *justify* or *analyse* mean? See the [command terms on the rubric page](#tasks/0).
+| Level | What the criterion says, and what it means in this task |
+|---|---|
+| **1-2** | **Criterion:** you **state** a plan for improving health and/or physical activity, and **state** the effectiveness of a plan. / **In this task:** you briefly state physical and/or health goals that are not specific and may not be achievable. Your plan is: • incomplete • illogical or unreasonable in its activities • not flexible or responsive to the client's development • lacking in detail, and may not lead towards physical and/or health goals. |
+| **3-4** | **Criterion:** you **outline a basic** plan for improving health and/or physical activity, and **state** the effectiveness of a plan **based on the outcome**. / **In this task:** you briefly summarise physical and health goals that may be measurable, achievable, relevant or timely. Your performance development plan includes detailed information that: • is logical • refers to drills and skill technique(s) • connects health and physical goals • reflects some response to the client's development. / You partially break down the issues highlighted to create your plan and comment on the client's progress towards the physical and health goals, but rarely (if at all) adjust the plan. |
+| **5-6** | **Criterion:** you **outline** a plan for improving health and/or physical activity, and **identify** the effectiveness of a plan **based on the outcome**. / **In this task:** you explain detailed physical and health goals that are specific, measurable, achievable and timely. Your detailed performance development plan: • is clear • demonstrates logical progression towards achieving goals • includes drills that practise appropriate skill techniques • develops a health element that connects with the physical (movement) goal(s) • provides opportunity to reflect on progress and adapt the plan based on the client's development • references supporting research (may include images, videos, data). / You break down the issues highlighted to create your plan and adapt the plan based on the client's progress towards the physical and health goals. |
+| **7-8** | **Criterion:** you **construct and outline** a plan for improving health and/or physical activity, and **describe** the effectiveness of a plan **based on the outcome**. / **In this task:** you justify detailed physical and health goals that are specific, measurable, achievable, relevant and timely. Your detailed performance development plan: • is specific, clear and concise • demonstrates logical progression towards achieving goals • includes drills that practise appropriate skill techniques • develops a health element that connects with the physical (movement) goals • dynamically adapts the plan in response to performance • includes valid reasons for design choices • references supporting research (may include images, videos, data). / You break down the issues highlighted to create your plan, and regularly adapt and justify changes to the plan based on the client's progress towards the physical and health goals in each training session. |
+
+Not sure what command words like *justify* or *outline* mean? See the [command terms on the rubric page](#tasks/0).
 
 
 
@@ -191,6 +191,10 @@ Grade 10 MYP PHE · *Criterion C: Applying and Performing*
 
 Details coming soon.
 
+## Exemplar: see high-quality work
+
+An exemplar of high-quality work will be added here soon. You will be able to view it on this page and download it.
+
 ## Checklist: what to include
 
 Details coming soon.
@@ -201,14 +205,16 @@ Details coming soon.
 
 ## Rubric: Criterion C, Applying and Performing
 
-| Level | Task-specific clarification |
-|---|---|
-| **1-2** | Details coming soon. |
-| **3-4** | Details coming soon. |
-| **5-6** | Details coming soon. |
-| **7-8** | Details coming soon. |
+Your video is the evidence. Find the level that best matches it, then look at the level above to see how to improve.
 
-Not sure what command words like *justify* or *analyse* mean? See the [command terms on the rubric page](#tasks/0).
+| Level | What the criterion says, and what the video must show |
+|---|---|
+| **1-2** | **Criterion:** you demonstrate and apply skills and techniques with limited success, and demonstrate and apply strategies and movement concepts with limited success. / **Your video shows:** • few and/or incorrect skills • few and/or incorrect techniques • strategies and patterns of movement that show limited understanding of the strategic use of space, time, force and flow of movement. |
+| **3-4** | **Criterion:** you demonstrate and apply skills and techniques, and demonstrate and apply strategies and movement concepts. / **Your video shows:** • basic skills • basic technique • basic strategies • basic patterns of movement. |
+| **5-6** | **Criterion:** you demonstrate and apply a **range** of skills and techniques, and a **range** of strategies and movement concepts. / **Your video shows:** • a simple combination of basic skills • intermediate technique • a combination of basic strategies • patterns of movement that show some strategic use of space, time, force and flow of movement. |
+| **7-8** | **Criterion:** you demonstrate and apply a range of skills and techniques **effectively**, and a range of strategies and movement concepts **effectively**. / **Your video shows:** • a combination of complex skills • sophisticated technique • a combination of complex strategies • patterns of movement that show skilled strategic use of space, time, force and flow of movement. |
+
+Not sure what command words like *demonstrate* or *analyse* mean? See the [command terms on the rubric page](#tasks/0).
 
 
 
@@ -222,9 +228,7 @@ Details coming soon.
 
 ## Exemplar: see high-quality work
 
-Look at this example from a previous student to see the standard to aim for: how the work is organised, how evidence is presented and how ideas are explained. It is there to **learn from, not to copy**. Your client, data, photos and words must be your own.
-
-[Download the Task 4 exemplar (PDF, 5 pages)](exemplars/task-4-exemplar.pdf)
+An exemplar of high-quality work will be added here soon. You will be able to view it on this page and download it.
 
 ## Checklist: what to include
 
@@ -246,14 +250,16 @@ Details coming soon.
 
 ## Rubric: Criterion D, Reflecting and Improving
 
-| Level | Task-specific clarification |
-|---|---|
-| **1-2** | Details coming soon. |
-| **3-4** | Details coming soon. |
-| **5-6** | Details coming soon. |
-| **7-8** | Details coming soon. |
+Find the level that best matches your work, then look at the level above to see how to improve.
 
-Not sure what command words like *justify* or *analyse* mean? See the [command terms on the rubric page](#tasks/0).
+| Level | What the criterion says, and what it means in this task |
+|---|---|
+| **1-2** | **Criterion:** you identify and demonstrate strategies to enhance interpersonal skills; outline the effectiveness of a plan based on the outcome; outline and summarise performance. / **As a coach** you briefly state: • feedback to your client and/or • negotiation with your client towards development of the training plan. **As a client** you briefly state: • your response to feedback from the coach and/or • negotiation with your coach towards development of the training plan. / **As a coach**, you submit evidence of the outcome of the training plan that may include how the goals were met and/or successes and challenges throughout. **As a client**, you submit a brief summary of skills and techniques developed through the unit, based on a general description of the performance. |
+| **3-4** | **Criterion:** you outline and demonstrate strategies to enhance interpersonal skills; **explain** the effectiveness of a plan based on the outcome; **describe** and summarise performance. / **As a coach** you submit a brief account of: • feedback to your client that could lead to changes in the training plan • negotiation with your client towards ongoing development of the training plan. **As a client** you submit a brief account of: • your response to feedback from the coach that could lead to changes in the training plan • negotiation with your coach towards ongoing development of the training plan. / **As a coach**, you submit **detailed evidence** of the outcome of the training plan, including how the goals were met, and successes and challenges throughout. **As a client**, you submit a detailed account of skills and techniques developed through the unit, based on a general description of the performance. |
+| **5-6** | **Criterion:** you **describe** and demonstrate strategies to enhance interpersonal skills; **analyse** the effectiveness of a plan based on the outcome; **explain and evaluate** performance. / **As a coach** you submit a detailed account of: • feedback to your client that could lead to changes in the training plan • negotiation with your client towards **mutual agreement** on the ongoing development of the training plan. **As a client** you submit a detailed account of: • your response to feedback from the coach that **leads to adaptation** of the training plan • negotiation with your coach towards mutual agreement on the ongoing development of the training plan. / **As a coach**, you submit detailed evidence that **analyses** the outcome of the training plan, including how the goals were met, what you might do differently next time, and successes and challenges throughout. **As a client**, you submit a detailed account of skills and techniques developed through the unit based on an **evaluation** of the performance, and weigh the strengths and limitations of the performance. |
+| **7-8** | **Criterion:** you **explain** and demonstrate strategies to enhance interpersonal skills; **analyse and evaluate** the effectiveness of a plan based on the outcome; **analyse and evaluate** performance. / **As a coach** you submit a detailed account that includes **reasons** for the strategies used to enhance interpersonal skills through: • feedback to your client that leads to changes in the training plan • strategies for collaboration with your client that lead to ongoing development of an effective training plan. **As a client** you submit a detailed account that includes **reasons** for the strategies used to enhance interpersonal skills through: • consistent feedback to your coach that leads to adaptation of the training plan • strategies for collaboration with your coach that lead to ongoing development of an effective training plan. / **As a coach**, you submit detailed evidence that **analyses and explains** the outcome of the training plan, including how the goals were met, what you might do differently next time, and successes and challenges throughout. **As a client**, you: • break down the performance with respect to the skills and techniques it demonstrated, including the steps that led to it from the initial recording, through the training plan, to the final performance • weigh the strengths and limitations of the performance • critically review the performance with respect to personal goals as well as the aims of physical and health education. |
+
+Not sure what command words like *evaluate* or *justify* mean? See the [command terms on the rubric page](#tasks/0).
 
 ## Examples of interpersonal and ATL skills
 
