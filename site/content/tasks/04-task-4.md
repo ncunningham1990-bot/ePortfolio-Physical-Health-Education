@@ -10,24 +10,7 @@ Details coming soon.
 
 ## Exemplar: see high-quality work
 
-Look at this example from a previous student to see the standard to aim for: how the work is organised, how evidence is presented and how ideas are explained. It is there to **learn from, not to copy**. Your client, data, photos and words must be your own.
-
-[Download the Task 4 exemplar (PDF, 5 pages)](exemplars/task-4-exemplar.pdf)
-
-<details>
-<summary>View the exemplar here (5 pages)</summary>
-
-![Task 4 exemplar, page 1 of 5](exemplars/task-4-exemplar-p1.webp)
-
-![Task 4 exemplar, page 2 of 5](exemplars/task-4-exemplar-p2.webp)
-
-![Task 4 exemplar, page 3 of 5](exemplars/task-4-exemplar-p3.webp)
-
-![Task 4 exemplar, page 4 of 5](exemplars/task-4-exemplar-p4.webp)
-
-![Task 4 exemplar, page 5 of 5](exemplars/task-4-exemplar-p5.webp)
-
-</details>
+An exemplar of high-quality work will be added here soon. You will be able to view it on this page and download it.
 
 ## Checklist: what to include
 
@@ -49,14 +32,16 @@ Details coming soon.
 
 ## Rubric: Criterion D, Reflecting and Improving
 
-| Level | Task-specific clarification |
-|---|---|
-| **1-2** | Details coming soon. |
-| **3-4** | Details coming soon. |
-| **5-6** | Details coming soon. |
-| **7-8** | Details coming soon. |
+Find the level that best matches your work, then look at the level above to see how to improve.
 
-Not sure what command words like *justify* or *analyse* mean? See the [command terms on the rubric page](#tasks/0).
+| Level | What the criterion says, and what it means in this task |
+|---|---|
+| **1-2** | **Criterion:** you identify and demonstrate strategies to enhance interpersonal skills; outline the effectiveness of a plan based on the outcome; outline and summarise performance.<br><br>**As a coach** you briefly state:<br>• feedback to your client and/or<br>• negotiation with your client towards development of the training plan.<br>**As a client** you briefly state:<br>• your response to feedback from the coach and/or<br>• negotiation with your coach towards development of the training plan.<br><br>**As a coach**, you submit evidence of the outcome of the training plan that may include how the goals were met and/or successes and challenges throughout.<br>**As a client**, you submit a brief summary of skills and techniques developed through the unit, based on a general description of the performance. |
+| **3-4** | **Criterion:** you outline and demonstrate strategies to enhance interpersonal skills; **explain** the effectiveness of a plan based on the outcome; **describe** and summarise performance.<br><br>**As a coach** you submit a brief account of:<br>• feedback to your client that could lead to changes in the training plan<br>• negotiation with your client towards ongoing development of the training plan.<br>**As a client** you submit a brief account of:<br>• your response to feedback from the coach that could lead to changes in the training plan<br>• negotiation with your coach towards ongoing development of the training plan.<br><br>**As a coach**, you submit **detailed evidence** of the outcome of the training plan, including how the goals were met, and successes and challenges throughout.<br>**As a client**, you submit a detailed account of skills and techniques developed through the unit, based on a general description of the performance. |
+| **5-6** | **Criterion:** you **describe** and demonstrate strategies to enhance interpersonal skills; **analyse** the effectiveness of a plan based on the outcome; **explain and evaluate** performance.<br><br>**As a coach** you submit a detailed account of:<br>• feedback to your client that could lead to changes in the training plan<br>• negotiation with your client towards **mutual agreement** on the ongoing development of the training plan.<br>**As a client** you submit a detailed account of:<br>• your response to feedback from the coach that **leads to adaptation** of the training plan<br>• negotiation with your coach towards mutual agreement on the ongoing development of the training plan.<br><br>**As a coach**, you submit detailed evidence that **analyses** the outcome of the training plan, including how the goals were met, what you might do differently next time, and successes and challenges throughout.<br>**As a client**, you submit a detailed account of skills and techniques developed through the unit based on an **evaluation** of the performance, and weigh the strengths and limitations of the performance. |
+| **7-8** | **Criterion:** you **explain** and demonstrate strategies to enhance interpersonal skills; **analyse and evaluate** the effectiveness of a plan based on the outcome; **analyse and evaluate** performance.<br><br>**As a coach** you submit a detailed account that includes **reasons** for the strategies used to enhance interpersonal skills through:<br>• feedback to your client that leads to changes in the training plan<br>• strategies for collaboration with your client that lead to ongoing development of an effective training plan.<br>**As a client** you submit a detailed account that includes **reasons** for the strategies used to enhance interpersonal skills through:<br>• consistent feedback to your coach that leads to adaptation of the training plan<br>• strategies for collaboration with your coach that lead to ongoing development of an effective training plan.<br><br>**As a coach**, you submit detailed evidence that **analyses and explains** the outcome of the training plan, including how the goals were met, what you might do differently next time, and successes and challenges throughout.<br>**As a client**, you:<br>• break down the performance with respect to the skills and techniques it demonstrated, including the steps that led to it from the initial recording, through the training plan, to the final performance<br>• weigh the strengths and limitations of the performance<br>• critically review the performance with respect to personal goals as well as the aims of physical and health education. |
+
+Not sure what command words like *evaluate* or *justify* mean? See the [command terms on the rubric page](#tasks/0).
 
 ## Examples of interpersonal and ATL skills
 

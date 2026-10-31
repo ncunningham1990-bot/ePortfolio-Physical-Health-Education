@@ -13,7 +13,7 @@ Your ePortfolio is assessed on four MYP criteria, one for each task. Each task p
 | [Task 3: Applying and Performing](#tasks/3) | C: Applying and Performing | To be confirmed | To be confirmed |
 | [Task 4: Reflecting and Improving Performance](#tasks/4) | D: Reflecting and Improving | To be confirmed | To be confirmed |
 
-Details of this year's tasks are coming soon. Exemplars from a previous student are on the pages for Tasks 1, 2 and 4.
+Details of this year's tasks are coming soon. An exemplar of high-quality work will be added to each task page.
 
 ## How the levels work
 
