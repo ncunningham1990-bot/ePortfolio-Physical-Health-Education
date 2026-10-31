@@ -1,17 +1,1 @@
-{
-  "01-task-1.md": [
-    { "label": "Draft 1", "date": "2025-12-05" }
-  ],
-  "02-task-2.md": [
-    { "label": "Draft", "date": "2026-02-03" },
-    { "label": "Final", "date": "2026-02-22" }
-  ],
-  "03-task-3.md": [
-    { "label": "Draft 1", "date": "2026-02-17" },
-    { "label": "Final draft", "date": "2026-03-02" }
-  ],
-  "04-task-4.md": [
-    { "label": "First draft", "date": "2026-02-27" },
-    { "label": "Final draft", "date": "2026-03-10" }
-  ]
-}
+{}
