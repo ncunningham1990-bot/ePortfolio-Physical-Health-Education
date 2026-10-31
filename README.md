@@ -127,7 +127,8 @@ Each case needs 3 to 7 scenes, each with exactly one `+`, at least one `-` and 3
 ### ePortfolio tab: tracker, deadlines and task tools
 
 - **Checklist tracker:** every top-level item under `## Checklist` on a task page gets a tick box. Ticks are saved in the student's browser. Add or edit checklist items in the task's markdown file and the tracker updates itself.
-- **Deadline countdown:** edit `site/content/deadlines.json`. Each task file name has a list of `{ "label": "Draft", "date": "2026-02-03" }`. The countdown runs to the end of that day on the student's device clock. Update the dates and years each time you run the course. `npm run build` checks the file.
+- **Deadline countdown:** edit `site/content/deadlines.json` (it is empty at the moment, so no countdown shows until you add dates). Each task file name has a list of `{ "label": "Draft", "date": "2026-02-03" }`. The countdown runs to the end of that day on the student's device clock. Update the dates and years each time you run the course. `npm run build` checks the file.
+- **Tools notice:** the three tools show a "being updated" notice. Set `UPDATING_NOTICE` at the top of `site/tools.js` to an empty string to remove it once the prompts match the new tasks.
 - **SMART goal builder and Session planner** (Task 2 sub-tabs) and the **Self-check** (all four tasks) live in `site/tools.js`. Their prompts quote the Task 2 checklist.
 - **Self-check rules** are in `site/selfcheck.js`. Each check lists key words to look for, a strength message, and the steps shown when it is missing. If you change a checklist or rubric, update the matching checks. The tool only looks for key words and gives written feedback with no grade or band, never rewrites work, and does not save or send what students paste.
 
@@ -136,7 +137,7 @@ Each case needs 3 to 7 scenes, each with exactly one `+`, at least one `-` and 3
 The site is an installable web app (a "progressive web app"). Students can add it to their home screen or install it from the browser, and the lessons then work without internet.
 
 - `site/manifest.webmanifest` sets the app name, colours and icons (`site/icons/`, made from the PHE ePortfolio Hub logo).
-- `npm run build` writes `site/sw.js` from `scripts/sw-template.js`. It lists every site file to keep on the device, except big files (the podcast and exemplar PDFs and page images), which are saved the first time a student opens them. Edit the template, not `sw.js`.
+- `npm run build` writes `site/sw.js` from `scripts/sw-template.js`. It lists every site file to keep on the device, except big files (audio, exemplar PDFs and page images), which are saved the first time a student opens them. Edit the template, not `sw.js`.
 - Every build changes the offline version automatically when any file changes. Students get the update the next time they open the app while online (it may take one extra reload).
 - The home page shows an "Install" card that explains how to install on iPhone, Android and laptops, with an install button where the browser supports it. Students can dismiss it, and it hides itself once the app is installed.
 - Students' progress is still saved per device, so an installed copy on a phone has its own progress.
