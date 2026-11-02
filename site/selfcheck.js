@@ -54,81 +54,157 @@ const CITE_CHECK = F("cite", "Citation", "Citation section", "Harvard referencin
   "There is little or no sign of Harvard in-text citations like (Author, 2024).",
   ["Find each fact, statistic or idea you took from a book, website or AI tool.", "Put a citation next to it in this style: (Author, year).", "Add a bibliography as the task asks, and make sure every citation appears in it."]);
 
+// ----- Task 1: one check per item on the Task 1 checklist template -----
+const lvl = (c) => (c.every(Boolean) ? 2 : c.some(Boolean) ? 1 : 0);
+const hit = (t, rx) => rx.test(t);
+const CITED = /\(\s*[A-Za-z][^()]*?(?:19|20)\d{2}[a-z]?\s*\)/;
+const CONCEPTS = [
+  ["Global context: Fairness and development", "global context", "fairness and development"],
+  ["Key concept: Relationships", "key concept", "relationships"],
+  ["Related concept: Environment", "related concept", "environment"],
+];
+// the part of the text that talks about one unit concept (up to the next concept or 1,500 characters)
+function conceptScope(text, phrase) {
+  const start = text.search(new RegExp(phrase, "i"));
+  if (start < 0) return "";
+  const others = ["global context", "key concept", "related concept", "statement of inquiry"].filter((x) => x !== phrase);
+  let end = Math.min(text.length, start + 1500);
+  for (const o of others) { const i = text.slice(start + phrase.length).search(new RegExp(o, "i")); if (i >= 0) end = Math.min(end, start + phrase.length + i); }
+  return text.slice(start, end);
+}
+const SEC = {
+  concept: "Conceptual understanding",
+  profile: "Health analysis: Client profile, interview and PAR-Q",
+  measures: "Health analysis: Measurements of health and well-being",
+  theory: "Health analysis: Links to theory",
+  overall: "Health analysis: Overall health",
+  sport: "Physical analysis: Chosen sport",
+  fitness: "Physical analysis: Fitness analysis",
+  technique: "Physical analysis: Technique analysis",
+  next: "Relevant solutions and next steps",
+  submit: "Before you submit",
+};
+// item(id, section, checklist wording, test(text, stats) => 0|1|2, steps for how to improve)
+const item = (id, section, label, test, how) => ({ id, area: section, ref: section, label, fn: (t, s) => ({ level: test(t, s), found: [] }), ok: `This is covered: ${label}.`, what: `I could not find clear evidence of this: ${label}.`, how });
+const TASK1_CHECKS = [
+  ...CONCEPTS.flatMap(([name, phrase]) => {
+    const sc = (t) => conceptScope(t, phrase);
+    const short = name.split(":")[0];
+    return [
+      item(`c-${phrase}-def`, SEC.concept, `${name}: defined in your own words, with a source`, (t) => { const x = sc(t); return !x ? 0 : lvl([hit(x, /\b(is|means|refers to|defined as|can be defined|involves)\b/i), hit(x, CITED)]); },
+        [`Write the ${short.toLowerCase()} out by name and say what it means in your own words.`, "Add a source next to it using Harvard in-text style, for example (Author, year)."]),
+      item(`c-${phrase}-apply`, SEC.concept, `${name}: applied to your client and their athletics event`, (t) => { const x = sc(t); return !x ? 0 : lvl([hit(x, /\b(client|athlete)\b/i), hit(x, /\b(event|athletics|sprint|jump|throw|race|hurdle|relay|running|run)\b/i)]); },
+        [`Say how the ${short.toLowerCase()} shows up in your client's athletics event.`, "Name your client and the event in the same paragraph so the link is clear."]),
+      item(`c-${phrase}-coach`, SEC.concept, `${name}: how it shapes your coaching focus`, (t) => { const x = sc(t); return !x ? 0 : lvl([hit(x, /\bcoach/i), hit(x, /\b(focus|shape|shapes|priorit|will|plan|because|so that)\b/i)]); },
+        ["Finish with the 'so what': say what you will focus on as the coach because of this idea.", "Use the word because to join the idea to your coaching decision."]),
+    ];
+  }),
+  item("soi-client", SEC.concept, "Statement of inquiry: explains the statement for your client and event", (t) => { const x = conceptScope(t, "statement of inquiry"); return !x ? 0 : lvl([hit(x, /\bclient\b/i), hit(x, /\b(event|athletics)\b/i)]); },
+    ["Copy the statement of inquiry into your work, then explain it in your own words for your client and their event."]),
+  item("soi-together", SEC.concept, "Statement of inquiry: pulls the three concepts together", (t) => { const x = conceptScope(t, "statement of inquiry"); if (!x) return 0; const n = [/fair/i, /relationship/i, /environment/i].filter((r) => r.test(x)).length; return n >= 3 ? 2 : n >= 2 ? 1 : 0; },
+    ["Show how fairness and development, relationships and environment connect to each other in one paragraph.", "Say which one matters most for your client and why."]),
+  item("soi-coach", SEC.concept, "Statement of inquiry: says what this means for your coaching and client", (t) => { const x = conceptScope(t, "statement of inquiry"); return !x ? 0 : lvl([hit(x, /\bcoach/i), hit(x, /\bclient\b/i)]); },
+    ["End the section by saying what this means for how you will coach and for what your client will gain."]),
+
+  item("p-interview", SEC.profile, "Summary of interview answers about health, well-being and fitness", (t) => lvl([hit(t, /interview/i), hit(t, /\b(said|told|reported|stated|explained|answered|answers?|responses?)\b/i)]),
+    ["Summarise what your client told you in the interview about health, well-being and fitness.", "Do not paste the whole interview. Pick the answers that matter and say why."]),
+  item("p-parq", SEC.profile, "Summary of PAR-Q responses and what it showed", (t) => lvl([hit(t, /par.?q/i), hit(t, /\b(showed|shows|indicated|responses?|answered|no risk|cleared|safe)\b/i)]),
+    ["Say that you completed the PAR-Q.", "Explain what it showed about whether your client is ready to train."]),
+  item("p-body", SEC.profile, "Age, height, weight and BMI", (t) => { const n = [/\bage\b|years? old|aged/i, /height|\bcm\b/i, /weight|\bkg\b/i, /\bbmi\b/i].filter((r) => r.test(t)).length; return n >= 4 ? 2 : n >= 2 ? 1 : 0; },
+    ["Give your client's age, height, weight and BMI with units.", "Say what the BMI tells you, and what it does not."]),
+  item("p-injury", SEC.profile, "Previous injury, illness or recent surgery", (t) => (hit(t, /injur|illness|surgery|medical history|no previous|operation/i) ? 2 : 0),
+    ["State any previous injury, illness or recent surgery, or say clearly that there is none.", "Explain whether it affects their training."]),
+  item("p-diet", SEC.profile, "Diet, calorie and water intake", (t) => { const n = [/diet|meal|nutrition|eat/i, /calorie|kcal/i, /water|hydrat|fluid/i].filter((r) => r.test(t)).length; return n >= 3 ? 2 : n >= 1 ? 1 : 0; },
+    ["Describe your client's usual diet, daily calorie intake and water intake.", "Say how these compare with what an athlete in their event needs."]),
+  item("p-sleep", SEC.profile, "Sleep and recovery days", (t) => lvl([hit(t, /sleep/i), hit(t, /recover|rest day/i)]),
+    ["Give their average hours of sleep and how many recovery or rest days they have each week.", "Explain what this means for their training."]),
+  item("p-activity", SEC.profile, "Activity level and steps per day", (t) => lvl([hit(t, /steps?\b/i), hit(t, /activity level|active|exercise|training (?:per|a) week|sessions? (?:per|a) week/i)]),
+    ["State their usual activity level and the average steps per day.", "Say how this fits with their training."]),
+
+  item("m-test", SEC.measures, "Each test named, with why you chose it", (t) => lvl([hit(t, /acsi|csai|who.?5|well.?being (?:index|scale)|smuis|bsmas|questionnaire|survey|inventory|scale|interview|observation/i), hit(t, /\b(because|chose|chosen|purpose|used to|in order to|to measure)\b/i)]),
+    ["Name each test, survey or scale you used (for example a questionnaire, interview or observation).", "Say why you chose it, using because."]),
+  item("m-scale", SEC.measures, "The scoring scale or mark scheme", (t) => lvl([hit(t, /\bscor(?:e|ed|es|ing)\b|mark scheme|\bscale\b/i), hit(t, /\d+\s*(?:-|–|to)\s*\d+|out of \d+/i)]),
+    ["Give the scoring scale for each test, for example the range of scores and what each range means."]),
+  item("m-meaning", SEC.measures, "What the results mean for your client", (t) => lvl([hit(t, /\bresults?\b|\bscore/i), hit(t, /\b(this (?:shows|suggests|means|indicates)|which means|suggests|indicates|means that)\b/i), hit(t, /\bclient\b/i)]),
+    ["After each result, add a sentence starting 'This shows...' or 'This means...' that links it to your client."]),
+  item("t-named", SEC.theory, "Theory named correctly (for example the Inverted U, motivation, anxiety, arousal, confidence, stress)", (t) => { const n = findTerms(t, ["inverted.?u", "motivation", "anxiety", "arousal", "confidence", "stress", "self.?efficacy", "intrinsic", "extrinsic", "somatic", "cognitive"]).length; return n >= 3 ? 2 : n >= 1 ? 1 : 0; },
+    ["Name the theories you are using from your lessons and research, for example the Inverted U, motivation, anxiety, arousal, confidence or stress.", "Explain each one briefly in your own words."]),
+  item("t-nutrition", SEC.theory, "Nutrition, sleep and recovery explained", (t) => { const n = [/nutri|protein|carbohydrate|diet/i, /sleep/i, /recover/i].filter((r) => r.test(t)).length; return n >= 3 ? 2 : n >= 1 ? 1 : 0; },
+    ["Explain how nutrition, sleep and recovery each affect your client's performance, using what you learned in lessons."]),
+  item("t-linked", SEC.theory, "Theory linked to your client's results", (t) => lvl([hit(t, /inverted.?u|motivation|anxiety|arousal|confidence|stress/i), hit(t, /\bclient\b/i), hit(t, /\b(result|score|shows?|suggests?)\b/i)]),
+    ["Choose two findings and link each to a theory: finding, then theory, then what it means for your client."]),
+  item("o-sw", SEC.overall, "Strengths and weaknesses in health and well-being", (t) => lvl([hit(t, /strength/i), hit(t, /weakness|limitation/i)]),
+    ["State at least two strengths and two weaknesses in your client's health and well-being, with evidence for each."]),
+  item("o-relate", SEC.overall, "How health relates to physical performance", (t) => lvl([hit(t, /health|well.?being/i), hit(t, /\b(affect|impact|influence|limit|improve|relate)\w*\b/i), hit(t, /performance/i)]),
+    ["Evaluate how each health point could help or limit your client's performance in their event."]),
+
+  item("s-event", SEC.sport, "What the event involves (technique, phases and strategies)", (t) => { const n = findTerms(t, ["phase", "stage", "approach", "take.?off", "flight", "landing", "start", "drive", "release", "technique", "strateg"]).length; return n >= 4 ? 2 : n >= 2 ? 1 : 0; },
+    ["Explain what the event involves and break it into phases or stages.", "Describe the technique and the strategies used in each phase."]),
+  item("s-records", SEC.sport, "World records (factual information)", (t) => lvl([hit(t, /world record|record holder|national record|school record/i), hit(t, /\d/)]),
+    ["Add the world record for your client's event as a fact, with the number and a source."]),
+  item("f-trials", SEC.fitness, "3 trials for each test and the average of each fitness test", (t) => lvl([hit(t, /trial\s*1|trial\s*2|trial\s*3|3 trials|three trials/i), hit(t, /average|mean/i)]),
+    ["Record 3 trials for every fitness test and calculate each average, in the fitness table."]),
+  item("f-event", SEC.fitness, "3 trials for each test and the average of their athletic event initial performance", (t) => lvl([hit(t, /initial|baseline/i), hit(t, /performance|event/i), hit(t, /trial|average|mean/i)]),
+    ["Add 3 trials and the average for your client's initial performance in the event itself."]),
+  item("f-meaning", SEC.fitness, "What the results show about your client's current level and what needs improved", (t) => lvl([hit(t, /current level|currently/i), hit(t, /need\w* (?:to )?improv|improve|weak|develop/i)]),
+    ["Say what the results show about your client's current level.", "Name what needs to be improved and which result shows it."]),
+  item("te-position", SEC.technique, "Body position", (t) => (hit(t, /body position|posture|lean|alignment|body angle/i) ? 2 : 0),
+    ["Describe your client's body position in each phase and compare it with the perfect model."]),
+  item("te-angles", SEC.technique, "Angles of joints (knee, hip, shoulder, elbow, ankle)", (t) => { const n = findTerms(t, ["knee", "hip", "shoulder", "elbow", "ankle"]).length; return hit(t, /angle/i) && n >= 2 ? 2 : hit(t, /angle/i) || n >= 1 ? 1 : 0; },
+    ["Measure and state the joint angles (knee, hip, shoulder, elbow, ankle) for each phase, in degrees.", "Compare them with the perfect model."]),
+  item("te-flight", SEC.technique, "Release angle (throwing), flight (jumping or throwing), stride length and number (running)", (t) => (hit(t, /release angle|flight|stride length|stride number|stride|trajectory/i) ? 2 : 0),
+    ["Include the measure that fits your event: release angle (throwing), flight (jumping or throwing) or stride length and number (running)."]),
+  item("te-speed", SEC.technique, "Speed/time and baseline score (for example time, distance or height)", (t) => lvl([hit(t, /baseline|initial|speed|time|distance|height/i), hit(t, /\d+(?:\.\d+)?\s*(?:m|cm|s|sec|seconds|m\/s)\b/i)]),
+    ["State your client's baseline score for the event with units (time, distance or height).", "Add the speed or time if your event uses it."]),
+  item("te-principles", SEC.technique, "Principles such as balance, force, power, flow, fluency and coordination", (t) => { const n = findTerms(t, ["balance", "force", "power", "flow", "fluency", "coordination"]).length; return n >= 3 ? 2 : n >= 1 ? 1 : 0; },
+    ["Apply principles such as balance, force, power, flow, fluency and coordination to each phase and explain how well your client uses them."]),
+  item("te-screens", SEC.technique, "Strengths and weaknesses explained next to each screenshot", (t) => lvl([hit(t, /strength/i), hit(t, /weakness/i), hit(t, /screenshot|figure|image|photo|picture/i)]),
+    ["Next to each screenshot, explain one strength and one weakness you can see.", "Compare with the perfect model in the same phase."]),
+  item("te-model", SEC.technique, "Screenshots of your client and a 'perfect model' compared for each phase", (t) => lvl([hit(t, /perfect model|olympic|world champion|elite|professional/i), hit(t, /compar|differ|whereas|unlike|in contrast/i)]),
+    ["Choose an elite performer (for example an Olympian or world champion) and compare matching phases side by side."]),
+  item("te-app", SEC.technique, "Lines or angles drawn with an app (for example Kinovea, Hudl or Coach's Eye)", (t) => (hit(t, /kinovea|hudl|coach.?s eye|kinemaster|annotat|drew|drawn|app\b/i) ? 2 : 0),
+    ["Draw lines and angles on your screenshots with an app such as Kinovea, Hudl or Coach's Eye, and name the app."]),
+  item("te-terms", SEC.technique, "PHE terminology (for example muscle names, flexion, extension)", (t, s) => (s.terms >= 8 ? 2 : s.terms >= 3 ? 1 : 0),
+    ["Swap everyday words for PHE terms: for example flexion, extension, quadriceps, hamstrings, balance, force.", "Use each term correctly and explain it the first time."]),
+
+  item("n-areas", SEC.next, "Specific areas/phases/components/skills/wellbeing elements that need improved, backed up by your results", (t) => lvl([hit(t, /need\w* (?:to )?(?:improv|work|develop)|improve|develop|weak/i), hit(t, /phase|component|skill|well.?being|technique/i), hit(t, /\d/)]),
+    ["List the specific phases, components, skills or well-being elements that need to improve.", "Back each one with a result from your tables."]),
+  item("n-links", SEC.next, "Link to relationships, environment, development and communication", (t) => { const n = findTerms(t, ["relationship", "environment", "development|develop", "communicat"]).length; return n >= 4 ? 2 : n >= 2 ? 1 : 0; },
+    ["Explain how the coach-client relationship, the environment and communication will affect your client's performance and lead to development."]),
+  item("n-help", SEC.next, "Explain how you will help your client improve and reach their goals (name specific training methods and exercises)", (t) => { const n = findTerms(t, ["interval", "circuit", "plyometric", "weights|resistance", "fartlek", "drill", "exercise", "training method", "squat|lunge|sprint"]).length; return n >= 3 ? 2 : n >= 1 ? 1 : 0; },
+    ["Name the specific training methods and exercises you will use.", "Link each one to something that needs to improve."]),
+  item("n-why", SEC.next, "How these will lead to improvement and why these solutions suit your client", (t) => lvl([hit(t, /\b(will lead|lead to|improve|so that|result in)\b/i), hit(t, /\b(suit|suits|because|appropriate|best for)\b/i), hit(t, /\bclient\b/i)]),
+    ["For each solution say how it will lead to improvement.", "Say why it suits your client, using because."]),
+  item("n-observe", SEC.next, "How you will observe progress (for example video analysis, questionnaires, feedback meetings, regular re-testing)", (t) => { const n = findTerms(t, ["video analysis", "questionnaire", "feedback", "meeting", "re.?test", "observ"]).length; return n >= 2 ? 2 : n >= 1 ? 1 : 0; },
+    ["Say how you will observe progress, for example video analysis, questionnaires, feedback meetings and regular re-testing."]),
+
+  item("cite", SEC.submit, "Referenced sources, and Harvard citations next to the work they support", (t, s) => (s.cites >= 4 ? 2 : s.cites >= 1 ? 1 : 0),
+    ["Find each fact, statistic or idea you took from a book, website or AI tool.", "Put an in-text citation next to it, for example (Author, year), and keep the full source for your final bibliography."]),
+  item("sub-terms", SEC.submit, "Words linking to the unit concepts, global context and statement of inquiry", (t) => { const n = ["global context", "key concept", "related concept", "statement of inquiry"].filter((p) => new RegExp(p, "i").test(t)).length; return n >= 4 ? 2 : n >= 2 ? 1 : 0; },
+    ["Use the words key concept, related concept, global context and statement of inquiry when you link back to them throughout your work."]),
+  item("sub-detail", SEC.submit, "Information is detailed and in paragraph form", (t, s) => (s.words >= 600 ? 2 : s.words >= 250 ? 1 : 0),
+    ["Explain each point in full sentences and paragraphs rather than lists or short notes.", "Give the reason for each point, using because."]),
+  item("sub-prompts", SEC.submit, "All grey prompts and tick-lists are deleted", (t) => (hit(t, /use the same four steps for each concept|introduce your client and explain what the interview|say what you used \(for example surveys|show your client's results for each test in the table|record and analyse your client's initial performance technique|say what your client needs to work on and explain the solutions|☐/i) ? 0 : 2),
+    ["I found template prompt wording or tick boxes in the text you pasted. Delete all the grey prompts and tick-lists before you submit."]),
+];
+
 const RUBRIC = {
   1: {
+    // Task 1 is checked against the Task 1 checklist template only (and, when added, the student example).
+    mode: "checklist",
     title: "Task 1: Initial Observation and Analysis",
-    criterion: "Criterion A: Knowing and Understanding",
-    minWords: 500,
-    checks: [
-      F("t1-links", "Unit terminology and connections", "1 Unit connections", "Links to the global context, key concept, related concepts and statement of inquiry",
-        (t) => { const ph = ["global context", "key concept", "related concept", "statement of inquiry"].filter((p) => termRx(p).test(t)); const cw = findTerms(t, ["fair", "development|develop", "relationship", "environment", "equal", "divers"]); return { level: ph.length >= 3 && cw.length >= 4 ? 2 : ph.length + cw.length >= 3 ? 1 : 0, found: [...ph, ...cw] }; },
-        "You connect your work to the unit's global context, key concept, related concepts and statement of inquiry.",
-        "The links to the unit's global context, key concept, related concepts and statement of inquiry are missing or thin.",
-        ["Write the four names out: global context (Fairness and development), key concept (Relationships), related concept (Environment) and the statement of inquiry.", "For each one use the four steps in the checklist: define it in your own words with a source, apply it to athletics, link it to a specific fact about your client (with because), and say how it shapes your coaching.", "Put those words in bold or a different colour when you link back to them."]),
-      T("t1-parq", "Health analysis", "2.1 Client profile, interview and PAR-Q", "Interview and PAR-Q", ["par.?q", "interview", "questionnaire", "client"], 2,
-        "You used an interview and a PAR-Q to gather health information from your client.",
-        "There is no clear sign of the interview questions or the PAR-Q.",
-        ["List the interview questions you asked about health, well-being and fitness.", "Complete the PAR-Q with your client and say what it showed.", "Explain what each answer tells you about their readiness to train."]),
-      T("t1-baseline", "Health analysis", "2.1 Client profile, interview and PAR-Q", "Baseline health information", ["sleep", "steps", "screen ?time", "bmi", "diet|calorie|nutrition", "water|hydrat", "recovery|rest day", "injur|illness", "height", "weight", "age\\b"], 5,
-        "You collected a range of baseline health information (for example sleep, steps, screen time, BMI, diet).",
-        "Your baseline health information is limited.",
-        ["Check the list in section 2.1: age, height, weight and BMI, injury or illness, diet, calorie and water intake, sleep and recovery days, activity level and steps per day.", "Add the missing measures that matter for your client.", "For each one, comment on what it suggests about their overall health, fitness and device use."]),
-      T("t1-tools", "Health analysis", "2.2 How you measured well-being", "How health was measured", ["acsi", "csai", "who", "smuis", "bsmas", "observation", "survey", "questionnaire"], 2,
-        "You name the tools you used to measure well-being and psychology (for example ACSI, CSAI-2, SMUIS, BSMAS).",
-        "The measuring tools are not clearly named.",
-        ["Name each tool or method you used (for example ACSI, WHO well-being, CSAI-2, SMUIS, BSMAS, interviews, observation).", "Say briefly what each one measures and why you chose it."]),
-      F("t1-results", "Health analysis", "2.2 How you measured well-being", "Results displayed and explained", (t, s) => ({ level: s.numbers >= 12 && /table|graph|chart|figure|screenshot|illustration/i.test(t) ? 2 : s.numbers >= 4 ? 1 : 0, found: s.numbers ? [`${s.numbers} numbers`] : [] }),
-        "You include results as numbers and refer to tables, graphs or figures.",
-        "There are few numbers or references to tables and graphs.",
-        ["Present your results in a table or graph and refer to it in your writing (for example Figure 1).", "Under each one, say what the results tell you about your client.", "Include only the data you will actually discuss."]),
-      T("t1-theory", "Health analysis", "2.3 Links to theory", "Links to theory from lessons and beyond", ["inverted.?u", "motivation", "somatic", "cognitive", "arousal", "confidence", "stress", "pressure", "nutri|carbohydrate|protein", "sleep", "recovery", "well.?being", "anxiety"], 5,
-        "You connect your findings to health, diet and sports psychology theory.",
-        "There are few links to health, diet or sports psychology theory.",
-        ["Choose two or three of your findings and link each to theory (for example Inverted U Theory, somatic and cognitive anxiety, arousal, motivation, nutrients, sleep and recovery).", "Use the pattern: finding, then the theory, then what it means for your client's performance.", "Go beyond the lessons by researching one idea and citing it."]),
-      T("t1-tech", "Health and physical analysis", "2.4 and 3.6", "Innovative tools", ["kinovea", "hudl", "kinemaster", "coach.?s eye", "coachview", "\\bapps?\\b", "wearable", "tracker", "smart ?watch", "whoop|garmin|fitbit|strava", "video analysis", "slow.?motion", "innovative"], 2,
-        "You refer to innovative tools for monitoring health and analysing performance.",
-        "Innovative tools are not mentioned clearly.",
-        ["Name at least one tool for monitoring health, well-being or screen time, and at least one for analysing technique (for example Kinovea, Hudl, Coach's Eye).", "Say what each tool would show you about your client and how you will use it.", "Add a screenshot where you can."]),
-      T("t1-fitness", "Physical analysis", "3.3 Fitness components and tests", "Components of fitness for the event", ["speed", "power", "strength", "flexibility", "endurance", "agility", "coordination", "balance", "reaction", "muscular", "cardiovascular", "body composition"], 4,
-        "You identify the components of fitness the event needs.",
-        "The components of fitness for your event are not clear.",
-        ["List the components of fitness your event needs.", "Define each one in your own words.", "Explain why each one matters for your specific event."]),
-      T("t1-tests", "Physical analysis", "3.3 and 3.4 Baseline results", "Fitness tests, trials and averages", ["sit.?and.?reach", "vertical jump", "standing (?:long )?jump", "30 ?m", "sprint", "bleep", "cooper", "grip", "illinois", "push.?up", "sit.?up", "plank", "medicine ball", "3 trials|three trials|trial", "average|mean"], 4,
-        "You describe the fitness tests, with trials and averages.",
-        "The fitness tests, trials or averages are not clear.",
-        ["Name each fitness test and say which component of fitness it measures and why you chose it.", "Record 3 trials for each test and calculate the average.", "Show the results in a table or graph and include a picture of your client performing."]),
-      T("t1-norms", "Physical analysis", "3.5 Comparing with normative data and records", "Normative data and records", ["normative", "world record", "national record", "dassa", "norm", "benchmark", "record", "average for", "compare"], 3,
-        "You compare your client's results with normative data or records.",
-        "There is no clear comparison with normative data or records.",
-        ["Research normative data and records for your event (world, national, DASSA).", "Put them beside your client's results in a table and highlight the range their results fall into.", "Relate the comparison to social media influences, as the checklist asks."]),
-      T("t1-technique", "Physical analysis", "3.6 Technique analysis", "Technique analysis with PHE terminology", ["angle", "flexion", "extension", "plantar", "dorsi", "stride", "release", "body position", "centre of mass|center of mass", "force", "balance", "coordination", "take.?off", "approach", "flight", "landing", "phase", "trajectory"], 6,
-        "You analyse technique using joint movements, phases and biomechanics.",
-        "The technique analysis is thin on joint angles, phases and PHE terms.",
-        ["Break the event into phases and analyse each one.", "Use joint movements and angles (for example flexion and extension at the knee and hip) and name the muscles involved.", "Apply principles like balance, force and coordination, and add annotated screenshots."]),
-      F("t1-model", "Physical analysis", "3.6 Technique analysis", "Comparison with a model performer", (t) => ({ level: both(t, "model|olympic|world champion|professional|elite|perfect|benchmark", "compare|comparison|whereas|unlike|differ|in contrast") ? 2 : termRx("model|olympic|world champion|professional|elite").test(t) ? 1 : 0, found: [] }),
-        "You compare your client's technique with a model performer.",
-        "There is no clear comparison with a model performer.",
-        ["Choose an elite performer (for example an Olympian or world champion) and find footage of their technique.", "Compare matching phases side by side, with screenshots.", "State where your client matches the model and where they differ, and why that matters."]),
-      F("t1-sw", "Summary", "2.5 and 4.1", "Strengths and weaknesses", (t) => ({ level: both(t, "strength", "weakness") ? 2 : termRx("strength|weakness").test(t) ? 1 : 0, found: [] }),
-        "You identify your client's strengths and weaknesses.",
-        "Strengths and weaknesses are not clearly stated.",
-        ["State at least two strengths and two weaknesses for health and for physical performance.", "For each one, give the evidence (a result, a measurement or a screenshot).", "Say how each weakness is affecting the event."]),
-      T("t1-env", "Environment and relationships", "2.4, 3.2 and 4.1", "Environment, relationships and the digital environment", ["environment", "coach", "relationship", "social media", "screen ?time", "digital", "online", "padlet", "fair", "access", "equal", "divers", "communicat"], 6,
-        "You discuss environment, relationships and the digital environment.",
-        "The environment, relationships and digital environment are not covered in depth.",
-        ["Discuss the training environment (facilities, coach, the environment your coach creates).", "Discuss relationships and communication online, including your client's social media use and its impact.", "Explain how these affect performance and athletic identity."]),
-      T("t1-next", "Summary and next steps", "4.1 to 4.4", "Next steps and how you will track progress", ["smart", "goal", "plan", "re.?test", "video analysis", "questionnaire", "feedback", "padlet", "next step", "improve", "measure"], 5,
-        "You outline next steps and how you will track progress.",
-        "Next steps and how you will track progress are thin.",
-        ["State what your client needs to work on first.", "Say how you will observe progress (video analysis, questionnaires, feedback meetings, re-testing).", "Say how feedback will be given in a digital environment (for example Padlet) and finish by relating everything back to the unit concepts."]),
-      CITE_CHECK,
+    criterion: "Task 1 checklist",
+    minWords: 600,
+    checks: TASK1_CHECKS,
+    focus: "Start with the first missing item above. Add it to your Word document in your own words, then paste your work in again to see what has changed.",
+    cant: [
+      "Written work is 5-6 pages maximum, in no smaller than 10pt font (including tables, screenshots and diagrams).",
+      "You have deleted all the grey prompts and tick-lists from your Word document. This tool can only spot prompts left in the text you paste.",
+      "Words linking to the key concept, related concept, global context and statement of inquiry are in bold and/or a different colour.",
+      "The tables in the template are completed, and graphs, pictures and screenshots support your analysis.",
+      "Your full bibliography is a separate submission after Task 4.",
     ],
-    next: {
-      "1-2": "Next focus: move from lists to a brief account. Describe your client's current ability, strengths and weaknesses for both physical performance and health, and start suggesting solutions. Use some PHE terminology.",
-      "3-4": "Next focus: add distinguishing features. Show how your health and physical findings relate to each other, use your lesson knowledge to investigate the issues, and offer mostly relevant solutions with frequent PHE terms.",
-      "5-6": "Next focus: justify. Give a detailed account that justifies your judgements with evidence, investigate issues in depth and consistently use PHE terminology.",
-      "7-8": "You are meeting the highest descriptors. Check that every judgement is justified with evidence and that nothing in the checklist is missing.",
-    },
+    next: { "1-2": "", "3-4": "", "5-6": "", "7-8": "" },
   },
   2: {
     title: "Task 2: Performance Development Plan",
@@ -347,7 +423,7 @@ export function runSelfCheck(taskNumber, text) {
   const capped = band === 3 && (d.reasoning < 2 || d.terminology < 2);
   if (capped) band = 2;
   return {
-    task: taskNumber, title: cfg.title, criterion: cfg.criterion, note: cfg.note || "",
+    task: taskNumber, title: cfg.title, criterion: cfg.criterion, note: cfg.note || "", mode: cfg.mode || "rubric", cant: cfg.cant || null, focus: cfg.focus || "",
     stats, depth: d, results, coverage, raw, band, bandName: BAND_NAMES[band], capped,
     next: cfg.next[BAND_NAMES[band]],
     tooShort: stats.words < 80,
@@ -356,4 +432,4 @@ export function runSelfCheck(taskNumber, text) {
   };
 }
 
-export const SELF_CHECK_TASKS = Object.fromEntries(Object.entries(RUBRIC).map(([k, v]) => [k, { title: v.title, criterion: v.criterion, note: v.note || "" }]));
+export const SELF_CHECK_TASKS = Object.fromEntries(Object.entries(RUBRIC).map(([k, v]) => [k, { title: v.title, criterion: v.criterion, note: v.note || "", mode: v.mode || "rubric" }]));

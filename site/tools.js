@@ -398,12 +398,12 @@ export function renderSelfCheck(el, taskNumber, ctx) {
     out.firstChild.scrollIntoView({ block: "start", behavior: "smooth" });
   };
   el.replaceChildren(h("div", { class: "tl" },
-    h("h2", {}, `Self-check against the rubric: ${info.criterion}`), updatingNotice(taskNumber),
+    h("h2", {}, info.mode === "checklist" ? `Self-check against the ${info.criterion}` : `Self-check against the rubric: ${info.criterion}`), updatingNotice(taskNumber),
     h("div", { class: "tl-callout" },
       h("p", {}, h("strong", {}, "How it works")),
       h("ol", {},
         h("li", {}, taskNumber === 3 ? "Paste your video script or voice-over notes into the box." : "Paste a section of your draft, or the whole task, into the box."),
-        h("li", {}, "Press Check my work. You get written feedback: what is working, and what to improve with steps for how to do it."),
+        h("li", {}, info.mode === "checklist" ? "Press Check my work. You get written feedback item by item against the checklist: what is working, and what to improve with steps for how to do it." : "Press Check my work. You get written feedback: what is working, and what to improve with steps for how to do it."),
         h("li", {}, "Improve your work in your own document, then paste it again to see what changed.")),
       h("p", { class: "tl-note" }, "This tool never writes or rewrites your work. It gives written feedback only, with no grade or band. It looks for key words and ideas, so it can miss a good point written differently. Your teacher marks your real work. What you paste stays in this browser tab: it is not saved or sent anywhere."),
       info.note ? h("p", { class: "tl-note" }, info.note) : false),
@@ -413,41 +413,44 @@ export function renderSelfCheck(el, taskNumber, ctx) {
 }
 
 function resultView(r, prev) {
+  const cl = r.mode === "checklist"; // checklist mode: feedback comes only from the task checklist (and the student example)
   const box = h("div", { class: "tl-result" });
   const strong = r.results.filter((x) => x.level === 2);
   const partial = r.results.filter((x) => x.level === 1);
   const missing = r.results.filter((x) => x.level === 0);
+  const unit = cl ? "checklist items" : "checklist areas";
   box.append(h("div", { class: "tl-sum" },
     h("div", { class: "tl-sumtext" },
       h("h3", {}, `Feedback on your work: ${r.criterion}`),
-      h("p", {}, `Based on the ${r.stats.words} words you pasted, ${strong.length} of ${r.results.length} checklist areas are covered well and ${partial.length} are partly covered.`),
-      prev ? h("p", { class: "tl-prev" }, `Since your last check: ${prev.strong} areas were covered well before, and ${strong.length} are now.`) : false,
+      h("p", {}, `Based on the ${r.stats.words} words you pasted, ${strong.length} of ${r.results.length} ${unit} are covered well and ${partial.length} are partly covered.`),
+      prev ? h("p", { class: "tl-prev" }, `Since your last check: ${prev.strong} ${cl ? "items were" : "areas were"} covered well before, and ${strong.length} are now.`) : false,
       h("p", { class: "tl-note" }, "This is feedback to help you improve. It is not a grade."))));
-  if (r.short) box.append(h("p", { class: "tl-warnbox" }, `You have pasted ${r.stats.words} words. A full submission is usually longer (about ${r.minWords}+ words), so areas you have not pasted will show as missing. Paste more of your work for a complete check.`));
-  // depth
+  if (r.short) box.append(h("p", { class: "tl-warnbox" }, `You have pasted ${r.stats.words} words. A full submission is usually longer (about ${r.minWords}+ words), so ${cl ? "items" : "areas"} you have not pasted will show as missing. Paste more of your work for a complete check.`));
+  // depth (rubric tasks only)
   const lvl = ["Developing", "Good", "Strong"];
-  box.append(h("h3", {}, "How deeply you are writing"),
+  if (!cl) box.append(h("h3", {}, "How deeply you are writing"),
     h("div", { class: "tl-depth" }, [["reasoning", "Explaining why"], ["evaluating", "Weighing up and evaluating"], ["terminology", `PHE terminology (${r.stats.terms} different terms)`]].map(([k, t]) =>
       h("div", { class: `tl-d d${r.depth[k]}` }, h("strong", {}, t), h("span", { class: "tl-chip" }, lvl[r.depth[k]]), h("p", {}, DEPTH_TEXT[k][r.depth[k]])))));
   // strengths
   box.append(h("h3", {}, "What is working well"));
-  if (strong.length) box.append(h("ul", { class: "tl-list good" }, strong.map((x) => h("li", {}, h("strong", {}, x.check.label + ". "), x.check.ok, x.found && x.found.length ? h("span", { class: "tl-found" }, ` Found: ${x.found.slice(0, 5).join(", ")}.`) : false))));
+  if (strong.length) box.append(h("ul", { class: "tl-list good" }, strong.map((x) => h("li", {}, h("strong", {}, cl ? x.check.area + ": " : x.check.label + ". "), cl ? x.check.label + "." : x.check.ok, x.found && x.found.length ? h("span", { class: "tl-found" }, ` Found: ${x.found.slice(0, 5).join(", ")}.`) : false))));
   else box.append(h("p", {}, "Nothing is fully covered yet. Start with the first improvement below."));
-  const depthGaps = ["reasoning", "evaluating", "terminology"].filter((k) => r.depth[k] < 2 && !r.tooShort);
+  const depthGaps = cl ? [] : ["reasoning", "evaluating", "terminology"].filter((k) => r.depth[k] < 2 && !r.tooShort);
   // improvements
   box.append(h("h3", {}, "What to improve and how"));
   const card = (x, status) => h("details", { class: `tl-imp ${status}`, open: status === "missing" ? true : false },
     h("summary", {}, h("span", { class: `tl-chip ${status === "missing" ? "warn" : "mid"}` }, status === "missing" ? "Missing" : "Partly there"), h("strong", {}, x.check.label), h("small", {}, x.check.area)),
-    h("p", {}, h("strong", {}, "What I noticed: "), status === "partial" && x.found && x.found.length ? `You mention ${x.found.slice(0, 4).join(", ")}, but ${x.check.what.charAt(0).toLowerCase() + x.check.what.slice(1)}` : x.check.what),
-    h("p", {}, h("strong", {}, "Why it matters: "), `This is part of the checklist (${x.check.ref}) and the ${r.criterion} rubric.`),
+    h("p", {}, h("strong", {}, "What I noticed: "), status === "partial" && x.found && x.found.length ? `You mention ${x.found.slice(0, 4).join(", ")}, but ${x.check.what.charAt(0).toLowerCase() + x.check.what.slice(1)}` : status === "partial" && cl ? `Some of this is there, but not all of it. ${x.check.what}` : x.check.what),
+    h("p", {}, h("strong", {}, "Why it matters: "), cl ? `This is on the Task ${r.task} checklist, under ${x.check.ref}.` : `This is part of the checklist (${x.check.ref}) and the ${r.criterion} rubric.`),
+    x.check.ex ? h("p", {}, h("strong", {}, "In the student example: "), x.check.ex) : false,
     h("p", {}, h("strong", {}, "How to improve it:")), h("ol", {}, x.check.how.map((s) => h("li", {}, s))));
   const gaps = [...missing.map((x) => card(x, "missing")), ...partial.map((x) => card(x, "partial"))];
-  if (gaps.length) box.append(...gaps); else box.append(h("p", {}, "Every checklist area is covered. Now focus on depth below."));
+  if (gaps.length) box.append(...gaps); else box.append(h("p", {}, cl ? "Every checklist item is covered. Read your work through once more for detail and accuracy." : "Every checklist area is covered. Now focus on depth below."));
   if (depthGaps.length) box.append(...depthGaps.map((k) => h("details", { class: "tl-imp partial" },
     h("summary", {}, h("span", { class: "tl-chip mid" }, "Depth"), h("strong", {}, { reasoning: "Explaining why", evaluating: "Weighing up and evaluating", terminology: "PHE terminology" }[k]), h("small", {}, "Deepens your analysis")),
     h("p", {}, DEPTH_TEXT[k][r.depth[k]]), h("p", {}, h("strong", {}, "How to improve it:")), h("ol", {}, DEPTH_HOW[k].map((s) => h("li", {}, s))))));
-  // next band
-  box.append(h("h3", {}, "What to focus on next"), h("p", { class: "tl-next" }, r.next + (r.capped ? " Your coverage is strong. Explaining reasons and using PHE terms consistently will strengthen it further." : "")));
-  box.append(h("h3", {}, "Things this tool cannot check"), h("p", {}, "Check these yourself before you submit:"), h("ul", {}, (CANT_CHECK[r.task] || []).map((t) => h("li", {}, t))));
+  // what to do next
+  box.append(h("h3", {}, "What to focus on next"), h("p", { class: "tl-next" }, cl ? r.focus : r.next + (r.capped ? " Your coverage is strong. Explaining reasons and using PHE terms consistently will strengthen it further." : "")));
+  box.append(h("h3", {}, "Things this tool cannot check"), h("p", {}, "Check these yourself before you submit:"), h("ul", {}, (r.cant || CANT_CHECK[r.task] || []).map((t) => h("li", {}, t))));
   return box;
 }

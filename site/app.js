@@ -409,7 +409,7 @@ const badgeDefs = () => [
   { id: "checklist-champ", icon: "☑️", name: "Checklist Champ", desc: "Tick every item on a task checklist", test: () => (manifest.tasks || []).some((t) => t.checklist && trackerCount(t) >= t.checklist) },
   { id: "goal-setter", icon: "🎯", name: "Goal Setter", desc: "Complete every part of the SMART goal builder", test: () => !!(state.tools.smart && state.tools.smart.done) },
   { id: "programme-builder", icon: "🗓️", name: "Programme Builder", desc: "Plan all 8 sessions and the interim analysis", test: () => !!(state.tools.planner && state.tools.planner.done) },
-  { id: "self-checker", icon: "🔎", name: "Self-Checker", desc: "Run a self-check against a rubric", test: () => state.stats.selfChecks >= 1 },
+  { id: "self-checker", icon: "🔎", name: "Self-Checker", desc: "Run a self-check on your work", test: () => state.stats.selfChecks >= 1 },
   { id: "challenge-champion", icon: "🥇", name: "Challenge Champion", desc: "Complete 10 Think deeper or Challenge Bank questions", test: () => state.stats.written >= 10 },
   { id: "halfway", icon: "🏁", name: "Halfway There", desc: "Complete half of all the lessons", test: () => lessonCount() > 0 && doneCount() >= Math.ceil(lessonCount() / 2) },
   { id: "course-champion", icon: "🏆", name: "Course Champion", desc: "Complete every lesson", test: () => lessonCount() > 0 && doneCount() >= lessonCount() },

@@ -1,6 +1,6 @@
 // Service worker for the PHE ePortfolio Hub. Generated into site/sw.js by `npm run build`; edit this template, not sw.js.
 // It keeps the app files on the device so the lessons work offline, and refreshes them in the background when online.
-const CACHE = "phe-hub-ec086c72b0";
+const CACHE = "phe-hub-e15267b9f3";
 const FILES = [
  "./",
  "activities/major-muscles.html",
@@ -73,6 +73,7 @@ const FILES = [
  "content/topics/04-sports-psychology/10-goal-setting-smart-format.md",
  "content/topics/04-sports-psychology/11-unit-review.md",
  "content/topics/04-sports-psychology/_unit.md",
+ "downloads/Task1_Student_Template_26-27.docx",
  "icons/apple-touch-icon.png",
  "icons/icon-192.png",
  "icons/icon-512.png",
