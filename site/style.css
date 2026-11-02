@@ -483,3 +483,13 @@ li.trk.done>p,li.trk.done>:not(ul):not(ol):not(input){opacity:.82}
 .rs-dialog h2{margin:0 0 8px}
 .rs-opt{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:2px solid var(--border);border-radius:12px;margin:8px 0;cursor:pointer}
 .rs-opt input{margin-top:.35em;width:18px;height:18px;accent-color:var(--accent)}
+
+/* ---------- self-check: one section at a time ---------- */
+.sc-mode{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 8px}
+.sc-section{margin:0 0 12px}.sc-section .tl-select{max-width:520px}
+.sc-sec{margin:0 0 26px;padding-bottom:6px}
+.sc-sec h4{margin:18px 0 6px;font-size:1.05rem}
+.tl-quote{margin:6px 0 2px;padding:6px 12px;border-left:4px solid var(--lime);background:var(--tint);border-radius:0 10px 10px 0;font-style:italic;font-size:.93rem}
+.tl-quote small{font-style:normal;color:var(--muted);font-weight:700}
+.tl-more{margin:10px 0;border:1px dashed var(--border);border-radius:12px;padding:6px 12px}
+.tl-more summary{cursor:pointer;font:700 .9rem var(--head);color:var(--accent)}
