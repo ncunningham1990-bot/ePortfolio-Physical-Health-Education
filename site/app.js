@@ -1179,6 +1179,7 @@ async function loadDoc(item, doc, hrefFor, items, index, track) {
     if (!res.ok) throw new Error(res.status);
     const body = (await res.text()).replace(/^---\n[\s\S]*?\n---\n?/, "");
     doc.innerHTML = md(`# ${item.title}\n\n` + body);
+    doc.querySelectorAll('a[href^="http"]').forEach((a) => { a.target = "_blank"; a.rel = "noopener noreferrer"; });
     doc.querySelectorAll("img").forEach((im) => { im.loading = "lazy"; });
     if (item.activity) {
       const a = h("p", {}, h("a", { class: "btn", href: item.activity, target: "_blank", rel: "noopener" }, "Open the interactive activity"));
