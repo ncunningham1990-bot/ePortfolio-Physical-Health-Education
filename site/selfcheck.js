@@ -220,16 +220,49 @@ for (const c of TASK1_CHECKS) {
   if (TASK1_EX[key]) c.ex = TASK1_EX[key];
 }
 
+// ----- Task 1 rubric strands (wording follows the Criterion A rubric on the Task 1 page) -----
+// The rubric moves from a list, to a brief account, to distinguishing features, to a detailed account that justifies.
+// Feedback uses the rubric's own wording to guide students. It never gives a band or grade.
+const TASK1_STRANDS = [
+  { id: "ability", name: "Your client's current ability in the desired skill", asks: "a detailed account that justifies your determination of your client's current ability in the desired skill, based on their initial physical performance.",
+    next: "State your client's current ability using your trial averages and the comparison with normative data, then justify it: say why those numbers show that level." },
+  { id: "phys-sw", name: "Physical strengths and weaknesses", asks: "a detailed account that justifies your determination of your client's strengths and weaknesses in their physical performance.",
+    next: "Name specific strengths and weaknesses from your technique analysis, and give the evidence for each (a measurement, an angle or a screenshot) and why it matters." },
+  { id: "execution", name: "Features of correct skill execution", asks: "a detailed account that justifies your determination of the features of correct skill execution.",
+    next: "Describe what correct execution looks like in each phase using the perfect model, then explain how your client's technique matches or differs." },
+  { id: "wellbeing", name: "Current health and well-being", asks: "a detailed account that justifies your determination of your client's current well-being, from their initial health assessment.",
+    next: "Pull your interview, PAR-Q, profile and test results together into a clear judgement of your client's well-being, and explain the evidence behind it." },
+  { id: "health-sw", name: "Strengths and weaknesses in health and well-being", asks: "a detailed account that justifies your determination of your client's strengths and weaknesses in health and well-being.",
+    next: "State the strengths and weaknesses in health and well-being and link each to a result or answer, saying why it matters." },
+  { id: "relationship", name: "How health relates to physical performance", asks: "a detailed account that justifies how your client's well-being relates to their physical performance.",
+    next: "For each health finding, explain how it could help or limit performance in the event, using theory to support the link." },
+  { id: "solutions", name: "Investigating the issues and developing relevant solutions", asks: "use of your knowledge from lessons to investigate in depth the issues highlighted by your client, and development of relevant solutions.",
+    next: "Link each issue to theory, then name specific, relevant solutions (training methods and exercises) and explain why they suit your client." },
+  { id: "terms", name: "Subject-specific terminology", asks: "consistent use of most or all of the relevant subject-specific terminology.", terms: true,
+    next: "Replace everyday words with PHE terms throughout your analysis (muscle names, joint movements, fitness components, theory) and explain each term the first time you use it." },
+];
+const TASK1_STRAND_MAP = {
+  ability: ["f-trials", "f-event", "f-meaning", "te-speed", "s-records"],
+  "phys-sw": ["te-screens", "te-model", "te-principles", "te-angles", "f-meaning"],
+  execution: ["s-event", "te-position", "te-flight", "te-model", "te-angles", "te-terms"],
+  wellbeing: ["p-interview", "p-parq", "p-body", "p-injury", "p-diet", "p-sleep", "p-activity", "m-test", "m-scale", "m-meaning"],
+  "health-sw": ["o-sw", "m-meaning", "t-linked"],
+  relationship: ["o-relate", "t-linked", "t-named", "t-nutrition", "n-links"],
+  solutions: ["t-named", "t-nutrition", "t-linked", "n-areas", "n-links", "n-help", "n-why", "n-observe"],
+};
+for (const c of TASK1_CHECKS) c.strands = Object.keys(TASK1_STRAND_MAP).filter((k) => TASK1_STRAND_MAP[k].includes(c.id));
+
 const RUBRIC = {
   1: {
     // Task 1 is checked against the Task 1 checklist template only (and, when added, the student example).
     mode: "checklist",
-    note: "This check uses the Task 1 checklist and the Task 1 student example as its only references. The student example was written for a previous unit theme, so use it to see how the work is written, not for what it says.",
+    note: "This check uses the Task 1 checklist, the Task 1 rubric and the Task 1 student example as its references. The student example was written for a previous unit theme, so use it to see how the work is written, not for what it says.",
+    strands: TASK1_STRANDS,
     title: "Task 1: Initial Observation and Analysis",
     criterion: "Task 1 checklist",
     minWords: 600,
     checks: TASK1_CHECKS,
-    focus: "Start with the first missing item above. Add it to your Word document in your own words, then paste your work in again to see what has changed.",
+    focus: "Start with the first missing item above. Add it to your Word document in your own words. Then look at the rubric section and, for each strand, add the reasons and evidence the rubric asks for. Paste your work in again to see what has changed.",
     cant: [
       "Written work is 5-6 pages maximum, in no smaller than 10pt font (including tables, screenshots and diagrams).",
       "You have deleted all the grey prompts and tick-lists from your Word document. This tool can only spot prompts left in the text you paste.",
@@ -455,7 +488,23 @@ export function runSelfCheck(taskNumber, text) {
   let band = raw < 0.28 ? 0 : raw < 0.52 ? 1 : raw < 0.76 ? 2 : 3;
   const capped = band === 3 && (d.reasoning < 2 || d.terminology < 2);
   if (capped) band = 2;
+  let strandResults = null;
+  if (cfg.strands) {
+    const lvlOf = Object.fromEntries(results.map((x) => [x.check.id, x.level]));
+    strandResults = cfg.strands.map((st) => {
+      let status, cov = 0;
+      if (st.terms) {
+        status = stats.words < 80 || stats.terms < 3 ? "Needs more PHE terms" : stats.terms < 10 ? "Some PHE terms" : "Strong use of PHE terms";
+      } else {
+        const ids = TASK1_STRAND_MAP[st.id] || [];
+        cov = ids.length ? ids.reduce((n, id) => n + (lvlOf[id] || 0), 0) / (ids.length * 2) : 0;
+        status = stats.words < 80 || cov < 0.34 ? "Not yet shown" : cov < 0.67 ? "Started" : d.reasoning < 2 ? "Described, not yet justified" : "Described and justified";
+      }
+      return { id: st.id, name: st.name, asks: st.asks, next: st.next, status, coverage: cov, terms: !!st.terms };
+    });
+  }
   return {
+    strands: strandResults,
     task: taskNumber, title: cfg.title, criterion: cfg.criterion, note: cfg.note || "", mode: cfg.mode || "rubric", cant: cfg.cant || null, focus: cfg.focus || "",
     stats, depth: d, results, coverage, raw, band, bandName: BAND_NAMES[band], capped,
     next: cfg.next[BAND_NAMES[band]],
