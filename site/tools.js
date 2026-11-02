@@ -1,7 +1,7 @@
 // Task tools shown as sub-tabs on the ePortfolio task pages:
 //   SMART goal builder and Training session planner (Task 2) and the rubric self-check (Tasks 1 to 4).
 // They guide students with prompts and checks. They never write the student's work for them.
-import { runSelfCheck, SELF_CHECK_TASKS } from "./selfcheck.js";
+import { runSelfCheck, runSectionCheck, SECTION_LIST, SELF_CHECK_TASKS } from "./selfcheck.js";
 
 // Shown at the top of each tool while the tasks are being updated. Set to "" to hide it.
 const UPDATING_NOTICE = "These tools are being updated to match this year's task details. Until then, treat the prompts as a general guide and follow your teacher's instructions.";
@@ -358,6 +358,8 @@ export function renderPlanner(el, ctx) {
 // Rubric self-check
 // =====================================================================
 const drafts = {}; // pasted text stays in memory only, never saved or sent anywhere
+const modes = {};  // "section" or "whole" for each task (this visit only)
+const picks = {};  // chosen section for each task (this visit only)
 const lastRun = {};
 const CANT_CHECK = {
   1: ["Written work is 5 pages maximum, with all text 10pt or larger.", "Tables, graphs, screenshots and annotated images are included and legible.", "Unit words (global context, key concept, related concepts, statement of inquiry) are in bold or a different colour.", "A separate bibliography is submitted using Harvard referencing."],
@@ -378,19 +380,44 @@ const DEPTH_HOW = {
 
 export function renderSelfCheck(el, taskNumber, ctx) {
   const info = SELF_CHECK_TASKS[taskNumber];
-  const ta = h("textarea", { class: "tl-ta tl-big", rows: "12", id: "sc-" + taskNumber, "aria-label": "Paste your work here", placeholder: taskNumber === 3 ? "Paste your video script or voice-over notes here..." : "Paste your writing here (one section or the whole task)..." });
+  const hasSections = !!info.sections;
+  const ta = h("textarea", { class: "tl-ta tl-big", rows: "12", id: "sc-" + taskNumber, "aria-label": "Paste your work here", placeholder: taskNumber === 3 ? "Paste your video script or voice-over notes here..." : hasSections ? "Paste a section of your work here (or your whole draft)..." : "Paste your writing here (one section or the whole task)..." });
   ta.value = drafts[taskNumber] || "";
   const count = h("span", { class: "tl-count" });
   const out = h("div", { class: "tl-out", "aria-live": "polite" });
   const upd = () => { drafts[taskNumber] = ta.value; count.textContent = `${words(ta.value)} words`; };
   ta.addEventListener("input", upd);
+  // one section or whole draft (Task 1)
+  modes[taskNumber] = modes[taskNumber] || "section";
+  const sel = h("select", { id: "sc-sec-" + taskNumber, class: "tl-select", "aria-label": "Which section did you paste?" }, h("option", { value: "auto" }, "Auto-detect (recommended)"),
+    ...[...new Set(SECTION_LIST.map((x) => x.group))].map((g) => h("optgroup", { label: g }, SECTION_LIST.filter((x) => x.group === g).map((x) => h("option", { value: x.id }, x.label)))));
+  sel.value = picks[taskNumber] || "auto";
+  sel.onchange = () => { picks[taskNumber] = sel.value; };
+  const secBox = h("div", { class: "sc-section" }, h("label", { for: "sc-sec-" + taskNumber, class: "tl-lab" }, "Which section did you paste?"), sel,
+    h("p", { class: "tl-note" }, "I will work out which part of the checklist your paste is. If I get it wrong, choose the section here."));
+  const radio = (v, label) => { const i = h("input", { type: "radio", name: "sc-mode-" + taskNumber, value: v }); i.checked = modes[taskNumber] === v; i.onchange = () => { modes[taskNumber] = v; secBox.hidden = v !== "section"; out.replaceChildren(); }; return h("label", { class: "tl-chk" }, i, h("span", {}, label)); };
+  const modeRow = hasSections ? h("div", { class: "sc-mode", role: "radiogroup", "aria-label": "What do you want checked?" }, radio("section", "Check one section"), radio("whole", "Check my whole draft")) : false;
+  secBox.hidden = !hasSections || modes[taskNumber] !== "section";
   const go = h("button", { type: "button", class: "btn lime" }, "Check my work");
   const clr = h("button", { type: "button", class: "btn ghost" }, "Clear");
   clr.onclick = () => { ta.value = ""; upd(); out.replaceChildren(); };
   go.onclick = () => {
     const text = ta.value.trim();
     out.replaceChildren();
-    if (words(text) < 40) { out.append(h("p", { class: "tl-warnbox" }, "Paste at least a paragraph or two (about 80 words or more) so there is enough to check.")); return; }
+    const sectionMode = hasSections && modes[taskNumber] === "section";
+    if (words(text) < (sectionMode ? 25 : 40)) { out.append(h("p", { class: "tl-warnbox" }, sectionMode ? "Paste at least a short paragraph (about 25 words or more) so there is enough to check." : "Paste at least a paragraph or two (about 80 words or more) so there is enough to check.")); return; }
+    if (sectionMode) {
+      const r = runSectionCheck(taskNumber, text, sel.value === "auto" ? null : [sel.value]);
+      if (r.needsChoice) {
+        out.append(h("div", { class: "tl-warnbox" }, h("p", {}, h("strong", {}, "I could not tell which part of the checklist this is. ")), h("p", {}, "Choose the section from the drop-down above and check again, or pick one of my closest guesses:"),
+          h("div", { class: "w-row" }, r.ranked.filter((x) => x.score > 0).map((x) => { const b = h("button", { type: "button", class: "btn ghost small" }, x.label); b.onclick = () => { sel.value = x.id; picks[taskNumber] = x.id; go.click(); }; return b; }))));
+        return;
+      }
+      ctx.onSelfCheck(taskNumber);
+      out.append(sectionResultView(r));
+      out.firstChild.scrollIntoView({ block: "start", behavior: "smooth" });
+      return;
+    }
     const r = runSelfCheck(taskNumber, text);
     ctx.onSelfCheck(taskNumber);
     out.append(resultView(r, lastRun[taskNumber]));
@@ -402,14 +429,66 @@ export function renderSelfCheck(el, taskNumber, ctx) {
     h("div", { class: "tl-callout" },
       h("p", {}, h("strong", {}, "How it works")),
       h("ol", {},
-        h("li", {}, taskNumber === 3 ? "Paste your video script or voice-over notes into the box." : "Paste a section of your draft, or the whole task, into the box."),
-        h("li", {}, info.mode === "checklist" ? "Press Check my work. You get written feedback item by item against the checklist, then against each strand of the rubric: what is working, and what to improve with steps for how to do it." : "Press Check my work. You get written feedback: what is working, and what to improve with steps for how to do it."),
+        h("li", {}, hasSections ? "Paste one section of your work (or your whole draft) into the box." : taskNumber === 3 ? "Paste your video script or voice-over notes into the box." : "Paste a section of your draft, or the whole task, into the box."),
+        h("li", {}, hasSections ? "Press Check my work. I work out which part of the checklist it is, then give you strengths and areas to improve for that part only, with the rubric strands it feeds." : "Press Check my work. You get written feedback: what is working, and what to improve with steps for how to do it."),
         h("li", {}, "Improve your work in your own document, then paste it again to see what changed.")),
       h("p", { class: "tl-note" }, "This tool never writes or rewrites your work. It gives written feedback only, with no grade or band. It looks for key words and ideas, so it can miss a good point written differently. Your teacher marks your real work. What you paste stays in this browser tab: it is not saved or sent anywhere."),
       info.note ? h("p", { class: "tl-note" }, info.note) : false),
+    modeRow, secBox,
     h("label", { for: "sc-" + taskNumber, class: "tl-lab" }, "Your work"), ta, h("div", { class: "tl-meta" }, h("span", {}), count),
     h("div", { class: "tl-actions" }, go, clr), out));
   upd();
+}
+
+// feedback for one section of the checklist (Task 1)
+function sectionResultView(r) {
+  const root = h("div", { class: "tl-result" });
+  const strandName = (sec, id) => (sec.strands.find((t) => t.id === id) || {});
+  r.sections.forEach((sec, si) => {
+    const box = h("section", { class: "sc-sec" });
+    box.append(h("div", { class: "tl-sum" }, h("div", { class: "tl-sumtext" },
+      h("h3", {}, `Feedback on this section: ${sec.label}`),
+      r.auto ? h("p", {}, `I worked out that your paste is about ${sec.label}. Not right? Choose the correct section in the drop-down above and check again.`) : h("p", {}, `You chose ${sec.label}.`),
+      h("p", {}, `Based on the ${r.stats.words} words you pasted, ${sec.covered} of ${sec.total} checklist items in this section are covered well. Items from other sections are not counted.`),
+      h("p", { class: "tl-note" }, "This is feedback to help you improve. It is not a grade."))));
+    // strengths with quotes
+    box.append(h("h4", {}, "What is working well"));
+    if (sec.strengths.length) box.append(h("ul", { class: "tl-list good" }, sec.strengths.map((x) => h("li", {}, h("strong", {}, x.check.label + ". "), x.quote ? h("blockquote", { class: "tl-quote" }, h("small", {}, "Where I found it: "), `“${x.quote}”`) : false))));
+    else box.append(h("p", {}, "I could not find a checklist item in this section that is fully covered yet. Start with the first improvement below."));
+    // improvements
+    box.append(h("h4", {}, "What to improve and how"));
+    const card = (x) => {
+      const status = x.level === 0 ? "missing" : "partial";
+      const st = (x.check.strands || []).map((id) => strandName(sec, id)).find((t) => t && t.id);
+      return h("details", { class: `tl-imp ${status}`, open: status === "missing" },
+        h("summary", {}, h("span", { class: `tl-chip ${status === "missing" ? "warn" : "mid"}` }, status === "missing" ? "Not yet there" : "Partly there"), h("strong", {}, x.check.label), h("small", {}, sec.label)),
+        h("p", {}, h("strong", {}, "What I noticed: "), status === "partial" ? `Some of this is there, but not all of it. ${x.check.what}` : x.check.what),
+        h("p", {}, h("strong", {}, "Why it matters: "), `This is on the Task ${r.task} checklist, under ${sec.label}.`),
+        st ? h("p", {}, h("strong", {}, "What the rubric asks: "), `This supports the rubric strand "${st.name}". The rubric asks for ${st.asks}`) : false,
+        x.check.ex ? h("p", {}, h("strong", {}, "In the student example: "), x.check.ex) : false,
+        h("p", {}, h("strong", {}, "How to improve it:")), h("ol", {}, x.check.how.map((t) => h("li", {}, t))));
+    };
+    if (!sec.improve.length) box.append(h("p", {}, "Every checklist item in this section is covered. Read it through once more for detail and accuracy."));
+    else {
+      box.append(...sec.improve.slice(0, 4).map(card));
+      if (sec.improve.length > 4) box.append(h("details", { class: "tl-more" }, h("summary", {}, `More to check in this section (${sec.improve.length - 4})`), ...sec.improve.slice(4).map(card)));
+    }
+    // depth cards that apply to any section
+    if (r.stats.words >= 40) {
+      const gaps = [];
+      if (!r.justified) gaps.push(["reasoning", "Justify your judgements", DEPTH_TEXT.reasoning[0], DEPTH_HOW.reasoning]);
+      if (r.stats.terms < 5) gaps.push(["terminology", "PHE terminology", DEPTH_TEXT.terminology[r.stats.terms < 2 ? 0 : 1], DEPTH_HOW.terminology]);
+      for (const [, title, text, how] of gaps) box.append(h("details", { class: "tl-imp partial" }, h("summary", {}, h("span", { class: "tl-chip mid" }, "Depth"), h("strong", {}, title), h("small", {}, "The rubric asks you to justify and to use subject terminology consistently")), h("p", {}, text), h("p", {}, h("strong", {}, "How to improve it:")), h("ol", {}, how.map((t) => h("li", {}, t)))));
+    }
+    // rubric strands this section feeds
+    box.append(h("h4", {}, "How this section lines up with the rubric"),
+      h("p", { class: "tl-note" }, "Only the rubric strands this section feeds are shown. The rubric moves from listing, to a brief account, to a detailed account that justifies your judgements."),
+      h("div", { class: "tl-depth" }, sec.strands.map((x) => { const good = /justified|Strong/.test(x.status), mid = /Described|Started|Some/.test(x.status); return h("div", { class: `tl-d d${good ? 2 : mid ? 1 : 0}` }, h("strong", {}, x.name), h("span", { class: "tl-chip" }, x.status), h("p", {}, h("strong", {}, "The rubric asks for: "), x.asks), h("p", {}, h("strong", {}, "Your next step: "), x.next)); })));
+    box.append(h("p", { class: "tl-next" }, h("strong", {}, "What to do next: "), "Fix the first point above in your Word document, in your own words, then paste this section in again to see what has changed."));
+    root.append(box);
+  });
+  root.append(h("details", { class: "tl-more" }, h("summary", {}, "Things this tool cannot check"), h("ul", {}, (r.cant || []).map((t) => h("li", {}, t)))));
+  return root;
 }
 
 function resultView(r, prev) {

@@ -86,9 +86,12 @@ const SEC = {
 };
 // item(id, section, checklist wording, test(text, stats) => 0|1|2, steps for how to improve)
 const item = (id, section, label, test, how) => ({ id, area: section, ref: section, label, fn: (t, s) => ({ level: test(t, s), found: [] }), ok: `This is covered: ${label}.`, what: `I could not find clear evidence of this: ${label}.`, how });
-const TASK1_CHECKS = [
+function conceptItems(scoped) {
+  const scopeOf = (phrase) => (t) => (scoped ? conceptScope(t, phrase) : t);
+  const soiScope = scopeOf("statement of inquiry");
+  return [
   ...CONCEPTS.flatMap(([name, phrase]) => {
-    const sc = (t) => conceptScope(t, phrase);
+    const sc = scopeOf(phrase);
     const short = name.split(":")[0];
     return [
       item(`c-${phrase}-def`, SEC.concept, `${name}: defined in your own words, with a source`, (t) => { const x = sc(t); return !x ? 0 : lvl([hit(x, /\b(is|means|refers to|defined as|can be defined|involves)\b/i), hit(x, CITED)]); },
@@ -97,20 +100,27 @@ const TASK1_CHECKS = [
         [`Say how the ${short.toLowerCase()} shows up in your client's athletics event.`, "Name your client and the event in the same paragraph so the link is clear."]),
       item(`c-${phrase}-coach`, SEC.concept, `${name}: how it shapes your coaching focus`, (t) => { const x = sc(t); return !x ? 0 : lvl([hit(x, /\bcoach/i), hit(x, /\b(focus|shape|shapes|priorit|will|plan|because|so that)\b/i)]); },
         ["Finish with the 'so what': say what you will focus on as the coach because of this idea.", "Use the word because to join the idea to your coaching decision."]),
-    ];
+    ].map((c) => ({ ...c, scope: scoped ? sc : undefined }));
   }),
-  item("soi-client", SEC.concept, "Statement of inquiry: explains the statement for your client and event", (t) => { const x = conceptScope(t, "statement of inquiry"); return !x ? 0 : lvl([hit(x, /\bclient\b/i), hit(x, /\b(event|athletics)\b/i)]); },
+  ...[
+    item("soi-client", SEC.concept, "Statement of inquiry: explains the statement for your client and event", (t) => { const x = soiScope(t); return !x ? 0 : lvl([hit(x, /\bclient\b/i), hit(x, /\b(event|athletics)\b/i)]); },
     ["Copy the statement of inquiry into your work, then explain it in your own words for your client and their event."]),
-  item("soi-together", SEC.concept, "Statement of inquiry: pulls the three concepts together", (t) => { const x = conceptScope(t, "statement of inquiry"); if (!x) return 0; const n = [/fair/i, /relationship/i, /environment/i].filter((r) => r.test(x)).length; return n >= 3 ? 2 : n >= 2 ? 1 : 0; },
+  item("soi-together", SEC.concept, "Statement of inquiry: pulls the three concepts together", (t) => { const x = soiScope(t); if (!x) return 0; const n = [/fair/i, /relationship/i, /environment/i].filter((r) => r.test(x)).length; return n >= 3 ? 2 : n >= 2 ? 1 : 0; },
     ["Show how fairness and development, relationships and environment connect to each other in one paragraph.", "Say which one matters most for your client and why."]),
-  item("soi-coach", SEC.concept, "Statement of inquiry: says what this means for your coaching and client", (t) => { const x = conceptScope(t, "statement of inquiry"); return !x ? 0 : lvl([hit(x, /\bcoach/i), hit(x, /\bclient\b/i)]); },
-    ["End the section by saying what this means for how you will coach and for what your client will gain."]),
+  item("soi-coach", SEC.concept, "Statement of inquiry: says what this means for your coaching and client", (t) => { const x = soiScope(t); return !x ? 0 : lvl([hit(x, /\bcoach/i), hit(x, /\bclient\b/i)]); },
+    ["End the section by saying what this means for how you will coach and for what your client will gain."])
+  ].map((c) => ({ ...c, scope: scoped ? soiScope : undefined })),
+  ];
+}
+
+const TASK1_CHECKS = [
+  ...conceptItems(true),
 
   item("p-interview", SEC.profile, "Summary of interview answers about health, well-being and fitness", (t) => lvl([hit(t, /interview/i), hit(t, /\b(said|told|reported|stated|explained|answered|answers?|responses?)\b/i)]),
     ["Summarise what your client told you in the interview about health, well-being and fitness.", "Do not paste the whole interview. Pick the answers that matter and say why."]),
   item("p-parq", SEC.profile, "Summary of PAR-Q responses and what it showed", (t) => lvl([hit(t, /par.?q/i), hit(t, /\b(showed|shows|indicated|responses?|answered|no risk|cleared|safe)\b/i)]),
     ["Say that you completed the PAR-Q.", "Explain what it showed about whether your client is ready to train."]),
-  item("p-body", SEC.profile, "Age, height, weight and BMI", (t) => { const n = [/\bage\b|years? old|aged/i, /height|\bcm\b/i, /weight|\bkg\b/i, /\bbmi\b/i].filter((r) => r.test(t)).length; return n >= 4 ? 2 : n >= 2 ? 1 : 0; },
+  item("p-body", SEC.profile, "Age, height, weight and BMI", (t) => { const n = [/\bage\b|years?[ -]old|aged/i, /height|\btall\b|\d\s?cm\b/i, /weigh|\d\s?kg\b/i, /\bbmi\b/i].filter((r) => r.test(t)).length; return n >= 4 ? 2 : n >= 2 ? 1 : 0; },
     ["Give your client's age, height, weight and BMI with units.", "Say what the BMI tells you, and what it does not."]),
   item("p-injury", SEC.profile, "Previous injury, illness or recent surgery", (t) => (hit(t, /injur|illness|surgery|medical history|no previous|operation/i) ? 2 : 0),
     ["State any previous injury, illness or recent surgery, or say clearly that there is none.", "Explain whether it affects their training."]),
@@ -252,12 +262,120 @@ const TASK1_STRAND_MAP = {
 };
 for (const c of TASK1_CHECKS) c.strands = Object.keys(TASK1_STRAND_MAP).filter((k) => TASK1_STRAND_MAP[k].includes(c.id));
 
+// ----- Task 1: feedback on one section at a time -----
+// Students often paste just one part of their work. The tool works out which checklist section it is (or uses the
+// section they choose), then checks only that section's items and the rubric strands that section feeds.
+const sectionOnlyCheck = (id, area, label, fn, how) => ({ id, area, ref: area, label, fn: (t, s) => ({ level: fn(t, s), found: [] }), ok: `This is covered: ${label}.`, what: `I could not find clear evidence of this: ${label}.`, how });
+const CONCEPT_SECTION_CHECKS = conceptItems(false); // when a section is chosen, the whole paste is about that concept
+const SEC_DETAIL = sectionOnlyCheck("sec-detail", "Before you submit", "Information is detailed and in paragraph form", (t, s) => (s.words >= 120 ? 2 : s.words >= 50 ? 1 : 0),
+  ["Explain each point in full sentences and paragraphs rather than lists or short notes.", "Give the reason for each point, using because."]);
+const byId = Object.fromEntries(TASK1_CHECKS.map((c) => [c.id, c]));
+const conceptById = Object.fromEntries(CONCEPT_SECTION_CHECKS.map((c) => [c.id, c]));
+const pick = (...ids) => ids.map((id) => conceptById[id] || byId[id]);
+const SECTION_DEFS = [
+  { id: "global-context", group: "Conceptual understanding", label: "Global context: Fairness and development", checks: ["c-global context-def", "c-global context-apply", "c-global context-coach"], detect: [[/global context/i, 6], [/fairness and development/i, 5], [/\bfairness\b/i, 2], [/\bglobal\b/i, 1]] },
+  { id: "key-concept", group: "Conceptual understanding", label: "Key concept: Relationships", checks: ["c-key concept-def", "c-key concept-apply", "c-key concept-coach"], detect: [[/key concept/i, 6], [/\brelationships?\b/i, 1]] },
+  { id: "related-concept", group: "Conceptual understanding", label: "Related concept: Environment", checks: ["c-related concept-def", "c-related concept-apply", "c-related concept-coach"], detect: [[/related concept/i, 6], [/\benvironments?\b/i, 1]] },
+  { id: "statement-of-inquiry", group: "Conceptual understanding", label: "Statement of inquiry", checks: ["soi-client", "soi-together", "soi-coach"], detect: [[/statement of inquiry/i, 6], [/fair and equal relationships/i, 5]] },
+  { id: "profile", group: "Health analysis", label: "Client profile, interview and PAR-Q", checks: ["p-interview", "p-parq", "p-body", "p-injury", "p-diet", "p-sleep", "p-activity"], detect: [[/par.?q/i, 3], [/interview/i, 2], [/\bbmi\b/i, 3], [/\bheight\b/i, 1], [/\bweight\b/i, 1], [/years? old|\baged?\b/i, 1], [/sleep/i, 1], [/\bsteps?\b/i, 1], [/calorie|kcal/i, 2], [/water intake|hydrat/i, 1], [/injur|surgery|illness/i, 1], [/client profile/i, 3]] },
+  { id: "measures", group: "Health analysis", label: "Measurements of health and well-being", checks: ["m-test", "m-scale", "m-meaning", "cite"], detect: [[/acsi|csai|smuis|bsmas|who.?5/i, 4], [/questionnaire|survey|inventory/i, 2], [/mark scheme|scoring scale|\bscale\b/i, 2], [/\bscore[sd]?\b/i, 1], [/test and purpose/i, 3], [/measurements?/i, 2]] },
+  { id: "theory", group: "Health analysis", label: "Links to theory", checks: ["t-named", "t-nutrition", "t-linked", "cite"], detect: [[/inverted.?u/i, 4], [/\b(motivation|arousal|anxiety|confidence|stress)\b/i, 1.5], [/theory|theories/i, 2], [/nutrition|protein|carbohydrate/i, 1], [/recovery/i, 1]] },
+  { id: "overall-health", group: "Health analysis", label: "Overall health analysis and evaluation", checks: ["o-sw", "o-relate", "cite"], detect: [[/overall health|overall (?:well.?being|fitness)/i, 4], [/strengths? and weaknesses?/i, 2], [/health (?:and|&) well.?being/i, 1], [/relates? to (?:physical )?performance|affects? (?:her|his|their) performance/i, 2]] },
+  { id: "sport", group: "Physical analysis", label: "Chosen sport", checks: ["s-event", "s-records", "cite"], detect: [[/world record/i, 4], [/the (?:athletics )?event involves|chosen (?:sport|event)|history of/i, 3], [/\bphases?\b/i, 1], [/approach|take.?off|flight|landing|\bstart\b/i, 1]] },
+  { id: "fitness", group: "Physical analysis", label: "Fitness analysis", checks: ["f-trials", "f-event", "f-meaning"], detect: [[/\btrials?\b/i, 2], [/\baverage\b/i, 1], [/fitness tests?/i, 3], [/sit.?and.?reach|vertical jump|standing (?:long )?jump|30 ?m|sprint|bleep/i, 2], [/normative/i, 2], [/components? of fitness/i, 2]] },
+  { id: "technique", group: "Physical analysis", label: "Technique analysis", checks: ["te-position", "te-angles", "te-flight", "te-speed", "te-principles", "te-screens", "te-model", "te-app", "te-terms"], detect: [[/perfect model/i, 5], [/screenshot/i, 2], [/\bangles?\b/i, 2], [/kinovea|hudl|coach.?s eye|angle meter/i, 3], [/body position|posture/i, 2], [/flexion|extension|plantar|dorsi/i, 2], [/stride|release angle|flight phase/i, 1], [/technique/i, 1]] },
+  { id: "solutions", group: "Relevant solutions and next steps", label: "Relevant solutions and next steps", checks: ["n-areas", "n-links", "n-help", "n-why", "n-observe"], detect: [[/training methods?|plyometric|interval|circuit|fartlek/i, 2], [/\bdrills?\b|\bexercises?\b/i, 1], [/re.?test|video analysis|feedback meetings?/i, 2], [/solutions?/i, 2], [/next steps?/i, 3], [/need(?:s)? to (?:improve|work on|develop)/i, 2], [/\bsmart\b/i, 1]] },
+];
+export const SECTION_LIST = SECTION_DEFS.map(({ id, group, label }) => ({ id, group, label }));
+
+// which section(s) does this text look like?
+export function detectSections(text) {
+  const ranked = SECTION_DEFS.map((d) => {
+    const score = d.detect.reduce((n, [rx, w]) => n + w * Math.min(2, (text.match(new RegExp(rx.source, rx.flags.replace("g", "") + "g")) || []).length), 0);
+    return { id: d.id, label: d.label, group: d.group, score };
+  }).sort((a, b) => b.score - a.score);
+  const top = ranked[0];
+  const confident = top.score >= 4;
+  const chosen = confident ? ranked.filter((r, i) => i === 0 || (r.score >= Math.max(4, top.score * 0.6) && i < 3)) : [];
+  return { ranked, chosen, confident };
+}
+
+// evidence: the sentence in the student's text that shows an item is covered
+const EV = {
+  def: [CITED, /\b(is|means|refers to|defined as|involves)\b/i], apply: [/\bclient\b/i, /\bathlete/i], coach: [/\bcoach/i],
+  "soi-client": [/\bclient\b/i], "soi-together": [/relationship/i], "soi-coach": [/\bcoach/i],
+  "p-interview": [/interview/i], "p-parq": [/par.?q/i], "p-body": [/\bbmi\b/i, /height|\btall\b|\d\s?kg\b/i], "p-injury": [/injur|illness|surgery/i], "p-diet": [/calorie|kcal|diet/i], "p-sleep": [/sleep/i], "p-activity": [/steps?/i],
+  "m-test": [/\b(because|chose|purpose|used to)\b/i, /acsi|csai|questionnaire|survey|scale/i], "m-scale": [/\d+\s*(?:-|–|to)\s*\d+|out of \d+/i, /scor/i], "m-meaning": [/\b(this (?:shows|suggests|means|indicates)|which means|suggests|indicates)\b/i],
+  "t-named": [/inverted.?u|motivation|anxiety|arousal|confidence|stress/i], "t-nutrition": [/nutri|protein|carbohydrate|sleep|recover/i], "t-linked": [/\b(result|score|shows?|suggests?)\b/i],
+  "o-sw": [/strength/i, /weakness/i], "o-relate": [/\b(affect|impact|influence|limit)\w*/i],
+  "s-event": [/phase|stage|approach|take.?off|flight|landing/i], "s-records": [/world record/i],
+  "f-trials": [/trial\s*[123]|three trials|3 trials|average|mean/i], "f-event": [/initial|baseline/i], "f-meaning": [/current level|need\w* (?:to )?improv|improve/i],
+  "te-position": [/body position|posture|lean|alignment/i], "te-angles": [/angle/i], "te-flight": [/release angle|flight|stride/i], "te-speed": [/\d+(?:\.\d+)?\s*(?:m|cm|s|sec|seconds)\b/i], "te-principles": [/balance|force|power|flow|fluency|coordination/i],
+  "te-screens": [/strength|weakness/i], "te-model": [/perfect model|olympic|world champion|elite|professional/i], "te-app": [/kinovea|hudl|coach.?s eye|angle meter|app\b/i], "te-terms": [/flexion|extension|plantar|dorsi|quadriceps|hamstring|gluteal/i],
+  "n-areas": [/need\w* (?:to )?(?:improv|work|develop)|improve|weak/i], "n-links": [/relationship|environment|communicat/i], "n-help": [/interval|circuit|plyometric|weights|fartlek|drill|exercise/i], "n-why": [/\b(suit|suits|because|will lead|lead to)\b/i], "n-observe": [/video analysis|questionnaire|feedback meeting|re.?test|observ/i],
+  cite: [CITED],
+};
+for (const c of [...TASK1_CHECKS, ...CONCEPT_SECTION_CHECKS]) {
+  const key = c.id.replace(/^c-.*-(def|apply|coach)$/, "$1");
+  if (EV[key]) c.ev = EV[key];
+}
+function sentenceAround(t, i) {
+  const before = Math.max(t.lastIndexOf(". ", i), t.lastIndexOf("? ", i), t.lastIndexOf("! ", i), t.lastIndexOf("\n", i));
+  const afterM = t.slice(i).search(/[.!?](\s|$)|\n/);
+  let a = before < 0 ? 0 : before + 1, b = afterM < 0 ? t.length : i + afterM + 1;
+  let out = t.slice(a, b).replace(/\s+/g, " ").trim();
+  if (out.length > 190) { const rel = i - a; const from = Math.max(0, Math.min(rel - 70, out.length - 180)); out = (from > 0 ? "…" : "") + out.slice(from, from + 180).trim() + (from + 180 < out.length ? "…" : ""); }
+  return out;
+}
+export function quoteFor(check, text) {
+  if (!check.ev) return "";
+  const scope = check.scope ? check.scope(text) : text;
+  if (!scope) return "";
+  for (const rx of check.ev) { const m = scope.match(rx); if (m) return sentenceAround(scope, m.index); }
+  return "";
+}
+
+// section check: only the chosen section(s), 1-2 strengths with quotes, then areas to improve
+export function runSectionCheck(taskNumber, text, forcedIds = null) {
+  const cfg = RUBRIC[taskNumber];
+  if (!cfg || !cfg.sections) return null;
+  const stats = textStats(text);
+  const det = detectSections(text);
+  const ids = forcedIds && forcedIds.length ? forcedIds : det.chosen.map((c) => c.id);
+  if (!ids.length) return { mode: "section", needsChoice: true, ranked: det.ranked.slice(0, 3), stats };
+  const justified = stats.reasoning >= 2 && stats.reasoningRate >= 0.5;
+  const sections = ids.map((id) => {
+    const def = SECTION_DEFS.find((d) => d.id === id);
+    const checks = [...pick(...def.checks), SEC_DETAIL, byId["sub-prompts"]];
+    const results = checks.map((c) => ({ check: c, ...c.fn(text, stats) }));
+    const core = results.filter((x) => !["sec-detail", "sub-prompts"].includes(x.check.id));
+    const withQuote = core.filter((x) => x.level === 2).map((x) => ({ ...x, quote: quoteFor(x.check, text) }));
+    const strengths = [...withQuote.filter((x) => x.quote), ...withQuote.filter((x) => !x.quote)].slice(0, 2);
+    const improve = [...results.filter((x) => x.level === 0), ...results.filter((x) => x.level === 1)];
+    const ownIds = new Set(def.checks);
+    const lvlOf = Object.fromEntries(results.map((x) => [x.check.id, x.level]));
+    const strands = TASK1_STRANDS.filter((st) => st.terms || (TASK1_STRAND_MAP[st.id] || []).some((cid) => ownIds.has(cid))).map((st) => {
+      let status;
+      if (st.terms) status = stats.terms < 2 ? "Needs more PHE terms" : stats.terms < 5 ? "Some PHE terms" : "Strong use of PHE terms";
+      else {
+        const mine = (TASK1_STRAND_MAP[st.id] || []).filter((cid) => ownIds.has(cid));
+        const cov = mine.reduce((n, cid) => n + (lvlOf[cid] || 0), 0) / (mine.length * 2);
+        status = cov < 0.67 ? "Started" : justified ? "Described and justified" : "Described, not yet justified";
+      }
+      return { id: st.id, name: st.name, asks: st.asks, next: st.next, status };
+    });
+    return { id, label: def.label, group: def.group, covered: core.filter((x) => x.level === 2).length, total: core.length, strengths, improve, strands, score: (det.ranked.find((r) => r.id === id) || {}).score || 0 };
+  });
+  return { mode: "section", sections, stats, justified, auto: !(forcedIds && forcedIds.length), ranked: det.ranked.slice(0, 4), task: taskNumber, criterion: cfg.criterion, cant: cfg.cant, minWords: 40 };
+}
+
 const RUBRIC = {
   1: {
     // Task 1 is checked against the Task 1 checklist template only (and, when added, the student example).
     mode: "checklist",
     note: "This check uses the Task 1 checklist, the Task 1 rubric and the Task 1 student example as its references. The student example was written for a previous unit theme, so use it to see how the work is written, not for what it says.",
     strands: TASK1_STRANDS,
+    sections: true,
     title: "Task 1: Initial Observation and Analysis",
     criterion: "Task 1 checklist",
     minWords: 600,
@@ -514,4 +632,4 @@ export function runSelfCheck(taskNumber, text) {
   };
 }
 
-export const SELF_CHECK_TASKS = Object.fromEntries(Object.entries(RUBRIC).map(([k, v]) => [k, { title: v.title, criterion: v.criterion, note: v.note || "", mode: v.mode || "rubric" }]));
+export const SELF_CHECK_TASKS = Object.fromEntries(Object.entries(RUBRIC).map(([k, v]) => [k, { title: v.title, criterion: v.criterion, note: v.note || "", mode: v.mode || "rubric", sections: !!v.sections }]));
