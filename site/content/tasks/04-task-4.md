@@ -22,14 +22,6 @@ Details coming soon.
 
 Details coming soon.
 
-## Structure
-
-Details coming soon.
-
-## Citation
-
-Details coming soon.
-
 ## Rubric: Criterion D, Reflecting and Improving
 
 Find the level that best matches your work, then look at the level above to see how to improve.

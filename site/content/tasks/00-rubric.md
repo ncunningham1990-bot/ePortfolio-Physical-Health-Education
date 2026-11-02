@@ -8,12 +8,12 @@ Your ePortfolio is assessed on four MYP criteria, one for each task. Each task p
 
 | Task | MYP criterion | Draft due | Final due |
 |---|---|---|---|
-| [Task 1: Initial Observation and Analysis](#tasks/1) | A: Knowing and Understanding | To be confirmed | To be confirmed |
-| [Task 2: Performance Development Plan](#tasks/2) | B: Planning for Performance | To be confirmed | To be confirmed |
-| [Task 3: Applying and Performing](#tasks/3) | C: Applying and Performing | To be confirmed | To be confirmed |
-| [Task 4: Reflecting and Improving Performance](#tasks/4) | D: Reflecting and Improving | To be confirmed | To be confirmed |
+| [Task 1: Initial Observation and Analysis](#tasks/1) | A: Knowing and Understanding | 30 November 2026 | 5 January 2027 |
+| [Task 2: Performance Development Plan](#tasks/2) | B: Planning for Performance | 5 February 2027 | 19 February 2027 |
+| [Task 3: Applying and Performing](#tasks/3) | C: Applying and Performing | 15 February 2027 | 23 February 2027 |
+| [Task 4: Reflecting and Improving Performance](#tasks/4) | D: Reflecting and Improving | 1 March 2027 | 12 March 2027 |
 
-Details of this year's tasks are coming soon. An exemplar of high-quality work will be added to each task page.
+Submission dates are the end of the day shown. An exemplar of high-quality work will be added to each task page.
 
 ## How the levels work
 

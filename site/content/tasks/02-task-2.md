@@ -50,14 +50,6 @@ Details coming soon.
 
 Details coming soon.
 
-## Structure
-
-Details coming soon.
-
-## Citation
-
-Details coming soon.
-
 ## Rubric: Criterion B, Planning for Performance
 
 Find the level that best matches your work, then look at the level above to see how to improve.

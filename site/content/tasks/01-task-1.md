@@ -27,7 +27,26 @@ Write your work in the Word template. Use this page to tick off each item as you
 
 ## Exemplar: see high-quality work
 
-An exemplar of high-quality work will be added here soon. You will be able to view it on this page and download it.
+Look at this example from a previous student to see the standard to aim for: how the work is organised, how evidence is presented and how ideas are explained. It was written for a previous unit theme, so its concepts differ from this year's. It is there to **learn from, not to copy**. Your client, data, photos and words must be your own.
+
+[Download the Task 1 student example (PDF, 6 pages)](exemplars/Task1_Student_Example.pdf)
+
+<details>
+<summary>View the student example here (6 pages)</summary>
+
+![Task 1 student example, page 1 of 6](exemplars/task-1-example-p1.webp)
+
+![Task 1 student example, page 2 of 6](exemplars/task-1-example-p2.webp)
+
+![Task 1 student example, page 3 of 6](exemplars/task-1-example-p3.webp)
+
+![Task 1 student example, page 4 of 6](exemplars/task-1-example-p4.webp)
+
+![Task 1 student example, page 5 of 6](exemplars/task-1-example-p5.webp)
+
+![Task 1 student example, page 6 of 6](exemplars/task-1-example-p6.webp)
+
+</details>
 
 ## Checklist: what to include
 
@@ -159,14 +178,6 @@ An exemplar of high-quality work will be added here soon. You will be able to vi
 - *words linking to the unit concepts, global context and statement of inquiry are in bold and/or different colour*
 - Harvard citations sit next to the work they support (in-text citations) and save full sources for final bibliography
 - Bibliography is in a separate submission after Task 4
-
-## Structure
-
-Details coming soon.
-
-## Citation
-
-Details coming soon.
 
 ## Rubric: Criterion A, Knowing and Understanding
 

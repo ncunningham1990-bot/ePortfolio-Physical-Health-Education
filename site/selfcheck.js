@@ -188,10 +188,43 @@ const TASK1_CHECKS = [
     ["I found template prompt wording or tick boxes in the text you pasted. Delete all the grey prompts and tick-lists before you submit."]),
 ];
 
+// What the Task 1 student example does for each checklist item (shown as "In the student example").
+// The example was written for a previous unit theme, so these lines describe how it is written, not what it says.
+const TASK1_EX = {
+  "c-def": "Each concept opens with what the idea means in sport, then backs it up with cited research, for example a named study with its sample size or a percentage.",
+  "c-apply": "Each concept is applied to athletes and their training world (coaches, teammates, facilities, online platforms) with examples. Go one step further than the example and name your client and event.",
+  "soi-client": "The statement of inquiry is written out, then explained in detail with examples and a cited source.",
+  "p-interview": "The example summarises what the client reported about her routine, diet and screen time instead of pasting the interview, and picks out the answers that matter.",
+  "p-body": "Age, height, weight and BMI are given with units, weight is compared with the average for her age (with a source), and the BMI classification is explained.",
+  "p-injury": "A history of leg cramps is noted, and the example says how it will change the training plan.",
+  "p-diet": "Daily calories and water intake are given, and the example explains what each means for energy and hydration.",
+  "p-sleep": "Average sleep is taken from a wearable app, compared with the recommended amount for her age (with a source), and linked to muscle repair.",
+  "p-activity": "Average daily steps and training sessions per week are given, and the steps are compared with the recommended amount.",
+  "m-test": "Each test is set out in a table with its relevance (why it was used), the mark scheme, the client's result and an analysis.",
+  "m-scale": "The mark scheme column gives the score ranges for low, moderate and high.",
+  "m-meaning": "The analysis column says what the score means for the athlete in competition and what the coach will do about it.",
+  "s-event": "The example gives the event's history, then breaks it into four phases (approach, take-off, flight, landing), explaining the technique in each with sources.",
+  "s-records": "The women's world record is stated as a fact with the date, the result and a source.",
+  "f-trials": "The fitness table shows three results for every test, the average, the purpose of the test and a normative score.",
+  "f-meaning": "The analysis column compares each average with a normative range and says whether the client is at an excellent, good or average level.",
+  "te-angles": "The analysis names joint angles in degrees and compares them, for example a knee angle of 148 degrees for the client against 155 degrees for the professional.",
+  "te-screens": "In every phase, the analysis explains what the professional does well, what the client does differently, and what effect that has on performance.",
+  "te-model": "A table compares the client with a professional high jumper in each phase, with pictures of both and an analysis.",
+  "te-app": "The example names the app used to measure the angles and says what it let the coach do.",
+  "te-terms": "The analysis uses PHE terms throughout, such as hip extension, plantar flexion, dorsiflexion and spinal flexion.",
+  "n-help": "Each training method (for example plyometric training) and psychological skill (for example visualisation and mindfulness) is explained and justified for the client.",
+  "cite": "Citations sit beside the facts they support, in brackets with the author and year, throughout the work.",
+};
+for (const c of TASK1_CHECKS) {
+  const key = c.id.startsWith("c-") ? c.id.replace(/^c-.*-(def|apply)$/, "c-$1") : c.id;
+  if (TASK1_EX[key]) c.ex = TASK1_EX[key];
+}
+
 const RUBRIC = {
   1: {
     // Task 1 is checked against the Task 1 checklist template only (and, when added, the student example).
     mode: "checklist",
+    note: "This check uses the Task 1 checklist and the Task 1 student example as its only references. The student example was written for a previous unit theme, so use it to see how the work is written, not for what it says.",
     title: "Task 1: Initial Observation and Analysis",
     criterion: "Task 1 checklist",
     minWords: 600,
