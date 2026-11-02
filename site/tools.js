@@ -5,7 +5,9 @@ import { runSelfCheck, SELF_CHECK_TASKS } from "./selfcheck.js";
 
 // Shown at the top of each tool while the tasks are being updated. Set to "" to hide it.
 const UPDATING_NOTICE = "These tools are being updated to match this year's task details. Until then, treat the prompts as a general guide and follow your teacher's instructions.";
-const updatingNotice = () => (UPDATING_NOTICE ? h("p", { class: "tl-warnbox", role: "note" }, h("strong", {}, "Being updated. "), UPDATING_NOTICE) : false);
+// task numbers whose checklist and rubric prompts have already been updated for this year
+const UPDATED_TASKS = new Set([1]);
+const updatingNotice = (task) => (UPDATING_NOTICE && !UPDATED_TASKS.has(task) ? h("p", { class: "tl-warnbox", role: "note" }, h("strong", {}, "Being updated. "), UPDATING_NOTICE) : false);
 
 const h = (tag, attrs = {}, ...kids) => {
   const el = document.createElement(tag);
@@ -153,7 +155,7 @@ export function renderSmart(el, ctx) {
   const root = h("div", { class: "tl" });
   root.addEventListener("tl-change", update);
   root.append(
-    h("h2", {}, "SMART goal builder"), updatingNotice(),
+    h("h2", {}, "SMART goal builder"), updatingNotice(2),
     h("div", { class: "tl-callout" },
       h("p", {}, h("strong", {}, "What the Task 2 checklist asks for (Physical and health goals)")),
       h("ul", {},
@@ -336,7 +338,7 @@ export function renderPlanner(el, ctx) {
   }
   root.addEventListener("tl-change", buildTabs);
   root.append(
-    h("h2", {}, "Training session planner"), updatingNotice(),
+    h("h2", {}, "Training session planner"), updatingNotice(2),
     h("div", { class: "tl-callout" },
       h("p", {}, h("strong", {}, "What the Task 2 checklist asks for (Training programme)")),
       h("ul", {},
@@ -396,7 +398,7 @@ export function renderSelfCheck(el, taskNumber, ctx) {
     out.firstChild.scrollIntoView({ block: "start", behavior: "smooth" });
   };
   el.replaceChildren(h("div", { class: "tl" },
-    h("h2", {}, `Self-check against the rubric: ${info.criterion}`), updatingNotice(),
+    h("h2", {}, `Self-check against the rubric: ${info.criterion}`), updatingNotice(taskNumber),
     h("div", { class: "tl-callout" },
       h("p", {}, h("strong", {}, "How it works")),
       h("ol", {},
