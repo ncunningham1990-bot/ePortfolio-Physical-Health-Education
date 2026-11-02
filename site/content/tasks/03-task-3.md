@@ -16,10 +16,6 @@ An exemplar of high-quality work will be added here soon. You will be able to vi
 
 Details coming soon.
 
-## Structure
-
-Details coming soon.
-
 ## Rubric: Criterion C, Applying and Performing
 
 Your video is the evidence. Find the level that best matches it, then look at the level above to see how to improve.
