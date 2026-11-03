@@ -65,7 +65,7 @@ Grade 10 MYP PHE · *Criterion A: Knowing and Understanding*
 
 Use the class Padlet to help your thinking.
 
-[Open the Task 1 Padlet](https://padlet.com/neilc13/grade-10-eportfolio-lesson-1-moderate-task-1-samples-s0252pw4zm7w58y6mdkl)
+[Open the Task 1 Padlet](https://padlet.com/neilc13/grade-10-eportfolio-conceptual-understanding-s024zlqmrmeysfl7tiu5)
 
 ## Task 1 Word template
 
