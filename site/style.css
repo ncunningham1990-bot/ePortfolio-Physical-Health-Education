@@ -493,3 +493,10 @@ li.trk.done>p,li.trk.done>:not(ul):not(ol):not(input){opacity:.82}
 .tl-quote small{font-style:normal;color:var(--muted);font-weight:700}
 .tl-more{margin:10px 0;border:1px dashed var(--border);border-radius:12px;padding:6px 12px}
 .tl-more summary{cursor:pointer;font:700 .9rem var(--head);color:var(--accent)}
+
+/* ---------- questionnaire links drop-down (Task 1) ---------- */
+.doc details.q-links{margin:10px 0 14px;border:2px solid var(--border);border-radius:14px;background:var(--tint);padding:2px 14px}
+.doc details.q-links summary{cursor:pointer;padding:10px 0;font:800 1.02rem var(--head);color:var(--accent)}
+.doc details.q-links[open]{border-color:var(--lime)}
+.doc details.q-links ul{margin:0 0 10px;padding-left:20px}
+.doc details.q-links li{margin:6px 0}
