@@ -46,6 +46,11 @@ def tasks_doc():
         m, b = parse(p)
         b = re.sub(r"^```audio[ \t]*\n.*?^```[ \t]*\n?", "", b, flags=re.M | re.S)
         b = re.sub(r"<details>.*?</details>\s*", "", b, flags=re.S)
+        def qlinks(m):
+            title = re.search(r"<summary>(.*?)</summary>", m.group(0), re.S).group(1).strip()
+            rows = "\n".join(f"- {n}: {u}" for u, n in re.findall(r'<a href="([^"]+)">(.*?)</a>', m.group(0)))
+            return f"{title}:\n{rows}\n\n"
+        b = re.sub(r'<details class="q-links">.*?</details>\s*', qlinks, b, flags=re.S)
         b = re.sub(r"^!\[([^\]]*)\]\([^)]*\)\s*$", lambda x: f"[Image: {x.group(1)}]", b, flags=re.M)
         b = b.replace("<br><br>", " / ").replace("<br>", " ")
         b = re.sub(r"\n{3,}", "\n\n", b).strip()
