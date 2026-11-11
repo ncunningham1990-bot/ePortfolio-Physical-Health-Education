@@ -1,6 +1,6 @@
 // Service worker for the PHE ePortfolio Hub. Generated into site/sw.js by `npm run build`; edit this template, not sw.js.
 // It keeps the app files on the device so the lessons work offline, and refreshes them in the background when online.
-const CACHE = "phe-hub-856ac75553";
+const CACHE = "phe-hub-712d8afcaa";
 const FILES = [
  "./",
  "activities/major-muscles.html",

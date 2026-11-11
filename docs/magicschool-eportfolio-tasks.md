@@ -129,7 +129,7 @@ Look at this example from a previous student to see the standard to aim for: how
 *Introduce your client and explain what the interview and PAR-Q told you. Do not paste the full interview.*
 
 - *Summary of interview answers about health, well-being and fitness*
-- *Summary of PAR-Q responses and what it showed*
+- *Summary of PAR-Q responses and what it showed* · [Online PAR-Q form](https://coachway.io/templates/par-q-form/)
 - *Age, height, weight and BMI*
 - *Previous injury, illness or recent surgery*
 - *Diet, calorie and water intake*
